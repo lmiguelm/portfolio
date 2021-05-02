@@ -14,7 +14,18 @@ export const Container = styled(motion.ul)`
 
   gap: 5rem;
 
+  @media (max-width: 720px) {
+    gap: 2rem;
+  }
+
   list-style: none;
+
+  -webkit-touch-callout: none; /* iPhone OS, Safari */
+  -webkit-user-select: none; /* Chrome, Safari 3 */
+  -khtml-user-select: none; /* Safari 2 */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+  user-select: none; /* Possível implementação no futuro */
 `;
 
 export const Link = styled(motion.li)`
@@ -27,7 +38,15 @@ export const Link = styled(motion.li)`
   &.active {
     color: #fff;
     font-size: 1.5rem;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid #356eca;
     padding: 0.5rem;
+
+    @media (max-width: 720px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    font-size: 1rem;
   }
 `;

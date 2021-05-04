@@ -32,6 +32,18 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 87.5%;
     }
   }
+
+  ::-webkit-scrollbar-track {
+    background: #333;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    background: #333;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #356eca;
+  }
     
 `;
 

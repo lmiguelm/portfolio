@@ -12,6 +12,8 @@ export const Container = styled(motion.ul)`
   align-items: center;
   justify-content: center;
 
+  transition: 0.4s;
+
   gap: 5rem;
 
   @media (max-width: 720px) {
@@ -26,6 +28,10 @@ export const Container = styled(motion.ul)`
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */
   user-select: none; /* Possível implementação no futuro */
+
+  &.scrolling {
+    background: #222;
+  }
 `;
 
 export const Link = styled(motion.li)`
@@ -38,7 +44,7 @@ export const Link = styled(motion.li)`
   &.active {
     color: #fff;
     font-size: 1.5rem;
-    border-bottom: 1px solid #356eca;
+    border-bottom: 2px solid #356eca;
     padding: 0.5rem;
 
     @media (max-width: 720px) {

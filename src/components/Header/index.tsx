@@ -24,16 +24,16 @@ const item = {
 };
 
 export const Header = () => {
-  const { currentPage: active, handleCurrentPage } = useStylesContext();
+  const { currentPage: active, handleCurrentPage, scrollProgress } = useStylesContext();
   const [lastActive, setLastActive] = useState('');
 
   function handleMouseEnter() {
-    handleCurrentPage('');
     setLastActive(active != '' ? active : lastActive);
+    handleCurrentPage('');
   }
 
   function handleMouseLeave() {
-    handleCurrentPage(lastActive != '' ? lastActive : active);
+    handleCurrentPage(active != '' ? active : lastActive);
   }
 
   return (
@@ -42,6 +42,7 @@ export const Header = () => {
       initial="hidden"
       animate="visible"
       onMouseLeave={handleMouseLeave}
+      className={scrollProgress > 0 ? 'scrolling' : ''}
     >
       <NextLink href="/">
         <Link
@@ -58,7 +59,6 @@ export const Header = () => {
         <Link
           className={active == 'about' ? 'active' : ''}
           onMouseEnter={handleMouseEnter}
-          // onMouseLeave={handleMouseLeave}
           variants={item}
         >
           Sobre
@@ -69,7 +69,6 @@ export const Header = () => {
         <Link
           className={active == 'projects' ? 'active' : ''}
           onMouseEnter={handleMouseEnter}
-          // onMouseLeave={handleMouseLeave}
           variants={item}
         >
           Projetos
@@ -80,7 +79,6 @@ export const Header = () => {
         <Link
           className={active == 'contact' ? 'active' : ''}
           onMouseEnter={handleMouseEnter}
-          // onMouseLeave={handleMouseLeave}
           variants={item}
         >
           Contato

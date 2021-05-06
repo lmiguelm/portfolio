@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 
-import { motion, useElementScroll } from 'framer-motion';
+import { useElementScroll } from 'framer-motion';
 
 import Lottie from 'react-lottie';
 import animation from '../public/lottie/36185-animation-about-seo-dashboard.json';
@@ -19,6 +21,7 @@ import {
 
 import { Card } from '../components/Card';
 import { api } from '../services/api';
+import { Button } from '../styles/global';
 
 type ISkill = {
   id: string;
@@ -75,17 +78,7 @@ export default function About({ tools, skills }: IAboutProps) {
           />
         </AnimationContainer>
 
-        <InfoContainer
-          initial={{
-            scale: 0,
-          }}
-          animate={{
-            scale: 1,
-          }}
-          transition={{
-            duration: 1,
-          }}
-        >
+        <InfoContainer>
           <h1>Luis Miguel Fernandes Marcelo</h1>
           <p>
             Tenho 19 anos, sou de Araraquara, interior do estado de São Paulo. Comecei a programar
@@ -98,25 +91,27 @@ export default function About({ tools, skills }: IAboutProps) {
             Javascript, como React.js, Next.js, React-Native, Vue.js e Node. Sempre estou em busca
             de novos desafios e conhecimentos, seja em cursos ou em treinamentos.
           </p>
+
+          <Link href="/projects">
+            <Button>Meus projetos</Button>
+          </Link>
         </InfoContainer>
       </FirstSection>
 
-      <CardContainer>
+      <CardContainer
+        initial={{
+          scale: 0,
+        }}
+        animate={{
+          scale: 1,
+        }}
+        transition={{
+          duration: 1,
+        }}
+      >
         <div className="info">
-          <motion.h1
-            initial={{
-              scale: 0,
-            }}
-            animate={{
-              scale: 1,
-            }}
-            transition={{
-              duration: 1,
-            }}
-          >
-            Minhas habilidades
-          </motion.h1>
-          <span>Algumas habilidades que mais estudo e utilizo profissionalmente.</span>
+          <h1>Habilidades</h1>
+          <span>Tecnologias que utilizo profissionalmente e mais estudo no dia a dia.</span>
         </div>
         <div className="card">
           {skills.map((skill) => (
@@ -125,27 +120,25 @@ export default function About({ tools, skills }: IAboutProps) {
         </div>
       </CardContainer>
 
-      <CardContainer>
+      <CardContainer
+        initial={{
+          scale: 0,
+        }}
+        animate={{
+          scale: 1,
+        }}
+        transition={{
+          duration: 1,
+        }}
+      >
         <div className="card">
           {tools.map((tool) => (
             <Card data={tool} key={tool.id} />
           ))}
         </div>
         <div className="info">
-          <motion.h1
-            initial={{
-              scale: 0,
-            }}
-            animate={{
-              scale: 1,
-            }}
-            transition={{
-              duration: 1,
-            }}
-          >
-            Ferramentas
-          </motion.h1>
-          <span>Algumas ferramentas que utilizo para auxiliar no desenvolvimento.</span>
+          <h1>Ferramentas</h1>
+          <span>Principais ferramentas que utilizo no desenvolvimento de novos projetos.</span>
         </div>
       </CardContainer>
     </Container>

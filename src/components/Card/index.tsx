@@ -55,7 +55,9 @@ export const Card = ({ data }: ICardProps) => {
           <FiX size={30} color="red" onClick={() => setOpen(false)} />
 
           <div>
-            <img src={data.image} alt={data.name} />
+            <div>
+              <img src={data.image} alt={data.name} />
+            </div>
 
             <h2>{data.name}</h2>
 

@@ -21,10 +21,11 @@ export const FirstSection = styled.section`
   }
 `;
 
-export const InfoContainer = styled(motion.div)`
+export const InfoContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin-top: 2rem;
 
   h1 {
     font-size: 4rem;
@@ -41,12 +42,23 @@ export const InfoContainer = styled(motion.div)`
     text-indent: 1.5em;
   }
 
+  button {
+    margin-top: 3rem;
+    align-self: center;
+    margin-right: 20%;
+  }
+
   @media (max-width: 720px) {
     h1 {
       max-width: 100%;
     }
     p {
       max-width: 100%;
+    }
+    button {
+      margin-top: 2rem;
+      align-self: center;
+      margin-right: 0;
     }
   }
 `;
@@ -62,10 +74,11 @@ export const AnimationContainer = styled(motion.div)`
   }
 `;
 
-export const CardContainer = styled.section`
+export const CardContainer = styled(motion.section)`
+  border: 1px solid #356eca;
   background: #111;
   margin: 0rem 2rem;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 
   display: flex;
   align-items: center;
@@ -143,6 +156,10 @@ export const CardContainer = styled.section`
       flex-direction: column;
       align-items: flex-start;
       text-align: center;
+
+      h1 {
+        max-width: 100%;
+      }
     }
 
     &:last-child {

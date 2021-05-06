@@ -62,10 +62,11 @@ export const Modal = styled(motion.div)`
   left: 0;
   right: 0;
 
-  height: 40rem;
+  min-height: 40rem;
+  max-height: 43rem;
   width: 35rem;
 
-  background: rgba(100, 100, 100, 1);
+  background: #356eca;
   border-radius: 1rem;
   opacity: 1 !important;
 
@@ -94,22 +95,34 @@ export const Modal = styled(motion.div)`
 
     height: 100%;
 
-    img {
-      height: 10rem;
-      width: 10rem;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 13rem;
+      width: 13rem;
+      border-radius: 1rem;
+
+      background: #fff;
+
+      img {
+        height: 10rem;
+        width: 10rem;
+      }
     }
 
     h2 {
-      color: #000;
+      color: #fff;
     }
 
     p {
-      color: #000;
+      color: #fff;
       max-width: 75%;
     }
 
     a {
-      color: #000;
+      color: #fff;
       text-align: center;
       margin-top: 1rem;
     }

@@ -29,10 +29,14 @@ export const InfoContainer = styled.div`
 
   h1 {
     font-size: 4rem;
-    max-width: 80%;
+    max-width: 90%;
     line-height: 4rem;
     margin-bottom: 1.5rem;
     color: #fff;
+
+    span {
+      color: #9290c9;
+    }
   }
 
   p {
@@ -46,6 +50,22 @@ export const InfoContainer = styled.div`
     margin-top: 3rem;
     align-self: center;
     margin-right: 20%;
+  }
+
+  @media (max-width: 1366px) {
+    h1 {
+      max-width: 100%;
+    }
+
+    p {
+      max-width: 100%;
+    }
+
+    button {
+      margin-top: 2rem;
+      align-self: center;
+      margin-right: 0;
+    }
   }
 
   @media (max-width: 720px) {
@@ -89,12 +109,16 @@ export const CardContainer = styled(motion.section)`
     font-size: 3rem;
     max-width: 50%;
     text-align: center;
+
+    span {
+      color: #9290c9;
+    }
   }
 
   span {
     font-size: 1rem;
     max-width: 50%;
-    text-align: center;
+    /* text-indent: 1.5em; */
   }
 
   .info {
@@ -125,6 +149,10 @@ export const CardContainer = styled(motion.section)`
   @media (max-width: 1366px) {
     flex-direction: column;
 
+    span {
+      max-width: 100%;
+    }
+
     .info {
       margin-bottom: 3rem;
       flex-direction: column;
@@ -132,6 +160,10 @@ export const CardContainer = styled(motion.section)`
 
     &:last-child {
       flex-direction: column-reverse;
+    }
+
+    span {
+      max-width: 100%;
     }
   }
 
@@ -146,6 +178,10 @@ export const CardContainer = styled(motion.section)`
     &:last-child {
       flex-direction: column-reverse;
     }
+
+    span {
+      max-width: 100%;
+    }
   }
 
   @media (max-width: 720px) {
@@ -155,7 +191,6 @@ export const CardContainer = styled(motion.section)`
       margin-bottom: 3rem;
       flex-direction: column;
       align-items: flex-start;
-      text-align: center;
 
       h1 {
         max-width: 100%;

@@ -60,13 +60,13 @@ export default function Home() {
   return (
     <Container initial="hidden" animate="visible">
       <Head>
-        <title>Home</title>
+        <title>&lt; Home &gt;</title>
       </Head>
 
       <InfoContainer>
         <h2>Olá,</h2>
         <h1>
-          Eu sou <span>Luis Miguel</span>
+          Eu sou <span> &lt;Luis Miguel&gt;</span>
         </h1>
         <h2>Desenvolvedor web.</h2>
 

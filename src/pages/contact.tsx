@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useStylesContext } from '../contexts/StylesContext';
 
+import Head from 'next/head';
+
 import UseAnimations from 'react-useanimations';
 
 import github from 'react-useanimations/lib/github';
@@ -18,7 +20,6 @@ import {
 
 import Lottie from 'react-lottie';
 import animation from '../public/lottie/37147-contact-us.json';
-import { motion } from 'framer-motion';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -54,6 +55,10 @@ export default function Contact() {
 
   return (
     <Container>
+      <Head>
+        <title>&lt; Contato &gt;</title>
+      </Head>
+
       <AnimationContainer>
         <Lottie
           options={{
@@ -65,15 +70,22 @@ export default function Contact() {
       </AnimationContainer>
 
       <Section>
-        <h1>Contato</h1>
+        <h1>
+          <span> &lt;</span>Contato<span>&gt;</span>
+        </h1>
         <p>
           Espero que tenha gostado do meu portfólio. Caso queria entrar em contato, esses são os
           meios aonde posso ser encontrado.
         </p>
 
-        <strong>E-mail</strong>
+        <strong>📩 E-mail</strong>
         <a href="mailto:luismiguelfernandes.marcelo@gmail.com">
           luismiguelfernandes.marcelo@gmail.com
+        </a>
+
+        <strong>📞 WhatsApp</strong>
+        <a target="_blank" href="https://wa.me/+5516988018106">
+          (16) 988081-8106
         </a>
 
         <strong>Redes sociais</strong>

@@ -8,6 +8,8 @@ export const Container = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  overflow: hidden;
 `;
 
 export const AnimationContainer = styled(motion.div)`
@@ -26,7 +28,11 @@ export const Section = styled(motion.section)`
   flex-direction: column;
 
   h1 {
-    font-size: 3rem;
+    font-size: 4rem;
+
+    span {
+      color: #9290c9;
+    }
   }
 
   p {

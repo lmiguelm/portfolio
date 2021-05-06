@@ -64,7 +64,7 @@ export default function About({ tools, skills }: IAboutProps) {
   return (
     <Container ref={containeRed}>
       <Head>
-        <title>Sobre</title>
+        <title>&lt; Sobre &gt;</title>
       </Head>
 
       <FirstSection>
@@ -79,7 +79,9 @@ export default function About({ tools, skills }: IAboutProps) {
         </AnimationContainer>
 
         <InfoContainer>
-          <h1>Luis Miguel Fernandes Marcelo</h1>
+          <h1>
+            <span>&lt;</span>Luis Miguel Fernandes Marcelo<span>&gt;</span>
+          </h1>
           <p>
             Tenho 19 anos, sou de Araraquara, interior do estado de São Paulo. Comecei a programar
             em 2018, no curso técnico em informática no IFSP, que conclui em dezembro de 2019.

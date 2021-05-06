@@ -13,6 +13,8 @@ export const Container = styled(motion.div)`
 
   padding: 5rem;
 
+  overflow: hidden;
+
   @media (max-width: 900px) {
     gap: 3rem;
   }

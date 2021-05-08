@@ -23,7 +23,6 @@ export const Container = styled(motion.div)`
     align-self: center;
     height: 20rem;
     width: 30rem;
-    border-radius: 1rem;
   }
 
   div {

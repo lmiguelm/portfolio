@@ -11,7 +11,7 @@ export const FirstSection = styled(motion.section)`
   height: 100%;
 
   background: #000;
-  background-image: url('./wallpapers/nubelson-fernandes-ArC1GDY7bqQ-unsplash.jpg');
+  background-image: url('./wallpapers/wallpaper-projects.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top 50%;

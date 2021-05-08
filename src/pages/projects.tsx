@@ -38,7 +38,7 @@ export default function Projects({ projects }: IProjectsProps) {
     handleCurrentPage('projects');
 
     containeRef.current.addEventListener('scroll', () => {
-      const section = document.getElementById('coco');
+      const section = document.getElementById('project-section');
       if (section.getBoundingClientRect().top < window.innerHeight) {
         setTimeout(() => {
           setActive(true);
@@ -77,7 +77,7 @@ export default function Projects({ projects }: IProjectsProps) {
           </p>
         </FirstSection>
 
-        <SecondSection className={active ? 'active' : ''} id="coco">
+        <SecondSection className={active ? 'active' : ''} id="project-section">
           {projects.map((project) => (
             <ProjectCard project={project} />
           ))}

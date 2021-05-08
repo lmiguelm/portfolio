@@ -7,29 +7,80 @@ export const Container = styled(motion.div)`
   overflow-y: scroll;
 `;
 
+// export const FirstSection = styled.section`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   gap: 10rem;
+
+//   padding: 5rem;
+
+//   @media (max-width: 900px) {
+//     gap: 3rem;
+//   }
+// `;
+
 export const FirstSection = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: calc(100vh - 5rem);
+
+  background: #000;
+  background-image: url('./wallpapers/wallpaper-about.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top 30%;
+  background-attachment: fixed;
+
+  div {
+    flex: 1;
+  }
+
+  @media (max-width: 720px) {
+    height: 100vh;
+    align-items: flex-start;
+    background-image: none;
+    div:first-child {
+      display: none;
+    }
+  }
+`;
+
+export const SecondSection = styled.section`
+  height: calc(100vh - 5rem);
+
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
-  gap: 10rem;
+  transition: ease-in-out 0.3s;
 
-  padding: 5rem;
+  opacity: 0;
 
-  @media (max-width: 900px) {
-    gap: 3rem;
+  &.active {
+    opacity: 1;
+  }
+
+  @media (max-width: 720px) {
+    justify-content: flex-start;
+    height: 100vh;
   }
 `;
 
 export const InfoContainer = styled.div`
-  flex: 1;
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
+  justify-content: center;
+
+  padding: 2rem;
 
   h1 {
-    font-size: 4rem;
-    max-width: 90%;
+    font-size: 3.5rem;
+    max-width: 100%;
     line-height: 4rem;
     margin-bottom: 1.5rem;
     color: #fff;
@@ -48,8 +99,8 @@ export const InfoContainer = styled.div`
 
   button {
     margin-top: 3rem;
-    align-self: center;
     margin-right: 20%;
+    align-self: center;
   }
 
   @media (max-width: 1366px) {
@@ -83,22 +134,12 @@ export const InfoContainer = styled.div`
   }
 `;
 
-export const AnimationContainer = styled(motion.div)`
-  flex: 1;
-
-  width: 35rem;
-  height: 35rem;
-
-  @media (max-width: 720px) {
-    display: none;
-  }
-`;
-
 export const CardContainer = styled(motion.section)`
   border: 1px solid #356eca;
   background: #111;
-  margin: 0rem 2rem;
   border-radius: 0.5rem;
+
+  margin: 0rem 2rem;
 
   display: flex;
   align-items: center;
@@ -143,11 +184,11 @@ export const CardContainer = styled(motion.section)`
 
   &:last-child {
     margin-top: 2rem;
-    margin-bottom: 4rem;
   }
 
   @media (max-width: 1366px) {
     flex-direction: column;
+    margin-top: 15rem;
 
     span {
       max-width: 100%;
@@ -186,6 +227,7 @@ export const CardContainer = styled(motion.section)`
 
   @media (max-width: 720px) {
     flex-direction: column;
+    padding: 2rem;
 
     .info {
       margin-bottom: 3rem;

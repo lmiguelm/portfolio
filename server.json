@@ -163,5 +163,106 @@
       "url": "https://www.figma.com//",
       "image": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/4953fc16-1f7e-4b18-ba9c-61f1de026a57-figma.svg"
     }
+  ],
+  "projects": [
+    {
+      "id": "jogo-da-memoria",
+      "title": "Jogo da Memória",
+      "resume": "Jogo da memória baseado em uma tarefa do Amoung US.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+020500.png",
+      "github_url": "https://github.com/lmiguelm/memory-game",
+      "url": "https://lmiguelm.github.io/memory-game/",
+      "order": 5
+    },
+    {
+      "id": "chat-ao-vivo",
+      "title": "Chat",
+      "resume": "Chat em tempo real utilizando Socket.io",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+020708.png",
+      "github_url": "https://github.com/lmiguelm/chat.io",
+      "url": "https://chatio-on.herokuapp.com/",
+      "order": 10
+    },
+    {
+      "id": "imc-app",
+      "title": "Índice de massa corporal (IMC)",
+      "resume": "Aplicativo que calcula IMC e salva no histórico que pode ser acessado a qualquer momento",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+022811.png",
+      "github_url": "https://github.com/lmiguelm/imc-app",
+      "url": "https://drive.google.com/file/d/1B6EczS9ZgC11NKfWYotnM5zQL1x6beFE/view",
+      "order": 4
+    },
+    {
+      "id": "whatsapp-clone",
+      "title": "WhatsApp Clone",
+      "resume": "Clone da interface do WhatsApp Web utilizando React.js e Material UI.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/whatsapp.png",
+      "github_url": "https://github.com/lmiguelm/whatsapp-clone",
+      "url": "",
+      "order": 3
+    },
+    {
+      "id": "moveit",
+      "title": "Move.it",
+      "resume": "Esse site tem objetivo de fazer pessoas quepassam horas e horas em frente ao computadorpraticarem exercícios em forma de desafios.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+022025.png",
+      "github_url": "https://github.com/lmiguelm/move.it",
+      "url": "https://moveit-lmiguelm.vercel.app/",
+      "order": 2
+    },
+    {
+      "id": "happy",
+      "title": "Happy",
+      "resume": "Site de consultas de orfanatos desenvolvido durante a 3º Next Level Week da Rocketseat.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/7dc843a336b952e13d5a41da8d46b8a9-happy.png",
+      "github_url": "https://github.com/lmiguelm/NextLevelWeek-3",
+      "url": "",
+      "order": 6
+    },
+    {
+      "id": "sos-pet",
+      "title": "SOS PET",
+      "resume": "Sistema de adoção para animais abandonados em Araraquara. Projeto final do curso técnico em informática do IFSP.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/e5ba4ddb0c62533a7f4e7a2384cd29c5-sospet.png",
+      "github_url": "https://github.com/lmiguelm/SOS-Pet",
+      "url": "",
+      "order": 7
+    },
+    {
+      "id": "flappy-bird",
+      "title": "Flappy Bird",
+      "resume": "Jogo flappy bird em JavaScript.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+021009.png",
+      "github_url": "https://github.com/lmiguelm/flappy-bird",
+      "url": "https://lmiguelm.github.io/flappy-bird/",
+      "order": 8
+    },
+    {
+      "id": "proffy",
+      "title": "Proffy",
+      "resume": "Plataforma de estudos desenvolvida durante a 2º Next Level Week da Rocketseat.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/20b7ef675f42ffeb3b44e64df2c74719-proffy.jpg",
+      "github_url": "https://github.com/lmiguelm/NextLevelWeek-2",
+      "url": "",
+      "order": 9
+    },
+    {
+      "id": "pegue-a-fruta",
+      "title": "Pegue a fruta",
+      "resume": "Jogo multiplayer em tempo real utilizando Socket.io e JavaScript",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+021136.png",
+      "github_url": "https://github.com/lmiguelm/catch-fruits",
+      "url": "https://catch-fruits.herokuapp.com/",
+      "order": 11
+    },
+    {
+      "id": "podcastr",
+      "title": "Podcastr",
+      "resume": "Site de reprodução de podcasts desenvolvido durante a 5º Next Level Week da Rocketseat.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/podcastr.svg",
+      "github_url": "https://github.com/lmiguelm/podcastr",
+      "url": "https://podcastr-lmiguelm.vercel.app/",
+      "order": 1
+    }
   ]
 }

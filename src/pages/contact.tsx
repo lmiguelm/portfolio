@@ -19,7 +19,7 @@ import {
 } from '../styles/pages/contact';
 
 import Lottie from 'react-lottie';
-import animation from '../public/lottie/37147-contact-us.json';
+import animation from '../../public/lottie/37147-contact-us.json';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -56,7 +56,7 @@ export default function Contact() {
   return (
     <Container>
       <Head>
-        <title>&lt; Contato &gt;</title>
+        <title>&lt; Contato /&gt;</title>
       </Head>
 
       <AnimationContainer>

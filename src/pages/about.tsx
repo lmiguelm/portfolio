@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useElementScroll } from 'framer-motion';
 
 import Lottie from 'react-lottie';
-import animation from '../public/lottie/36185-animation-about-seo-dashboard.json';
+import animation from '../../public/lottie/36185-animation-about-seo-dashboard.json';
 
 import { useStylesContext } from '../contexts/StylesContext';
 
@@ -49,8 +49,8 @@ export default function About({ tools, skills }: IAboutProps) {
 
   const { handleCurrentPage, handleScroll } = useStylesContext();
 
-  const containeRed = useRef();
-  const { scrollYProgress } = useElementScroll(containeRed);
+  const containeRef = useRef();
+  const { scrollYProgress } = useElementScroll(containeRef);
   scrollYProgress.onChange(setScroll);
 
   useEffect(() => {
@@ -62,9 +62,9 @@ export default function About({ tools, skills }: IAboutProps) {
   }, []);
 
   return (
-    <Container ref={containeRed}>
+    <Container ref={containeRef}>
       <Head>
-        <title>&lt; Sobre &gt;</title>
+        <title>&lt; Sobre /&gt;</title>
       </Head>
 
       <FirstSection>

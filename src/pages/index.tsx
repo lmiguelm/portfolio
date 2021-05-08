@@ -41,7 +41,7 @@ const item = {
   },
 };
 
-import animation from '../public/lottie/59446-black-guy-animation.json';
+import animation from '../../public/lottie/59446-black-guy-animation.json';
 import { useStylesContext } from '../contexts/StylesContext';
 import { GetStaticProps } from 'next';
 
@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <Container initial="hidden" animate="visible">
       <Head>
-        <title>&lt; Home &gt;</title>
+        <title>&lt; Home /&gt;</title>
       </Head>
 
       <InfoContainer>
@@ -109,11 +109,8 @@ export default function Home() {
   );
 }
 
-const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
   };
 };
-function handleScroll(scroll: { (options?: ScrollToOptions): void; (x: number, y: number): void }) {
-  throw new Error('Function not implemented.');
-}

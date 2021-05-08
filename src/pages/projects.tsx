@@ -1,5 +1,7 @@
-import { useElementScroll } from 'framer-motion';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
+
+import { useElementScroll } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import { ProjectCard } from '../components/ProjectCard';
 
@@ -65,6 +67,10 @@ export default function Projects({ projects }: IProjectsProps) {
 
   return (
     <>
+      <Head>
+        <title>&lt;Projetos /&gt;</title>
+      </Head>
+
       <Container ref={containeRef}>
         <FirstSection>
           <h1>

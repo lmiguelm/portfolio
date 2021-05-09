@@ -16,6 +16,7 @@
     "react-icons": "^4.2.0",
     "react-is": "^17.0.2",
     "react-lottie": "^1.2.3",
+    "react-slideshow-image": "^3.4.6",
     "react-useanimations": "^2.0.6",
     "styled-components": "^5.2.3"
   },
@@ -23,6 +24,7 @@
     "@types/node": "^15.0.1",
     "@types/react": "^17.0.4",
     "@types/react-lottie": "^1.2.5",
+    "@types/react-slick": "^0.23.4",
     "@types/styled-components": "^5.1.9",
     "babel-plugin-styled-components": "^1.12.0",
     "json-server": "^0.16.3",

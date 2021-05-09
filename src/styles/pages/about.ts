@@ -7,26 +7,12 @@ export const Container = styled(motion.div)`
   overflow-y: scroll;
 `;
 
-// export const FirstSection = styled.section`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   gap: 10rem;
-
-//   padding: 5rem;
-
-//   @media (max-width: 900px) {
-//     gap: 3rem;
-//   }
-// `;
-
 export const FirstSection = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  height: calc(100vh - 5rem);
+  min-height: calc(100vh - 5rem);
 
   background: #000;
   background-image: url('./wallpapers/wallpaper-about.jpg');
@@ -40,7 +26,6 @@ export const FirstSection = styled.section`
   }
 
   @media (max-width: 720px) {
-    height: 100vh;
     align-items: flex-start;
     background-image: none;
     div:first-child {
@@ -50,12 +35,11 @@ export const FirstSection = styled.section`
 `;
 
 export const SecondSection = styled.section`
-  height: calc(100vh - 5rem);
-
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
+
+  min-height: calc(100vh - 5rem);
 
   transition: ease-in-out 0.3s;
 
@@ -67,7 +51,6 @@ export const SecondSection = styled.section`
 
   @media (max-width: 720px) {
     justify-content: flex-start;
-    height: 100vh;
   }
 `;
 
@@ -139,7 +122,11 @@ export const CardContainer = styled(motion.section)`
   background: #111;
   border-radius: 0.5rem;
 
-  margin: 0rem 2rem;
+  margin: 1rem 2rem;
+
+  &:last-child {
+    margin-top: 1rem;
+  }
 
   display: flex;
   align-items: center;
@@ -159,7 +146,6 @@ export const CardContainer = styled(motion.section)`
   span {
     font-size: 1rem;
     max-width: 50%;
-    /* text-indent: 1.5em; */
   }
 
   .info {
@@ -188,7 +174,6 @@ export const CardContainer = styled(motion.section)`
 
   @media (max-width: 1366px) {
     flex-direction: column;
-    margin-top: 15rem;
 
     span {
       max-width: 100%;

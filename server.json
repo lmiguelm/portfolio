@@ -169,24 +169,43 @@
       "id": "jogo-da-memoria",
       "title": "Jogo da Memória",
       "resume": "Jogo da memória baseado em uma tarefa do Amoung US.",
+      "about": "Este jogo foi desenvolvido utilizando HTML5, CSS3 e JavaScript. Baseado em umas tarefa do jogo 'Amoung US', para ganhar você tem que acertar a sequência gerada automaticamente pelo jogo. ",
+      "knowledge": "Durante o desenvolvimento do jogo pude aprimorar conhecimentos em async/await já que todo o jogo é de forma assíncrona.",
       "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+020500.png",
       "github_url": "https://github.com/lmiguelm/memory-game",
       "url": "https://lmiguelm.github.io/memory-game/",
-      "order": 5
+      "order": 5,
+      "images": [
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/memoria-1.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/memoria-2.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/memoria-3.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/memoria-4.png"
+      ],
+      "video": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencast-lmiguelm.github.io-2021.05.09-14_51_45.webm"
     },
     {
-      "id": "chat-ao-vivo",
-      "title": "Chat",
+      "id": "chat-io",
+      "title": "Chat.io",
       "resume": "Chat em tempo real utilizando Socket.io",
+      "about": "Projeto de chat online desenvolvido utilizando HTML5, CSS3, JavaScript e Socket.io, para que usuário possam se interagir em tempo real.",
+      "knowledge": "Com o desenvolvimento deste mini-projeto adquiri conhecimentos na biblioteca socket.io, que posssibilita emissão e recepção de eventos em tempo real.",
       "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+020708.png",
       "github_url": "https://github.com/lmiguelm/chat.io",
       "url": "https://chatio-on.herokuapp.com/",
-      "order": 10
+      "order": 10,
+      "images": [
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+020708.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/chat-1.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/chat-2.png"
+      ],
+      "video": null
     },
     {
       "id": "imc-app",
       "title": "Índice de massa corporal (IMC)",
       "resume": "Aplicativo que calcula IMC e salva no histórico que pode ser acessado a qualquer momento",
+      "about": "Projeto desenvolvido utilizando React-Native para a interface mobile e Node.js para a API. IMC-APP é um aplicativo aonde usuários realizam cadastro e podem calcular seu índice de massa corporal (imc), depois do calculo é possivel salvar, podendo assim consultar posteriormente seus calculos, compara-los, etc.",
+      "knowledge": "Durante o desenvolvimento adquiri conhecimentos em S3 da amazon, aonde salvei as fotos de perfil dos usuários, conhecimento em css no React-Native, autenticação com token JWT, criação de projeto utilizando Expo, etc.",
       "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+022811.png",
       "github_url": "https://github.com/lmiguelm/imc-app",
       "url": "https://drive.google.com/file/d/1B6EczS9ZgC11NKfWYotnM5zQL1x6beFE/view",
@@ -196,53 +215,108 @@
       "id": "whatsapp-clone",
       "title": "WhatsApp Clone",
       "resume": "Clone da interface do WhatsApp Web utilizando React.js e Material UI.",
+      "about": "Clone da interface do WhatsApp Web desenvolvido utilizando React.js e Material UI. Projeto focado somente na interface.",
+      "knowledge": "Durante o desenvolvimento do jogo pude adquirir novos conhecimentos conhecimentos em estilização utilizando a biblioteca Material UI.",
       "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/whatsapp.png",
       "github_url": "https://github.com/lmiguelm/whatsapp-clone",
-      "url": "",
-      "order": 3
+      "url": null,
+      "order": 3,
+      "images": [
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/whatsapp.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/whatsapp-1.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/whatsapp-2.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/whatsapp-3.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/whatsapp-4.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/whatsapp-5.png"
+      ],
+      "video": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencast-localhost_3000-2021.05.09-17_02_31.webm"
     },
     {
       "id": "moveit",
       "title": "Move.it",
       "resume": "Esse site tem objetivo de fazer pessoas quepassam horas e horas em frente ao computadorpraticarem exercícios em forma de desafios.",
+      "about": "Este projeto foi desenvolvido durante a NextLevelWeek#4 da Rocketseat, ministrada pelo Diego Fernandes, com o propósito de construir uma aplicação para pessoas que passam muito tempo na frente do computador possam fazer exercícios pontuais para braços, olhos, mão, etc. Durante a semana foi abordados temas como, Next.js e Context API.",
+      "knowledge": "Durante o desenvolvimento da aplicação, aprendi sobre autenticação social (github, google) no Next.js, utilizando a biblioteca NextAuth  e aprimorei meus conhecimentos em gerenciamento de estados globais com Context API no React.js.",
       "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/MacBook+Pro+-+1.svg",
       "github_url": "https://github.com/lmiguelm/move.it",
       "url": "https://moveit-lmiguelm.vercel.app/",
-      "order": 2
+      "order": 2,
+      "images": [
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/MacBook+Pro+-+1.svg",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/moveit-1.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/moveit-2.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/moveit-3.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/moveit-4.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/moveit-5.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/moveit-6.png"
+      ],
+      "video": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencast-moveit-lmiguelm.vercel.app-2021.05.09-14_33_10.webm"
     },
     {
       "id": "happy",
       "title": "Happy",
       "resume": "Site de consultas de orfanatos desenvolvido durante a 3º Next Level Week da Rocketseat.",
+      "about": "Projeto desenvolvido durante a NextLevelWeek#3 da Rocketseat, ministrada pelo Diego Fernandes, com o propósito de contruit uma aplicação que divulgue orfanatos para visitas.",
+      "knowledge": "Durante o desenvolvimento da aplicação pude adquirir conhecimentos em mapas no React.js utilizando a biblioteca Leaflet.",
       "thumbnail": "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/7dc843a336b952e13d5a41da8d46b8a9-happy.png",
       "github_url": "https://github.com/lmiguelm/NextLevelWeek-3",
-      "url": "",
+      "url": null,
+      "images": [
+        "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/7dc843a336b952e13d5a41da8d46b8a9-happy.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/happy-1.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/happy-2.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/happy-3.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/happy-4.png"
+      ],
+      "video": null,
       "order": 6
     },
     {
       "id": "sos-pet",
       "title": "SOS PET",
       "resume": "Sistema de adoção para animais abandonados em Araraquara. Projeto final do curso técnico em informática do IFSP.",
+      "about": "Projeto com o tema de animais abandonados, desenvolvido em 2018 para o TCC do curso Tecnico em informatica do IFSP. Para o desenvolvimento foram utilizadas as seguintes tecnologias: PHP, HTML5, Bootstrap, JQuery e MySQL. O propósito da aplicação é agir como uma rede social para uma ONG, aonde usuários podem divulgar um animal que está desaparecido, adotar animais e cadastrar um animal em situação de abandono para que a ONG possa ir resgata-lo.",
+      "knowledge": null,
       "thumbnail": "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/e5ba4ddb0c62533a7f4e7a2384cd29c5-sospet.png",
       "github_url": "https://github.com/lmiguelm/SOS-Pet",
       "url": "",
-      "order": 7
+      "order": 7,
+      "images": [
+        "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/e5ba4ddb0c62533a7f4e7a2384cd29c5-sospet.png"
+      ],
+      "video": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/sospet.webm"
     },
     {
       "id": "flappy-bird",
       "title": "Flappy Bird",
       "resume": "Jogo flappy bird em JavaScript.",
+      "about": null,
+      "knowledge": "Durante o desenvolvimento do jogo adquiri conhecimentos na tag Canvas do HTML5, que é responsável por 'desenhar' pixels na tela, podendo assim recriar o jogo.",
       "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+021009.png",
       "github_url": "https://github.com/lmiguelm/flappy-bird",
       "url": "https://lmiguelm.github.io/flappy-bird/",
-      "order": 8
+      "order": 8,
+      "images": [
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+021009.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/flappy.png"
+      ],
+      "video": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencast-lmiguelm.github.io-2021.05.09-18_08_35.webm"
     },
     {
       "id": "proffy",
       "title": "Proffy",
       "resume": "Plataforma de estudos desenvolvida durante a 2º Next Level Week da Rocketseat.",
+      "about": "Projeto desenvolvido utilizando React.js, React-Native e Node.js durante a NextLevelWeek#2 da Rocketseat, ministrada pelo Diego Fernandes, com o propósito de construir uma aplicação para estudos, aonde professores podem se cadastrar e divulgar suas aulas. Alunos acessam a plataforma e escolhem aulas do seu gosto e entram em contato com o professor via whatsapp.",
+      "knowledge": "Durante o desenvolvimento da aplicação pude adquirir novos conhecimentos em React.js e principalmente React-Native, aonde nunca havia criado uma aplicação mobile com o framework.",
       "thumbnail": "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/20b7ef675f42ffeb3b44e64df2c74719-proffy.jpg",
       "github_url": "https://github.com/lmiguelm/NextLevelWeek-2",
+      "images": [
+        "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/20b7ef675f42ffeb3b44e64df2c74719-proffy.jpg",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/proffy-1.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/proffy-2.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/proffy-3.png"
+      ],
+      "video": null,
       "url": "",
       "order": 9
     },
@@ -253,15 +327,29 @@
       "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+021136.png",
       "github_url": "https://github.com/lmiguelm/catch-fruits",
       "url": "https://catch-fruits.herokuapp.com/",
-      "order": 11
+      "order": 11,
+      "images": [
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/Captura+de+tela+2021-05-08+021136.png"
+      ],
+      "video": null
     },
     {
       "id": "podcastr",
       "title": "Podcastr",
       "resume": "Site de reprodução de podcasts desenvolvido durante a 5º Next Level Week da Rocketseat.",
+      "about": "Este projeto foi desenvolvido durante a NextLevelWeek#5 da Rocketseat, ministrada pelo Diego Fernandes, com o propósito de construir uma aplicação que seja capaz de reproduzir podcasts. Durante a semana foi abordado temas como o uso de useRefs no React, Context API, tag áudio do HTML5, geração de rotas estáticas e dinâmicas com Next.js, SASS, etc.",
+      "knowledge": "Durante o desenvolvimento aprimorei meus conhecimentos em Next.js na parte de SSG (static site generation), geração de rotas estáticas e dinâmicas com Next.js. Utilizei a tag áudio do HTML5 pela primeira vez.",
       "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/podcastr.svg",
       "github_url": "https://github.com/lmiguelm/podcastr",
       "url": "https://podcastr-lmiguelm.vercel.app/",
+      "images": [
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/podcastr.svg",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencapture-podcastr-lmiguelm-vercel-app-2021-05-09-13_26_24.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencapture-podcastr-lmiguelm-vercel-app-2021-05-09-13_26_52.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencapture-podcastr-lmiguelm-vercel-app-2021-05-09-13_27_10.png",
+        "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencapture-podcastr-lmiguelm-vercel-app-episodes-barreiras-e-solucoes-propostas-por-micro-servicos-2021-05-09-13_33_28.png"
+      ],
+      "video": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencast-podcastr-lmiguelm.vercel.app-2021.05.09-13_36_32.webm",
       "order": 1
     }
   ]

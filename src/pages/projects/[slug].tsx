@@ -1,85 +1,186 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
-import { Container, Content, Page } from './styles';
+import { api } from '../../services/api';
 
-const slideImages = [
-  'https://www.solidbackgrounds.com/images/1920x1080/1920x1080-ghost-white-solid-color-background.jpg',
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEUAAP79f+LBAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=',
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEX+AAAYIGMAAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII=',
-];
+import { Container, Content, Page } from '../../styles/pages/project';
+import { useElementScroll } from 'framer-motion';
+import { useStylesContext } from '../../contexts/StylesContext';
+import { ScrollButton } from '../../styles/global';
+import { FiChevronUp } from 'react-icons/fi';
 
-export default function Project() {
+type IProject = {
+  id: string;
+  title: string;
+  resume: string;
+  thumbnail: string;
+  github_url: string;
+  url: string;
+  video: string;
+  knowledge: string;
+  about: string;
+  images: Array<{
+    id: string;
+    url: string;
+  }>;
+};
+
+type IProjectProps = {
+  project: IProject;
+};
+
+export default function Project({ project }: IProjectProps) {
+  const [scroll, setScroll] = useState(0);
+  const [active, setActive] = useState(false);
+
+  const { handleCurrentPage, handleScroll } = useStylesContext();
+
+  const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const { scrollYProgress } = useElementScroll(containeRef);
+  scrollYProgress.onChange(setScroll);
+
+  useEffect(() => {
+    handleCurrentPage('projects');
+
+    containeRef.current.addEventListener('scroll', () => {
+      const section = document.getElementById('project');
+      if (section.getBoundingClientRect().top < window.innerHeight) {
+        setTimeout(() => {
+          setActive(true);
+        }, 200);
+      } else {
+        setTimeout(() => {
+          setActive(false);
+        }, 200);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    handleScroll(scroll);
+  }, [scroll]);
+
+  function goToTop() {
+    containeRef.current.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+
   return (
-    <Container>
-      <Page>
-        <Slide>
-          <img src={slideImages[0]} />
-          <img src={slideImages[1]} />
-          <img src={slideImages[2]} />
-        </Slide>
+    <>
+      <Head>
+        <title>&lt; {project.title} /&gt;</title>
+      </Head>
 
-        <Content>
-          <header>
-            <h1>
-              <span>&lt;</span>Nome do projeto<span>&gt;</span>
-            </h1>
+      <Container ref={containeRef}>
+        <Page>
+          <Slide>
+            {project.images.map((image) => (
+              <img src={image.url} alt={`${project.title} - ${image.id}`} key={image.id} />
+            ))}
+          </Slide>
 
-            <span>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-              has been the industry's standard dummy text ever since the 1500s, when an unknown
-              printer took a galley of type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged.
-            </span>
+          <Content>
+            <header>
+              <h1>
+                <span>&lt;</span>
+                {project.title}
+                <span>&gt;</span>
+              </h1>
 
-            <div className="link-container">
-              <a href="#">Acessar</a>
-              <a href="#">Ver no GitHub</a>
-            </div>
-          </header>
+              <span>{project.resume}</span>
 
-          <main>
-            <div className="about">
-              <h2>Sobre</h2>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                with desktop publishing software like Aldus PageMaker including versions of Lorem
-                Ipsum.
-              </p>
-            </div>
+              <div className="link-container">
+                {project.url && (
+                  <a target="_blank" href={project.url}>
+                    Acessar
+                  </a>
+                )}
+                <a target="_blank" href={project.github_url}>
+                  Ver no GitHub
+                </a>
+              </div>
+            </header>
 
-            <div className="objective">
-              <h2>Objetivo</h2>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a type specimen book.
-                It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining essentially unchanged. It was popularised in the 1960s with
-                the release of Letraset sheets containing Lorem Ipsum passages, and more recently
-                with desktop publishing software like Aldus PageMaker including versions of Lorem
-                Ipsum.
-              </p>
-            </div>
-          </main>
+            <main id="project">
+              {project.about && (
+                <div className="about">
+                  <h2>Sobre</h2>
+                  <p>{project.about}</p>
+                </div>
+              )}
 
-          <footer>
-            <video controls>
-              <source />
-              <strong>Seu navegador não possui suporte para videos. :(</strong>
-            </video>
-          </footer>
-        </Content>
-        <br />
-        <br />
-      </Page>
-    </Container>
+              {project.knowledge && (
+                <div className="knowledge">
+                  <h2>Conhecimentos</h2>
+                  <p>{project.knowledge}</p>
+                </div>
+              )}
+            </main>
+
+            {project.video && (
+              <footer>
+                <video controls>
+                  <source type="video/webm" src={project.video} />
+                  <strong>Seu navegador não possui suporte para videos. </strong>
+                </video>
+              </footer>
+            )}
+          </Content>
+          <br />
+          <br />
+        </Page>
+      </Container>
+
+      <ScrollButton onClick={goToTop} className={active ? 'scrolling' : ''}>
+        <FiChevronUp size={40} />
+      </ScrollButton>
+    </>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await api.get<IProject[]>('/projects');
+
+  const paths = data.map((project) => {
+    return {
+      params: {
+        slug: project.id,
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { slug } = context.params;
+
+  const { data } = await api.get<IProject>(`/projects/${slug}`);
+
+  return {
+    props: {
+      project: {
+        id: data.id,
+        title: data.title,
+        resume: data.resume,
+        thumbnail: data.thumbnail,
+        github_url: data.github_url,
+        url: data.url,
+        video: data.video,
+        knowledge: data.knowledge,
+        about: data.about,
+        images: data.images,
+      },
+    },
+  };
+};

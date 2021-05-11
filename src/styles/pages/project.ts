@@ -56,6 +56,14 @@ export const Content = styled(motion.section)`
   header {
     margin-bottom: 5rem;
 
+    a {
+      transition: 0.2s;
+
+      &:hover {
+        filter: brightness(0.7);
+      }
+    }
+
     h1 {
       font-size: 3rem;
       text-align: center;
@@ -85,6 +93,8 @@ export const Content = styled(motion.section)`
   main {
     h2 {
       margin-bottom: 1rem;
+      text-transform: uppercase;
+      color: #9290c9;
     }
 
     p {

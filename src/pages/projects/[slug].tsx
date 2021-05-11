@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+
 import Head from 'next/head';
+import { GetStaticPaths, GetStaticProps } from 'next';
 
 import { Slide } from 'react-slideshow-image';
+
 import 'react-slideshow-image/dist/styles.css';
 
 import { api } from '../../services/api';
@@ -12,8 +14,6 @@ import { useElementScroll } from 'framer-motion';
 import { useStylesContext } from '../../contexts/StylesContext';
 import { ScrollButton } from '../../styles/global';
 import { FiChevronUp } from 'react-icons/fi';
-
-import Router from 'next/router';
 
 type IProject = {
   id: string;
@@ -46,11 +46,6 @@ export default function Project({ project }: IProjectProps) {
   scrollYProgress.onChange(setScroll);
 
   useEffect(() => {
-    if (!project) {
-      console.log('entro');
-      Router.push('/404');
-    }
-
     handleCurrentPage('projects');
 
     containeRef.current.addEventListener('scroll', () => {

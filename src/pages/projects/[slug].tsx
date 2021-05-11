@@ -13,6 +13,8 @@ import { useStylesContext } from '../../contexts/StylesContext';
 import { ScrollButton } from '../../styles/global';
 import { FiChevronUp } from 'react-icons/fi';
 
+import Router from 'next/router';
+
 type IProject = {
   id: string;
   title: string;
@@ -44,6 +46,11 @@ export default function Project({ project }: IProjectProps) {
   scrollYProgress.onChange(setScroll);
 
   useEffect(() => {
+    if (!project) {
+      console.log('entro');
+      Router.push('/404');
+    }
+
     handleCurrentPage('projects');
 
     containeRef.current.addEventListener('scroll', () => {
@@ -166,6 +173,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params;
 
   const { data } = await api.get<IProject>(`/projects/${slug}`);
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: '/404',
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {

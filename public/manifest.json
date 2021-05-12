@@ -1,0 +1,29 @@
+{
+  "name": "lmiguelm",
+  "description": "Portfólio de Luis Miguel",
+  "short_name": "lmiguelm",
+  "lang": "pt-BR",
+  "scope": "/",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#356eca",
+  "background_color": "#222",
+  "orientation": "portrait"
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import Head from 'next/head';
+import Image from 'next/image';
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 import { Slide } from 'react-slideshow-image';
@@ -84,7 +85,13 @@ export default function Project({ project }: IProjectProps) {
         <Page>
           <Slide>
             {project.images.map((image) => (
-              <img src={image.url} alt={`${project.title} - ${image.id}`} key={image.id} />
+              <Image
+                src={image.url}
+                alt={`${project.title} - ${image.id}`}
+                key={image.id}
+                width={1920}
+                height={1080}
+              />
             ))}
           </Slide>
 
@@ -99,7 +106,7 @@ export default function Project({ project }: IProjectProps) {
               <span>{project.resume}</span>
 
               <div className="link-container">
-                {project.url && (
+                {project.url != 'null' && (
                   <a target="_blank" href={project.url}>
                     Acessar
                   </a>

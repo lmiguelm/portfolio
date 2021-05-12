@@ -25,7 +25,7 @@ export const ProjectCard = ({ project }: IProjectsProps) => {
       }}
       whileHover={{ scale: 1.02 }}
     >
-      <img src={project.thumbnail} />
+      <img src={project.thumbnail} alt={project.title} />
 
       <div>
         <h1>
@@ -37,7 +37,7 @@ export const ProjectCard = ({ project }: IProjectsProps) => {
 
         <div>
           <article>
-            {project.url && (
+            {project.url != 'null' && (
               <a href={project.url} target="_blank" style={{ marginRight: '2rem' }}>
                 Acessar
               </a>

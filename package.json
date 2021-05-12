@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "date-fns": "^2.21.3",
     "framer-motion": "^4.1.11",
     "next": "latest",
     "next-pwa": "^5.2.21",
@@ -19,7 +20,9 @@
     "react-lottie": "^1.2.3",
     "react-slideshow-image": "^3.4.6",
     "react-useanimations": "^2.0.6",
-    "styled-components": "^5.2.3"
+    "serverless-mysql": "^1.5.4",
+    "styled-components": "^5.2.3",
+    "swr": "^0.5.6"
   },
   "devDependencies": {
     "@types/node": "^15.0.1",

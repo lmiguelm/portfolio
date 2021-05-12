@@ -15,6 +15,24 @@ export const Container = styled(motion.div)`
 
   overflow: hidden;
 
+  span.view {
+    -webkit-touch-callout: none; /* iPhone OS, Safari */
+    -webkit-user-select: none; /* Chrome, Safari 3 */
+    -khtml-user-select: none; /* Safari 2 */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+    user-select: none; /* Possível implementação no futuro */
+
+    font-size: 0.8rem;
+    position: fixed;
+    bottom: 0;
+    margin: 2rem;
+
+    strong {
+      color: #9290c9;
+    }
+  }
+
   @media (max-width: 900px) {
     gap: 3rem;
   }

@@ -1,10 +1,15 @@
 import { useEffect } from 'react';
-import Lottie from 'react-lottie';
+import UseAnimations from 'react-useanimations';
 
+import Lottie from 'react-lottie';
+import animation from '../../public/lottie/59446-black-guy-animation.json';
+
+import format from 'date-fns/format';
+import ptBR from 'date-fns/locale/pt-BR';
+
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
-
-import UseAnimations from 'react-useanimations';
 
 import github from 'react-useanimations/lib/github';
 import facebook from 'react-useanimations/lib/facebook';
@@ -12,6 +17,7 @@ import instagram from 'react-useanimations/lib/instagram';
 import linkedin from 'react-useanimations/lib/linkedin';
 
 import { Button } from '../styles/global';
+import { useStylesContext } from '../contexts/StylesContext';
 
 import {
   Container,
@@ -20,6 +26,7 @@ import {
   IconsContainer,
   Icon,
 } from '../styles/pages/home';
+import { useFetch } from '../lib/fecther';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -41,12 +48,12 @@ const item = {
   },
 };
 
-import animation from '../../public/lottie/59446-black-guy-animation.json';
-import { useStylesContext } from '../contexts/StylesContext';
-import { GetStaticProps } from 'next';
-
 export default function Home() {
+  const { data } = useFetch<number>('/api/views-preview', false);
+
   const { handleCurrentPage, handleScroll } = useStylesContext();
+
+  const currentDate = format(new Date(), 'EEEEEE, d MMMM', { locale: ptBR });
 
   useEffect(() => {
     handleCurrentPage('home');
@@ -105,6 +112,10 @@ export default function Home() {
           }}
         />
       </AnimationContainer>
+
+      <span className="view">
+        {currentDate} - <strong>{data.toLocaleString('pt-br')}</strong> visitas
+      </span>
     </Container>
   );
 }

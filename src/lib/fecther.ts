@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 
-export function useFetch<T = number>(url: string, revalidateOnFocus = false) {
-  const { data, error } = useSWR<T>(
+export function useFetch(url: string, revalidateOnFocus = false) {
+  const { data, error } = useSWR(
     url,
     async (url) => {
       const response = await fetch(url);
@@ -11,7 +11,7 @@ export function useFetch<T = number>(url: string, revalidateOnFocus = false) {
     },
     {
       revalidateOnFocus,
-      initialData: 0,
+      initialData: null,
     }
   );
 

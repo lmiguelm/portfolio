@@ -27,6 +27,7 @@ import {
   Icon,
 } from '../styles/pages/home';
 import { useFetch } from '../lib/fecther';
+import { motion } from 'framer-motion';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -49,7 +50,7 @@ const item = {
 };
 
 export default function Home() {
-  const { data } = useFetch<number>('/api/views-preview', false);
+  const { data } = useFetch('/api/views-preview', false);
 
   const { handleCurrentPage, handleScroll } = useStylesContext();
 
@@ -113,9 +114,22 @@ export default function Home() {
         />
       </AnimationContainer>
 
-      <span className="view">
-        {currentDate} - <strong>{data.toLocaleString('pt-br')}</strong> visitas
-      </span>
+      {data && (
+        <motion.span
+          className="view"
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            duration: 1,
+          }}
+        >
+          {currentDate} - <strong>{Number(data).toLocaleString('pt-br')}</strong> visitas
+        </motion.span>
+      )}
     </Container>
   );
 }

@@ -176,5 +176,6 @@ export const getStaticProps: GetStaticProps = async () => {
       skills: skills.data,
       tools: tools.data,
     },
+    revalidate: 60 * 60 * 8,
   };
 };

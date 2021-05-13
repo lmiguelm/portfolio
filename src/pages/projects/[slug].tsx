@@ -200,5 +200,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
         images: data.images,
       },
     },
+    revalidate: 60 * 60 * 8,
   };
 };

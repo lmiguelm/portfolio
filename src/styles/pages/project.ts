@@ -103,6 +103,8 @@ export const Content = styled(motion.section)`
     video {
       height: 60%;
       width: 90%;
+
+      max-height: 600px;
     }
   }
 `;

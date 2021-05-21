@@ -8,7 +8,7 @@ import { ProjectCard } from '../components/ProjectCard';
 import { useStylesContext } from '../contexts/StylesContext';
 import { api } from '../services/api';
 
-import { FiChevronUp } from 'react-icons/fi';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
 import { Container, FirstSection, SecondSection } from '../styles/pages/projects';
 import { ScrollButton } from '../styles/global';
@@ -65,6 +65,15 @@ export default function Projects({ projects }: IProjectsProps) {
     });
   }
 
+  function goToBottom() {
+    console.log('entro2 ');
+    containeRef.current.scroll({
+      top: window.innerHeight - 80,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+
   return (
     <>
       <Head>
@@ -90,9 +99,15 @@ export default function Projects({ projects }: IProjectsProps) {
         </SecondSection>
       </Container>
 
-      <ScrollButton onClick={goToTop} className={active ? 'scrolling' : ''}>
-        <FiChevronUp size={40} />
-      </ScrollButton>
+      {active ? (
+        <ScrollButton onClick={goToTop}>
+          <FiChevronUp size={40} />
+        </ScrollButton>
+      ) : (
+        <ScrollButton onClick={goToBottom}>
+          <FiChevronDown size={40} />
+        </ScrollButton>
+      )}
     </>
   );
 }

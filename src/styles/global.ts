@@ -110,13 +110,7 @@ export const ScrollButton = styled.div`
 
   transition: 0.2s;
 
-  opacity: 0;
-
   &:hover {
     filter: brightness(0.9);
-  }
-
-  &.scrolling {
-    opacity: 1;
   }
 `;

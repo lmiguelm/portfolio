@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 
 import { useElementScroll } from 'framer-motion';
 
@@ -19,7 +18,7 @@ import {
 import { Card } from '../components/Card';
 import { api } from '../services/api';
 import { Button, ScrollButton } from '../styles/global';
-import { FiChevronUp } from 'react-icons/fi';
+import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
 
 type ISkill = {
   id: string;
@@ -74,8 +73,18 @@ export default function About({ tools, skills }: IAboutProps) {
   }, [scroll]);
 
   function goToTop() {
+    console.log('entro');
     containeRef.current.scroll({
       top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }
+
+  function goToBottom() {
+    console.log('entro2 ');
+    containeRef.current.scroll({
+      top: window.innerHeight - 80,
       left: 0,
       behavior: 'smooth',
     });
@@ -160,9 +169,15 @@ export default function About({ tools, skills }: IAboutProps) {
         </SecondSection>
       </Container>
 
-      <ScrollButton onClick={goToTop} className={active ? 'scrolling' : ''}>
-        <FiChevronUp size={40} />
-      </ScrollButton>
+      {active ? (
+        <ScrollButton onClick={goToTop}>
+          <FiChevronUp size={40} />
+        </ScrollButton>
+      ) : (
+        <ScrollButton onClick={goToBottom}>
+          <FiChevronDown size={40} />
+        </ScrollButton>
+      )}
     </>
   );
 }

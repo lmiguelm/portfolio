@@ -111,6 +111,14 @@ export const ScrollButton = styled.div`
   transition: 0.2s;
 
   &:hover {
-    filter: brightness(0.9);
+    filter: brightness(0.7);
+  }
+
+  svg {
+    transition: transform 0.4s;
+
+    &.rotate {
+      transform: rotate(180deg);
+    }
   }
 `;

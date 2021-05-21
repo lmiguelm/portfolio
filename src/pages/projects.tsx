@@ -99,15 +99,9 @@ export default function Projects({ projects }: IProjectsProps) {
         </SecondSection>
       </Container>
 
-      {active ? (
-        <ScrollButton onClick={goToTop}>
-          <FiChevronUp size={40} />
-        </ScrollButton>
-      ) : (
-        <ScrollButton onClick={goToBottom}>
-          <FiChevronDown size={40} />
-        </ScrollButton>
-      )}
+      <ScrollButton onClick={active ? goToTop : goToBottom}>
+        <FiChevronDown className={active ? 'rotate' : ''} size={40} />
+      </ScrollButton>
     </>
   );
 }

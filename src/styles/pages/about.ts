@@ -80,7 +80,7 @@ export const InfoContainer = styled.div`
     text-indent: 1.5em;
   }
 
-  button {
+  a {
     margin-top: 3rem;
     margin-right: 20%;
     align-self: center;

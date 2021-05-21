@@ -57,7 +57,7 @@ export const InfoContainer = styled(motion.div)`
     color: #fff;
     min-width: 300px;
 
-    span:last-child {
+    span {
       color: #9290c9;
     }
   }

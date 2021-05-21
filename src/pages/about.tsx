@@ -107,9 +107,9 @@ export default function About({ tools, skills }: IAboutProps) {
               de novos desafios e conhecimentos, seja em cursos ou em treinamentos.
             </p>
 
-            <Link href="/projects">
-              <Button>Meus projetos</Button>
-            </Link>
+            <a target="_blank" href="/docs/LuisMiguel.pdf">
+              <Button>Ver currículo</Button>
+            </a>
           </InfoContainer>
         </FirstSection>
 

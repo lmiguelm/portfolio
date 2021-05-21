@@ -139,13 +139,21 @@ export const CardContainer = styled(motion.section)`
     text-align: center;
 
     span {
-      color: #9290c9;
+      font-size: 3rem;
+      max-width: 50%;
+      text-align: center;
+
+      &:last-child {
+        color: #9290c9;
+      }
     }
   }
 
   span {
     font-size: 1rem;
     max-width: 50%;
+    text-align: justify;
+    text-indent: 1.5em;
   }
 
   .info {

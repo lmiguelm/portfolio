@@ -20,6 +20,8 @@ import { api } from '../services/api';
 import { Button, ScrollButton } from '../styles/global';
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
 
+import Typewriter from 'typewriter-effect/dist/core';
+
 type ISkill = {
   id: string;
   name: string;
@@ -71,6 +73,22 @@ export default function About({ tools, skills }: IAboutProps) {
   useEffect(() => {
     handleScroll(scroll);
   }, [scroll]);
+
+  useEffect(() => {
+    const skill = document.getElementById('skill');
+    const tool = document.getElementById('tool');
+
+    const writerSkill = new Typewriter(skill, {
+      loop: true,
+    });
+
+    const writerTool = new Typewriter(tool, {
+      loop: true,
+    });
+
+    writerSkill.typeString('_Habilidades').pauseFor(2000).deleteAll().start();
+    writerTool.typeString('Ferramentas_').pauseFor(2000).deleteAll().start();
+  }, []);
 
   function goToTop() {
     console.log('entro');
@@ -135,7 +153,7 @@ export default function About({ tools, skills }: IAboutProps) {
             }}
           >
             <div className="info">
-              <h1>Habilidades</h1>
+              <h1 id="skill"></h1>
               <span>Tecnologias que utilizo profissionalmente e mais estudo no dia a dia.</span>
             </div>
             <div className="card">
@@ -162,7 +180,7 @@ export default function About({ tools, skills }: IAboutProps) {
               ))}
             </div>
             <div className="info">
-              <h1>Ferramentas</h1>
+              <h1 id="tool"></h1>
               <span>Principais ferramentas que utilizo no desenvolvimento de novos projetos.</span>
             </div>
           </CardContainer>

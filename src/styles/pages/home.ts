@@ -50,6 +50,8 @@ export const InfoContainer = styled(motion.div)`
 
   -webkit-touch-callout: none; /* iPhone OS, Safari */
   -webkit-user-select: none; /* Chrome, Safari 3 */
+  -webkit-touch-callout: none; /* iPhone OS, Safari */
+  -webkit-user-select: none; /* Chrome, Safari 3 */
   -khtml-user-select: none; /* Safari 2 */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+ */

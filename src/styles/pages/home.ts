@@ -44,6 +44,10 @@ export const InfoContainer = styled(motion.div)`
 
   min-width: 50%;
 
+  @media (max-width: 900px) {
+    min-width: auto;
+  }
+
   -webkit-touch-callout: none; /* iPhone OS, Safari */
   -webkit-user-select: none; /* Chrome, Safari 3 */
   -khtml-user-select: none; /* Safari 2 */

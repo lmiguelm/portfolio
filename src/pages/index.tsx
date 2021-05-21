@@ -19,6 +19,8 @@ import linkedin from 'react-useanimations/lib/linkedin';
 import { Button } from '../styles/global';
 import { useStylesContext } from '../contexts/StylesContext';
 
+import Typewriter from 'typewriter-effect/dist/core';
+
 import {
   Container,
   InfoContainer,
@@ -59,6 +61,30 @@ export default function Home() {
   useEffect(() => {
     handleCurrentPage('home');
     handleScroll(0);
+
+    const typing = document.getElementById('typing');
+
+    const typewriter = new Typewriter(typing, {
+      loop: true,
+    });
+
+    typewriter
+      .typeString('Front-end')
+      .pauseFor(1000)
+      .deleteAll()
+      .typeString('Next.js')
+      .pauseFor(1000)
+      .deleteAll()
+      .typeString('React.js')
+      .pauseFor(1000)
+      .deleteAll()
+      .typeString('React Native')
+      .pauseFor(1000)
+      .deleteAll()
+      .typeString('Vue.js')
+      .pauseFor(1000)
+      .deleteAll()
+      .start();
   }, []);
 
   function openLink(link: string) {
@@ -74,9 +100,11 @@ export default function Home() {
       <InfoContainer>
         <h2>Olá,</h2>
         <h1>
-          Eu sou <span> &lt;Luis Miguel&gt;</span>
+          Eu sou <span>&lt;Luis Miguel&gt;</span>
         </h1>
-        <h2>Desenvolvedor web.</h2>
+        <h2>
+          Desenvolvedor <span id="typing"></span>
+        </h2>
 
         <IconsContainer variants={container}>
           <Icon

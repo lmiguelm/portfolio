@@ -9,9 +9,7 @@ export const Container = styled(motion.div)`
   justify-content: center;
   align-items: center;
 
-  gap: 10rem;
-
-  padding: 5rem;
+  padding: 10rem;
 
   overflow: hidden;
 
@@ -35,12 +33,16 @@ export const Container = styled(motion.div)`
 
   @media (max-width: 900px) {
     gap: 3rem;
+    padding: 5rem;
   }
 `;
 
 export const InfoContainer = styled(motion.div)`
+  /* flex: 1; */
   display: flex;
   flex-direction: column;
+
+  min-width: 50%;
 
   -webkit-touch-callout: none; /* iPhone OS, Safari */
   -webkit-user-select: none; /* Chrome, Safari 3 */
@@ -53,8 +55,9 @@ export const InfoContainer = styled(motion.div)`
     line-height: 3.5rem;
     font-size: 3.5rem;
     color: #fff;
+    min-width: 300px;
 
-    span {
+    span:last-child {
       color: #9290c9;
     }
   }
@@ -64,12 +67,20 @@ export const InfoContainer = styled(motion.div)`
   }
 
   button {
-    align-self: center;
+    margin-left: 20%;
     margin-top: 3rem;
+
+    @media (max-width: 900px) {
+      button {
+        align-self: center;
+        margin-top: 3rem;
+      }
+    }
   }
 `;
 
 export const AnimationContainer = styled(motion.div)`
+  /* flex: 1; */
   margin-top: -10rem;
   width: 50rem;
   height: 50rem;

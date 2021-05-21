@@ -147,9 +147,11 @@ export default function Project({ project }: IProjectProps) {
         </Page>
       </Container>
 
-      <ScrollButton onClick={goToTop} className={active ? 'scrolling' : ''}>
-        <FiChevronUp size={40} />
-      </ScrollButton>
+      {active && (
+        <ScrollButton onClick={goToTop}>
+          <FiChevronUp size={40} />
+        </ScrollButton>
+      )}
     </>
   );
 }

@@ -86,8 +86,23 @@ export default function About({ tools, skills }: IAboutProps) {
       loop: true,
     });
 
-    writerSkill.typeString('_Habilidades').pauseFor(2000).deleteAll().start();
-    writerTool.typeString('Ferramentas_').pauseFor(2000).deleteAll().start();
+    writerSkill
+      .typeString('_Habilidades')
+      .pauseFor(2000)
+      .deleteAll()
+      .typeString('_Skills')
+      .pauseFor(2000)
+      .deleteAll()
+      .start();
+
+    writerTool
+      .typeString('Ferramentas_')
+      .pauseFor(2000)
+      .deleteAll()
+      .typeString('Tools_')
+      .pauseFor(2000)
+      .deleteAll()
+      .start();
   }, []);
 
   function goToTop() {
@@ -154,7 +169,6 @@ export default function About({ tools, skills }: IAboutProps) {
           >
             <div className="info">
               <h1 id="skill"></h1>
-              <span>Tecnologias que utilizo profissionalmente e mais estudo no dia a dia.</span>
             </div>
             <div className="card">
               {skills.map((skill) => (
@@ -181,7 +195,6 @@ export default function About({ tools, skills }: IAboutProps) {
             </div>
             <div className="info">
               <h1 id="tool"></h1>
-              <span>Principais ferramentas que utilizo no desenvolvimento de novos projetos.</span>
             </div>
           </CardContainer>
         </SecondSection>

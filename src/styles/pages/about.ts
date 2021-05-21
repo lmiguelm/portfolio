@@ -95,7 +95,7 @@ export const InfoContainer = styled.div`
       max-width: 100%;
     }
 
-    button {
+    a {
       margin-top: 2rem;
       align-self: center;
       margin-right: 0;
@@ -215,6 +215,12 @@ export const CardContainer = styled(motion.section)`
 
     span {
       max-width: 100%;
+    }
+
+    h1 {
+      span {
+        font-size: 2rem;
+      }
     }
   }
 

@@ -69,19 +69,22 @@ export default function Home() {
     });
 
     typewriter
-      .typeString('Front-end')
+      .typeString('Web.')
       .pauseFor(1000)
       .deleteAll()
-      .typeString('Next.js')
+      .typeString('Next JS.')
       .pauseFor(1000)
       .deleteAll()
-      .typeString('React.js')
+      .typeString('React JS.')
       .pauseFor(1000)
       .deleteAll()
-      .typeString('React Native')
+      .typeString('React Native.')
       .pauseFor(1000)
       .deleteAll()
-      .typeString('Vue.js')
+      .typeString('Vue JS.')
+      .pauseFor(1000)
+      .deleteAll()
+      .typeString('Node JS.')
       .pauseFor(1000)
       .deleteAll()
       .start();

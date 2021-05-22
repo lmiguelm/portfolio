@@ -6,6 +6,9 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: Poppins, sans-serif;
+  }
+
+  span, p, h2, h3, h4, h1 {
     color: #ddd;
   }
 
@@ -120,5 +123,70 @@ export const ScrollButton = styled.div`
     &.rotate {
       transform: rotate(180deg);
     }
+  }
+`;
+
+export const Input = styled.input`
+  height: 5rem;
+  outline: none;
+
+  padding: 2rem 1rem;
+
+  border: none;
+  border-bottom: 1px solid #000;
+  color: #333;
+
+  font-size: 1.25rem;
+
+  transition: 0.4s;
+
+  &::placeholder {
+    transition: 0.4s;
+  }
+
+  &:focus {
+    border-bottom: 1px solid #356eca;
+    color: #356eca;
+
+    &::placeholder {
+      transform: scale(0.9);
+    }
+  }
+
+  &.error {
+    border-bottom: 1px solid red;
+    color: red;
+  }
+`;
+
+export const FormButton = styled.button`
+  margin: 2rem 0;
+
+  height: 5rem;
+  outline: none;
+
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+
+  color: #000;
+  background-color: #fff;
+
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  cursor: not-allowed;
+
+  transition: 0.2s;
+
+  &.active {
+    border: 1px solid #356eca;
+    color: #356eca;
+    cursor: pointer;
+  }
+
+  &.active:hover {
+    color: #fff;
+    background-color: #356eca;
   }
 `;

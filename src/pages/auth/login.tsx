@@ -4,6 +4,7 @@ import Router from 'next/router';
 
 import { FormEvent, useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { FormButton, Input } from '../../styles/global';
 
 import { Container, CardContainer } from '../../styles/pages/auth/login';
 
@@ -44,7 +45,7 @@ export default function Login() {
         <h1>Faça seu login</h1>
 
         <form onSubmit={handleSubmit}>
-          <input
+          <Input
             value={email}
             onChange={(element) => setEmail(element.target.value)}
             type="email"
@@ -53,7 +54,7 @@ export default function Login() {
           />
           <span className={showInputError ? 'message-error' : ''}>E-mail inválido.</span>
 
-          <input
+          <Input
             value={password}
             onChange={(element) => setPassword(element.target.value)}
             type="password"
@@ -63,7 +64,7 @@ export default function Login() {
           <span className={showInputError ? 'message-error' : ''}>Senha inválida.</span>
 
           <label htmlFor="remember">
-            <input
+            <Input
               onClick={() => setRemember(!remember)}
               defaultChecked={remember}
               type="checkbox"
@@ -72,12 +73,16 @@ export default function Login() {
             &nbsp; Lembrar senha
           </label>
 
-          <button type="submit" disabled={!enableButton} className={enableButton ? 'active' : ''}>
+          <FormButton
+            type="submit"
+            disabled={!enableButton}
+            className={enableButton ? 'active' : ''}
+          >
             Continuar
-          </button>
+          </FormButton>
         </form>
 
-        <Link href="/auth/esqueci-a-senha">
+        <Link href="/auth/password/forgot">
           <a>Esqueci a senha</a>
         </Link>
       </CardContainer>

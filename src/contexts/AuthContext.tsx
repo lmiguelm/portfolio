@@ -10,6 +10,7 @@ type AuthContextData = {
   isLogged: boolean;
   login(email: string, password: string, remember: boolean): Promise<void>;
   logout(): void;
+  checkEmail(email: string): Promise<void>;
 };
 
 const AuthContext = createContext({} as AuthContextData);
@@ -46,8 +47,26 @@ export function AuthProvider({ children }: AuthProps) {
     Cookie.remove('access_token');
   }
 
+  async function checkEmail(email: string): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await api.get(`http://localhost:3333/api/users/email`, {
+          params: {
+            email,
+          },
+        });
+
+        resolve();
+      } catch (error) {
+        reject();
+      }
+    });
+  }
+
   return (
-    <AuthContext.Provider value={{ isLogged, login, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ isLogged, login, logout, checkEmail }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 

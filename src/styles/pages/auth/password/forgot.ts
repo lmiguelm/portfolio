@@ -37,27 +37,10 @@ export const CardContainer = styled.div`
     flex-direction: column;
     gap: 1.5rem;
 
-    label {
-      margin-top: 1rem;
-      color: #000;
-      cursor: pointer;
-
-      user-select: none;
-
-      input[type='checkbox'] {
-        padding: 0rem;
-        cursor: pointer;
-        height: inherit;
-      }
-    }
-
     span {
       display: flex;
       align-items: center;
       color: red;
-    }
-
-    span {
       display: none;
     }
 
@@ -69,17 +52,23 @@ export const CardContainer = styled.div`
     }
   }
 
-  a {
-    align-self: center;
+  button.back {
+    width: 3rem;
+    height: 3rem;
+
+    border: none;
+    border-radius: 1rem;
+
+    background: #ddd;
 
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    font-size: 1rem;
-    font-weight: bold;
+    transition: 0.2s;
 
-    color: #356eca;
-
-    user-select: none;
+    &:hover {
+      filter: brightness(0.9);
+    }
   }
 `;

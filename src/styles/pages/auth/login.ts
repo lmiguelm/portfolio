@@ -69,17 +69,43 @@ export const CardContainer = styled.div`
     }
   }
 
-  a {
-    align-self: center;
-
+  footer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    font-size: 1rem;
-    font-weight: bold;
+    button.back {
+      width: 3rem;
+      height: 3rem;
 
-    color: #356eca;
+      border: none;
+      border-radius: 1rem;
 
-    user-select: none;
+      background: #356eca;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transition: 0.2s;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+
+    a {
+      align-self: center;
+
+      display: flex;
+      align-items: center;
+
+      font-size: 1rem;
+      font-weight: bold;
+
+      color: #356eca;
+
+      user-select: none;
+    }
   }
 `;

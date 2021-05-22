@@ -2,7 +2,8 @@ import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Router from 'next/router';
 
-import { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
+import { FiArrowLeft } from 'react-icons/fi';
 import { useAuth } from '../../contexts/AuthContext';
 import { FormButton, Input } from '../../styles/global';
 
@@ -37,6 +38,10 @@ export default function Login() {
     } catch (error) {
       setShowInputError(true);
     }
+  }
+
+  function goBack() {
+    Router.push('/');
   }
 
   return (
@@ -82,9 +87,17 @@ export default function Login() {
           </FormButton>
         </form>
 
-        <Link href="/auth/forgot">
-          <a>Esqueci a senha</a>
-        </Link>
+        <footer>
+          <button onClick={goBack} className="back" type="button">
+            <FiArrowLeft size={24} color="white" />
+          </button>
+
+          <Link href="/auth/forgot">
+            <a>Esqueci a senha</a>
+          </Link>
+
+          <span />
+        </footer>
       </CardContainer>
     </Container>
   );

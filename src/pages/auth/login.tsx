@@ -82,7 +82,7 @@ export default function Login() {
           </FormButton>
         </form>
 
-        <Link href="/auth/password/forgot">
+        <Link href="/auth/forgot">
           <a>Esqueci a senha</a>
         </Link>
       </CardContainer>

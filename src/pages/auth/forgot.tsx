@@ -1,12 +1,11 @@
-import { GetServerSideProps } from 'next';
 import Router from 'next/router';
 
 import { FormEvent, useEffect, useState } from 'react';
-import { useAuth } from '../../../contexts/AuthContext';
-import { FormButton, Input } from '../../../styles/global';
+import { useAuth } from '../../contexts/AuthContext';
+import { FormButton, Input } from '../../styles/global';
 
-import { Container, CardContainer } from '../../../styles/pages/auth/password/forgot';
-import { isAValidEmail } from '../../../utils/checkEmail';
+import { Container, CardContainer } from '../../styles/pages/auth/password/forgot';
+import { isAValidEmail } from '../../utils/checkEmail';
 
 import { FiArrowLeft } from 'react-icons/fi';
 

@@ -59,7 +59,7 @@ export const CardContainer = styled.div`
     border: none;
     border-radius: 1rem;
 
-    background: #ddd;
+    background: #356eca;
 
     display: flex;
     align-items: center;

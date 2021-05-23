@@ -35,7 +35,15 @@ export const Container = styled.ul`
       transition: filter 0.2s;
 
       &:hover {
-        filter: brightness(0.9);
+        filter: brightness(0.7);
+      }
+
+      &#add {
+        width: 15rem;
+        background: #356eca;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #fff;
       }
     }
   }

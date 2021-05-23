@@ -62,7 +62,7 @@ export default function Dashboard({ user }: IDashboardProps) {
 
   return (
     <>
-      <Header />
+      <Header currentPage="dashboard" />
       <Container>
         <Link href="/auth/projects">
           <div>
@@ -112,7 +112,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   } catch (e) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/auth/login',
         permanent: false,
       },
     };

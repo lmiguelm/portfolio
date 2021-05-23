@@ -7,6 +7,7 @@ export default function App({ Component, pageProps }) {
   const showHeader = !(
     String(Component).includes('Login') ||
     String(Component).includes('Forgot') ||
+    String(Component).includes('Tools') ||
     String(Component).includes('Dashboard')
   );
 

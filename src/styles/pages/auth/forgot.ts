@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const CardContainer = styled.div`
   height: 90vh;
 
-  min-width: 35vw;
+  width: 35vw;
 
   background-color: #fff;
   border-radius: 0.5rem;
@@ -25,6 +25,10 @@ export const CardContainer = styled.div`
 
   padding: 3rem;
   margin: 1rem;
+
+  @media (max-width: 900px) {
+    width: 95%;
+  }
 
   h1 {
     color: #222;

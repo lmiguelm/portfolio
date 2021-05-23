@@ -4,10 +4,12 @@ import { FormEvent, useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { FormButton, Input } from '../../styles/global';
 
-import { Container, CardContainer } from '../../styles/pages/auth/password/forgot';
+import { Container, CardContainer } from '../../styles/pages/auth/forgot';
 import { isAValidEmail } from '../../utils/checkEmail';
 
 import { FiArrowLeft } from 'react-icons/fi';
+import { GetServerSideProps } from 'next';
+import { api } from '../../services/api';
 
 export default function Forgot() {
   const [email, setEmail] = useState('');
@@ -187,3 +189,31 @@ export default function Forgot() {
     );
   }
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const token = ctx.req.cookies.access_token;
+  const currentUser = ctx.req.cookies.current_user;
+
+  try {
+    if (!token && !currentUser) {
+      throw new Error();
+    }
+
+    await api.get('http://localhost:3333/api/validating/token', {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    });
+
+    return {
+      redirect: {
+        destination: '/auth/dashboard',
+        permanent: false,
+      },
+    };
+  } catch (e) {
+    return {
+      props: {},
+    };
+  }
+};

@@ -1,6 +1,8 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
+import { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { api } from '../services/api';
 import Cookie from 'js-cookie';
+
+import Router from 'next/router';
 
 type AuthProps = {
   children: ReactNode;
@@ -16,7 +18,9 @@ type IUser = {
 
 type AuthContextData = {
   isLogged: boolean;
-  login(email: string, password: string, remember: boolean): Promise<void>;
+  currentUser: IUser;
+  token: string;
+  login(email: string, password: string): Promise<void>;
   logout(): void;
   checkEmail(email: string): Promise<void>;
   checkCode(email: string, code: number): Promise<IUser>;
@@ -27,8 +31,23 @@ const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProps) {
   const [isLogged, setIsLogged] = useState(false);
+  const [currentUser, setCurrentUser] = useState<IUser>({} as IUser);
+  const [token, setToken] = useState('');
 
-  async function login(email: string, password: string, remember: boolean): Promise<void> {
+  useEffect(() => {
+    let user = Cookie.get('current_user');
+    let token = Cookie.get('access_token');
+
+    if (user && token) {
+      token = JSON.parse(token);
+      api.defaults.headers.Authorization = token;
+      setToken(token);
+      setCurrentUser(JSON.parse(user));
+      setIsLogged(true);
+    }
+  }, []);
+
+  async function login(email: string, password: string): Promise<void> {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await api.post(`http://localhost:3333/api/users/login`, {
@@ -37,13 +56,15 @@ export function AuthProvider({ children }: AuthProps) {
         });
 
         const token = response.headers.authorization;
+        const user = response.data;
 
-        api.defaults.headers = token;
+        api.defaults.headers.Authorization = token;
         setIsLogged(true);
+        setToken(token);
+        setCurrentUser(user);
 
-        if (remember) {
-          Cookie.set('access_token', JSON.stringify(token));
-        }
+        Cookie.set('access_token', JSON.stringify(token));
+        Cookie.set('current_user', JSON.stringify(user));
 
         resolve();
       } catch (error) {
@@ -55,6 +76,8 @@ export function AuthProvider({ children }: AuthProps) {
   async function logout() {
     setIsLogged(false);
     Cookie.remove('access_token');
+    Cookie.remove('current_user');
+    Router.push('/auth/login');
   }
 
   async function checkEmail(email: string): Promise<void> {
@@ -110,7 +133,9 @@ export function AuthProvider({ children }: AuthProps) {
   }
 
   return (
-    <AuthContext.Provider value={{ isLogged, login, logout, checkEmail, checkCode, resetPassword }}>
+    <AuthContext.Provider
+      value={{ isLogged, login, logout, checkEmail, checkCode, resetPassword, currentUser, token }}
+    >
       {children}
     </AuthContext.Provider>
   );

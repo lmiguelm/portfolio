@@ -5,6 +5,7 @@ import Router from 'next/router';
 import React, { FormEvent, useEffect, useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useAuth } from '../../contexts/AuthContext';
+import { api } from '../../services/api';
 import { FormButton, Input } from '../../styles/global';
 
 import { Container, CardContainer } from '../../styles/pages/auth/login';
@@ -14,7 +15,6 @@ import { isAValidEmail } from '../../utils/checkEmail';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [remember, setRemember] = useState(false);
   const [enableButton, setEnableButton] = useState(false);
   const [showInputError, setShowInputError] = useState(false);
 
@@ -33,7 +33,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      await login(email, password, remember);
+      await login(email, password);
       Router.push('/auth/dashboard');
     } catch (error) {
       setShowInputError(true);
@@ -68,16 +68,6 @@ export default function Login() {
           />
           <span className={showInputError ? 'message-error' : ''}>Senha inválida.</span>
 
-          <label htmlFor="remember">
-            <Input
-              onClick={() => setRemember(!remember)}
-              defaultChecked={remember}
-              type="checkbox"
-              id="remember"
-            />
-            &nbsp; Lembrar senha
-          </label>
-
           <FormButton
             type="submit"
             disabled={!enableButton}
@@ -105,15 +95,26 @@ export default function Login() {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const token = ctx.req.cookies.access_token;
+  const currentUser = ctx.req.cookies.current_user;
 
-  if (token) {
+  try {
+    if (!token && !currentUser) {
+      throw new Error();
+    }
+
+    await api.get('http://localhost:3333/api/validating/token', {
+      headers: {
+        Authorization: JSON.parse(token),
+      },
+    });
+
     return {
       redirect: {
         destination: '/auth/dashboard',
         permanent: false,
       },
     };
-  } else {
+  } catch (e) {
     return {
       props: {},
     };

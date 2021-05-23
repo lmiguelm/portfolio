@@ -15,6 +15,7 @@ import { useElementScroll } from 'framer-motion';
 import { useStylesContext } from '../../contexts/StylesContext';
 import { ScrollButton } from '../../styles/global';
 import { FiChevronUp } from 'react-icons/fi';
+import { Header } from '../../components/ExternalHeader';
 
 type IProject = {
   id: string;
@@ -81,6 +82,8 @@ export default function Project({ project }: IProjectProps) {
         <title>&lt; {project.title} /&gt;</title>
       </Head>
 
+      <Header />
+
       <Container ref={containeRef}>
         <Page>
           <Slide>
@@ -106,7 +109,7 @@ export default function Project({ project }: IProjectProps) {
               <span>{project.resume}</span>
 
               <div className="link-container">
-                {project.url != 'null' && (
+                {project.url && project.url != 'null' && (
                   <a target="_blank" href={project.url}>
                     Acessar
                   </a>
@@ -118,14 +121,14 @@ export default function Project({ project }: IProjectProps) {
             </header>
 
             <main id="project">
-              {project.about && (
+              {project.about && project.about != 'null' && (
                 <div className="about">
                   <h2>Sobre</h2>
                   <p>{project.about}</p>
                 </div>
               )}
 
-              {project.knowledge && (
+              {project.knowledge && project.knowledge != 'null' && (
                 <div className="knowledge">
                   <h2>Conhecimentos</h2>
                   <p>{project.knowledge}</p>
@@ -133,7 +136,7 @@ export default function Project({ project }: IProjectProps) {
               )}
             </main>
 
-            {project.video && (
+            {project.video && project.video != 'null' && (
               <footer>
                 <video controls>
                   <source type="video/webm" src={project.video} />

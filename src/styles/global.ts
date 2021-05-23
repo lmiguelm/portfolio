@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Poppins, sans-serif;
   }
 
-  span, p, h2, h3, h4, h1 {
+  span, p, h2, h3, h4, h1 , a{
     color: #ddd;
   }
 

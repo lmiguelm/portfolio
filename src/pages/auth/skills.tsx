@@ -25,7 +25,7 @@ export default function Tools({ initialSkills }: ISkillProps) {
 
   async function handleRemoveSkill(id: string) {
     try {
-      await api.delete(`http://localhost:3333/api/skills/delete/${id}`);
+      await api.delete(`${process.env.NEXT_PUBLIC_APP_URL}/skills/delete/${id}`);
 
       if (confirm(`Tem certeza que deseja deletar está habilidade?`)) {
         const newSkill = skills.filter((skill) => skill.id !== id);
@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       throw new Error();
     }
 
-    const { data } = await api.get('http://localhost:3333/api/skills');
+    const { data } = await api.get('/skills');
 
     return {
       props: {

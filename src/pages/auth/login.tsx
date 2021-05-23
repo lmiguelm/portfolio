@@ -102,7 +102,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       throw new Error();
     }
 
-    await api.get('http://localhost:3333/api/validating/token', {
+    await api.get('/validating/token', {
       headers: {
         Authorization: JSON.parse(token),
       },

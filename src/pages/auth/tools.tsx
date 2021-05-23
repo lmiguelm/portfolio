@@ -25,7 +25,7 @@ export default function Tools({ initialTools }: IToolProps) {
 
   async function hanleRemoveTool(id: string) {
     try {
-      await api.delete(`http://localhost:3333/api/tools/delete/${id}`);
+      await api.delete(`${process.env.NEXT_PUBLIC_APP_URL}/tools/delete/${id}`);
 
       if (confirm(`Tem certeza que deseja deletar está ferramenta?`)) {
         const newTools = tools.filter((tool) => tool.id !== id);
@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       throw new Error();
     }
 
-    const { data } = await api.get('http://localhost:3333/api/tools');
+    const { data } = await api.get('/tools');
 
     return {
       props: {

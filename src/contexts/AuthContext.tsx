@@ -50,7 +50,7 @@ export function AuthProvider({ children }: AuthProps) {
   async function login(email: string, password: string): Promise<void> {
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await api.post(`http://localhost:3333/api/users/login`, {
+        const response = await api.post(`${process.env.NEXT_PUBLIC_APP_URL}/users/login`, {
           email,
           password,
         });
@@ -83,7 +83,7 @@ export function AuthProvider({ children }: AuthProps) {
   async function checkEmail(email: string): Promise<void> {
     return new Promise(async (resolve, reject) => {
       try {
-        await api.get(`http://localhost:3333/api/users/check-user`, {
+        await api.get(`${process.env.NEXT_PUBLIC_APP_URL}/users/check-user`, {
           params: {
             email,
           },
@@ -99,7 +99,7 @@ export function AuthProvider({ children }: AuthProps) {
   async function checkCode(email: string, code: number): Promise<IUser> {
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await api.post(`http://localhost:3333/api/users/check-code`, {
+        const response = await api.post(`${process.env.NEXT_PUBLIC_APP_URL}/users/check-code`, {
           email,
           code,
         });
@@ -119,7 +119,7 @@ export function AuthProvider({ children }: AuthProps) {
   ): Promise<void> {
     return new Promise(async (resolve, reject) => {
       try {
-        await api.put(`http://localhost:3333/api/users/reset-password`, {
+        await api.put(`${process.env.NEXT_PUBLIC_APP_URL}/users/reset-password`, {
           password,
           id,
           email,

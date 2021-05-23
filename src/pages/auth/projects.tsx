@@ -26,7 +26,7 @@ export default function Tools({ initialProjects }: IProjectsProps) {
 
   async function handleRemoveProject(id: string) {
     try {
-      await api.delete(`http://localhost:3333/api/projects/delete/${id}`);
+      await api.delete(`${process.env.NEXT_PUBLIC_APP_URL}/projects/delete/${id}`);
 
       if (confirm(`Tem certeza que deseja deletar este projeto?`)) {
         const newProjetcs = projects.filter((project) => project.id !== id);
@@ -75,7 +75,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       throw new Error();
     }
 
-    const { data } = await api.get('http://localhost:3333/api/projects');
+    const { data } = await api.get('/projects');
 
     return {
       props: {

@@ -5,10 +5,12 @@ import { useElementScroll } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import { ProjectCard } from '../components/ProjectCard';
 
+import { Header } from '../components/ExternalHeader';
+
 import { useStylesContext } from '../contexts/StylesContext';
 import { api } from '../services/api';
 
-import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { FiChevronDown } from 'react-icons/fi';
 
 import { Container, FirstSection, SecondSection } from '../styles/pages/projects';
 import { ScrollButton } from '../styles/global';
@@ -80,6 +82,8 @@ export default function Projects({ projects }: IProjectsProps) {
         <title>&lt;Projetos /&gt;</title>
       </Head>
 
+      <Header />
+
       <Container ref={containeRef}>
         <FirstSection>
           <h1>
@@ -100,7 +104,7 @@ export default function Projects({ projects }: IProjectsProps) {
       </Container>
 
       <ScrollButton onClick={active ? goToTop : goToBottom}>
-        <FiChevronDown className={active ? 'rotate' : ''} size={40} />
+        <FiChevronDown color="#fff" className={active ? 'rotate' : ''} size={40} />
       </ScrollButton>
     </>
   );

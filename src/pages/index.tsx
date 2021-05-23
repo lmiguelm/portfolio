@@ -19,6 +19,8 @@ import linkedin from 'react-useanimations/lib/linkedin';
 import { Button } from '../styles/global';
 import { useStylesContext } from '../contexts/StylesContext';
 
+import { Header } from '../components/ExternalHeader';
+
 import Typewriter from 'typewriter-effect/dist/core';
 
 import {
@@ -95,73 +97,76 @@ export default function Home() {
   }
 
   return (
-    <Container initial="hidden" animate="visible">
-      <Head>
-        <title>&lt; Home /&gt;</title>
-      </Head>
+    <>
+      <Header />
+      <Container initial="hidden" animate="visible">
+        <Head>
+          <title>&lt; Home /&gt;</title>
+        </Head>
 
-      <InfoContainer>
-        <h2>Olá,</h2>
-        <h1>
-          Eu sou <span>&lt;Luis Miguel&gt;</span>
-        </h1>
-        <h2>
-          Desenvolvedor <span id="typing"></span>
-        </h2>
+        <InfoContainer>
+          <h2>Olá,</h2>
+          <h1>
+            Eu sou <span>&lt;Luis Miguel&gt;</span>
+          </h1>
+          <h2>
+            Desenvolvedor <span id="typing"></span>
+          </h2>
 
-        <IconsContainer variants={container}>
-          <Icon
-            variants={item}
-            onClick={() => openLink('https://www.facebook.com/luismiguel.marcelo.1/')}
+          <IconsContainer variants={container}>
+            <Icon
+              variants={item}
+              onClick={() => openLink('https://www.facebook.com/luismiguel.marcelo.1/')}
+            >
+              <UseAnimations animation={facebook} size={40} strokeColor="#fff" />
+            </Icon>
+
+            <Icon variants={item} onClick={() => openLink('https://www.github.com/lmiguelm')}>
+              <UseAnimations animation={github} size={40} strokeColor="#fff" />
+            </Icon>
+
+            <Icon variants={item} onClick={() => openLink('https://www.instagram.com/lmiguel10/')}>
+              <UseAnimations animation={instagram} size={40} strokeColor="#fff" />
+            </Icon>
+
+            <Icon variants={item} onClick={() => openLink('https://www.linkedin.com/in/lmiguelm/')}>
+              <UseAnimations animation={linkedin} size={40} strokeColor="#fff" />
+            </Icon>
+          </IconsContainer>
+
+          <Link href="/about">
+            <Button type="button">Saiba mais</Button>
+          </Link>
+        </InfoContainer>
+
+        <AnimationContainer>
+          <Lottie
+            options={{
+              animationData: animation,
+              autoplay: true,
+              loop: true,
+            }}
+          />
+        </AnimationContainer>
+
+        {data && (
+          <motion.span
+            className="view"
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            transition={{
+              duration: 1,
+            }}
           >
-            <UseAnimations animation={facebook} size={40} strokeColor="#fff" />
-          </Icon>
-
-          <Icon variants={item} onClick={() => openLink('https://www.github.com/lmiguelm')}>
-            <UseAnimations animation={github} size={40} strokeColor="#fff" />
-          </Icon>
-
-          <Icon variants={item} onClick={() => openLink('https://www.instagram.com/lmiguel10/')}>
-            <UseAnimations animation={instagram} size={40} strokeColor="#fff" />
-          </Icon>
-
-          <Icon variants={item} onClick={() => openLink('https://www.linkedin.com/in/lmiguelm/')}>
-            <UseAnimations animation={linkedin} size={40} strokeColor="#fff" />
-          </Icon>
-        </IconsContainer>
-
-        <Link href="/about">
-          <Button type="button">Saiba mais</Button>
-        </Link>
-      </InfoContainer>
-
-      <AnimationContainer>
-        <Lottie
-          options={{
-            animationData: animation,
-            autoplay: true,
-            loop: true,
-          }}
-        />
-      </AnimationContainer>
-
-      {data && (
-        <motion.span
-          className="view"
-          initial={{
-            opacity: 0,
-          }}
-          animate={{
-            opacity: 1,
-          }}
-          transition={{
-            duration: 1,
-          }}
-        >
-          {currentDate} - <strong>{Number(data).toLocaleString('pt-br')}</strong> visitas
-        </motion.span>
-      )}
-    </Container>
+            {currentDate} - <strong>{Number(data).toLocaleString('pt-br')}</strong> visitas
+          </motion.span>
+        )}
+      </Container>
+    </>
   );
 }
 

@@ -21,6 +21,7 @@ import { Button, ScrollButton } from '../styles/global';
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
 
 import Typewriter from 'typewriter-effect/dist/core';
+import { Header } from '../components/ExternalHeader';
 
 type ISkill = {
   id: string;
@@ -125,6 +126,7 @@ export default function About({ tools, skills }: IAboutProps) {
 
   return (
     <>
+      <Header />
       <Container ref={containeRef}>
         <Head>
           <title>&lt; Sobre /&gt;</title>
@@ -201,7 +203,7 @@ export default function About({ tools, skills }: IAboutProps) {
       </Container>
 
       <ScrollButton onClick={active ? goToTop : goToBottom}>
-        <FiChevronDown className={active ? 'rotate' : ''} size={40} />
+        <FiChevronDown color="#fff" className={active ? 'rotate' : ''} size={40} />
       </ScrollButton>
     </>
   );

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
+import Head from 'next/head';
 
 import { api } from '../../services/api';
 
@@ -40,6 +41,9 @@ export default function Tools({ initialProjects }: IProjectsProps) {
 
   return (
     <>
+      <Head>
+        <title>&lt; Dashboard /&gt;</title>
+      </Head>
       <Header currentPage="projects" showRegisterButton />
       <Container>
         {projects.map((project) => (

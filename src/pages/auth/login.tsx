@@ -1,6 +1,7 @@
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Router from 'next/router';
+import Head from 'next/head';
 
 import React, { FormEvent, useEffect, useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
@@ -45,51 +46,57 @@ export default function Login() {
   }
 
   return (
-    <Container>
-      <CardContainer>
-        <h1>Faça seu login</h1>
+    <>
+      <Head>
+        <title>&lt; Login /&gt;</title>
+      </Head>
 
-        <form onSubmit={handleSubmit}>
-          <Input
-            value={email}
-            onChange={(element) => setEmail(element.target.value)}
-            type="email"
-            placeholder="E-mail"
-            className={showInputError ? 'error' : ''}
-          />
-          <span className={showInputError ? 'message-error' : ''}>E-mail inválido.</span>
+      <Container>
+        <CardContainer>
+          <h1>Faça seu login</h1>
 
-          <Input
-            value={password}
-            onChange={(element) => setPassword(element.target.value)}
-            type="password"
-            placeholder="Senha"
-            className={showInputError ? 'error' : ''}
-          />
-          <span className={showInputError ? 'message-error' : ''}>Senha inválida.</span>
+          <form onSubmit={handleSubmit}>
+            <Input
+              value={email}
+              onChange={(element) => setEmail(element.target.value)}
+              type="email"
+              placeholder="E-mail"
+              className={showInputError ? 'error' : ''}
+            />
+            <span className={showInputError ? 'message-error' : ''}>E-mail inválido.</span>
 
-          <FormButton
-            type="submit"
-            disabled={!enableButton}
-            className={enableButton ? 'active' : ''}
-          >
-            Continuar
-          </FormButton>
-        </form>
+            <Input
+              value={password}
+              onChange={(element) => setPassword(element.target.value)}
+              type="password"
+              placeholder="Senha"
+              className={showInputError ? 'error' : ''}
+            />
+            <span className={showInputError ? 'message-error' : ''}>Senha inválida.</span>
 
-        <footer>
-          <button onClick={goBack} className="back" type="button">
-            <FiArrowLeft size={24} color="white" />
-          </button>
+            <FormButton
+              type="submit"
+              disabled={!enableButton}
+              className={enableButton ? 'active' : ''}
+            >
+              Continuar
+            </FormButton>
+          </form>
 
-          <Link href="/auth/forgot">
-            <a>Esqueci a senha</a>
-          </Link>
+          <footer>
+            <button onClick={goBack} className="back" type="button">
+              <FiArrowLeft size={24} color="white" />
+            </button>
 
-          <span />
-        </footer>
-      </CardContainer>
-    </Container>
+            <Link href="/auth/forgot">
+              <a>Esqueci a senha</a>
+            </Link>
+
+            <span />
+          </footer>
+        </CardContainer>
+      </Container>
+    </>
   );
 }
 

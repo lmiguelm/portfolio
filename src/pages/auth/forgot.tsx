@@ -1,4 +1,5 @@
 import Router from 'next/router';
+import Head from 'next/head';
 
 import { FormEvent, useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -88,104 +89,119 @@ export default function Forgot() {
 
   if (step == 0) {
     return (
-      <Container>
-        <CardContainer>
-          <h1>Informe o e-mail de recuperação</h1>
+      <>
+        <Head>
+          <title>&lt; Esqueci a senha /&gt;</title>
+        </Head>
+        <Container>
+          <CardContainer>
+            <h1>Informe o e-mail de recuperação</h1>
 
-          <form onSubmit={handleSubmitFirstStep}>
-            <Input
-              value={email}
-              onChange={(element) => setEmail(element.target.value)}
-              type="email"
-              placeholder="E-mail"
-              className={showInputError ? 'error' : ''}
-            />
-            <span className={showInputError ? 'message-error' : ''}>E-mail inválido.</span>
+            <form onSubmit={handleSubmitFirstStep}>
+              <Input
+                value={email}
+                onChange={(element) => setEmail(element.target.value)}
+                type="email"
+                placeholder="E-mail"
+                className={showInputError ? 'error' : ''}
+              />
+              <span className={showInputError ? 'message-error' : ''}>E-mail inválido.</span>
 
-            <FormButton
-              type="submit"
-              disabled={!enableButton}
-              className={enableButton ? 'active' : ''}
-            >
-              Continuar
-            </FormButton>
-          </form>
+              <FormButton
+                type="submit"
+                disabled={!enableButton}
+                className={enableButton ? 'active' : ''}
+              >
+                Continuar
+              </FormButton>
+            </form>
 
-          <button onClick={goBack} className="back" type="button">
-            <FiArrowLeft size={24} color="white" />
-          </button>
-        </CardContainer>
-      </Container>
+            <button onClick={goBack} className="back" type="button">
+              <FiArrowLeft size={24} color="white" />
+            </button>
+          </CardContainer>
+        </Container>
+      </>
     );
   } else if (step == 1) {
     return (
-      <Container>
-        <CardContainer>
-          <h1>Informe o código enviado no e-mail</h1>
+      <>
+        <Head>
+          <title>&lt; Dashboard /&gt;</title>
+        </Head>
+        <Container>
+          <CardContainer>
+            <h1>Informe o código enviado no e-mail</h1>
 
-          <form onSubmit={handleSubmitSecondStep}>
-            <Input
-              value={code}
-              onChange={(element) => setCode(element.target.value)}
-              type="text"
-              placeholder="Informe o código"
-              className={showInputError ? 'error' : ''}
-            />
-            <span className={showInputError ? 'message-error' : ''}>Código inválido.</span>
+            <form onSubmit={handleSubmitSecondStep}>
+              <Input
+                value={code}
+                onChange={(element) => setCode(element.target.value)}
+                type="text"
+                placeholder="Informe o código"
+                className={showInputError ? 'error' : ''}
+              />
+              <span className={showInputError ? 'message-error' : ''}>Código inválido.</span>
 
-            <FormButton
-              type="submit"
-              disabled={!enableButton}
-              className={enableButton ? 'active' : ''}
-            >
-              Continuar
-            </FormButton>
-          </form>
+              <FormButton
+                type="submit"
+                disabled={!enableButton}
+                className={enableButton ? 'active' : ''}
+              >
+                Continuar
+              </FormButton>
+            </form>
 
-          <button onClick={goBack} className="back" type="button">
-            <FiArrowLeft size={24} color="white" />
-          </button>
-        </CardContainer>
-      </Container>
+            <button onClick={goBack} className="back" type="button">
+              <FiArrowLeft size={24} color="white" />
+            </button>
+          </CardContainer>
+        </Container>
+      </>
     );
   } else if (step == 2) {
     return (
-      <Container>
-        <CardContainer>
-          <h1>Informe o código enviado no e-mail</h1>
+      <>
+        <Head>
+          <title>&lt; Dashboard /&gt;</title>
+        </Head>
+        <Container>
+          <CardContainer>
+            <h1>Informe o código enviado no e-mail</h1>
 
-          <form onSubmit={handleSubmitThirdStep}>
-            <Input
-              value={password}
-              onChange={(element) => setPassword(element.target.value)}
-              type="password"
-              placeholder="Nova senha"
-              className={showInputError ? 'error' : ''}
-            />
+            <form onSubmit={handleSubmitThirdStep}>
+              <Input
+                value={password}
+                onChange={(element) => setPassword(element.target.value)}
+                type="password"
+                placeholder="Nova senha"
+                className={showInputError ? 'error' : ''}
+              />
 
-            <Input
-              value={confirm}
-              onChange={(element) => setConfirm(element.target.value)}
-              type="password"
-              placeholder="Digite novemante"
-              className={showInputError ? 'error' : ''}
-            />
-            <span className={showInputError ? 'message-error' : ''}>Senhas não são iguais.</span>
+              <Input
+                value={confirm}
+                onChange={(element) => setConfirm(element.target.value)}
+                type="password"
+                placeholder="Digite novemante"
+                className={showInputError ? 'error' : ''}
+              />
+              <span className={showInputError ? 'message-error' : ''}>Senhas não são iguais.</span>
 
-            <FormButton
-              type="submit"
-              disabled={!enableButton}
-              className={enableButton ? 'active' : ''}
-            >
-              Continuar
-            </FormButton>
-          </form>
+              <FormButton
+                type="submit"
+                disabled={!enableButton}
+                className={enableButton ? 'active' : ''}
+              >
+                Continuar
+              </FormButton>
+            </form>
 
-          <button onClick={goBack} className="back" type="button">
-            <FiArrowLeft size={24} color="white" />
-          </button>
-        </CardContainer>
-      </Container>
+            <button onClick={goBack} className="back" type="button">
+              <FiArrowLeft size={24} color="white" />
+            </button>
+          </CardContainer>
+        </Container>
+      </>
     );
   }
 }

@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import Link from 'next/link';
 
 import { Container } from '../../styles/pages/auth/dashboard';
@@ -62,6 +63,9 @@ export default function Dashboard({ user }: IDashboardProps) {
 
   return (
     <>
+      <Head>
+        <title>&lt; Dashboard /&gt;</title>
+      </Head>
       <Header currentPage="dashboard" />
       <Container>
         <Link href="/auth/projects">

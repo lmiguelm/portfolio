@@ -10,7 +10,7 @@ export const Container = styled(motion.div)`
   width: 5.5rem;
   border-radius: 1rem;
 
-  background: rgba(100, 100, 100, 0.4);
+  border: 4px solid rgba(100, 100, 100, 0.4);
 
   cursor: pointer;
 
@@ -23,31 +23,7 @@ export const Container = styled(motion.div)`
 
   &:hover {
     filter: brightness(0.9);
-  }
-
-  @media (max-width: 1200px) {
-    height: 4rem;
-    width: 4rem;
-
-    img {
-      height: 2.5rem;
-      width: 2.5rem;
-    }
-  }
-
-  @media (max-width: 900px) {
-    height: 5rem;
-    width: 5rem;
-  }
-
-  @media (max-width: 720px) {
-    height: 3rem;
-    width: 3rem;
-
-    img {
-      height: 2rem;
-      width: 2rem;
-    }
+    background-color: rgba(100, 100, 100, 0.4);
   }
 `;
 

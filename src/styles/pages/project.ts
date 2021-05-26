@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 export const Container = styled(motion.div)`
   background: #111;
@@ -27,8 +26,11 @@ export const Container = styled(motion.div)`
 
 export const Page = styled(motion.div)`
   background: #222;
+  width: 793px;
 
-  width: 100%;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const Content = styled(motion.section)`
@@ -74,6 +76,12 @@ export const Content = styled(motion.section)`
       h1 {
         font-size: 2rem;
       }
+    }
+
+    p {
+      line-height: 2rem;
+      text-align: justify;
+      text-indent: 1.5em;
     }
   }
 

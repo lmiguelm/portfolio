@@ -13,9 +13,10 @@ import { api } from '../../services/api';
 import { Container, Content, Page } from '../../styles/pages/project';
 import { useElementScroll } from 'framer-motion';
 import { useStylesContext } from '../../contexts/StylesContext';
-import { ScrollButton } from '../../styles/global';
-import { FiChevronUp } from 'react-icons/fi';
+import { ScrollButtonBack } from '../../styles/global';
+import { FiChevronLeft } from 'react-icons/fi';
 import { Header } from '../../components/ExternalHeader';
+import Router from 'next/router';
 
 type IProject = {
   id: string;
@@ -76,6 +77,10 @@ export default function Project({ project }: IProjectProps) {
     });
   }
 
+  function goBack() {
+    Router.back();
+  }
+
   return (
     <>
       <Head>
@@ -106,7 +111,7 @@ export default function Project({ project }: IProjectProps) {
                 <span>&gt;</span>
               </h1>
 
-              <span>{project.resume}</span>
+              <p>{project.resume}</p>
 
               <div className="link-container">
                 {project.url && project.url != 'null' && (
@@ -120,7 +125,7 @@ export default function Project({ project }: IProjectProps) {
               </div>
             </header>
 
-            <main id="project">
+            <main>
               {project.about && project.about != 'null' && (
                 <div className="about">
                   <h2>Sobre</h2>
@@ -137,7 +142,7 @@ export default function Project({ project }: IProjectProps) {
             </main>
 
             {project.video && project.video != 'null' && (
-              <footer>
+              <footer id="project">
                 <video controls>
                   <source type="video/webm" src={project.video} />
                   <strong>Seu navegador não possui suporte para videos. </strong>
@@ -150,11 +155,9 @@ export default function Project({ project }: IProjectProps) {
         </Page>
       </Container>
 
-      {active && (
-        <ScrollButton onClick={goToTop}>
-          <FiChevronUp size={40} />
-        </ScrollButton>
-      )}
+      <ScrollButtonBack onClick={active ? goToTop : goBack}>
+        <FiChevronLeft className={active ? 'rotate' : ''} color="#fff" size={40} />
+      </ScrollButtonBack>
     </>
   );
 }

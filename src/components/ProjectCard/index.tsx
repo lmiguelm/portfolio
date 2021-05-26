@@ -48,7 +48,7 @@ export const ProjectCard = ({ project }: IProjectsProps) => {
           </article>
 
           <Link href={`/projects/${project.id}`}>
-            <FiChevronRight size={30} />
+            <FiChevronRight color="#fff" size={30} />
           </Link>
         </div>
       </div>

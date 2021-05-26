@@ -126,6 +126,41 @@ export const ScrollButton = styled.div`
   }
 `;
 
+export const ScrollButtonBack = styled.div`
+  height: 3rem;
+  width: 3rem;
+  border-radius: 1rem;
+
+  background: #356eca;
+  z-index: 9999;
+
+  position: fixed;
+
+  bottom: 0;
+  right: 0;
+  margin: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    filter: brightness(0.7);
+  }
+
+  svg {
+    transition: transform 0.4s;
+
+    &.rotate {
+      transform: rotate(-90deg);
+    }
+  }
+`;
+
 export const Input = styled.input`
   height: 5rem;
   outline: none;
@@ -146,6 +181,43 @@ export const Input = styled.input`
 
   &:focus {
     border-bottom: 1px solid #356eca;
+    color: #356eca;
+
+    &::placeholder {
+      transform: scale(0.9);
+    }
+  }
+
+  &.error {
+    border-bottom: 1px solid red;
+    color: red;
+  }
+`;
+
+export const Textarea = styled.textarea`
+  height: 5rem;
+  outline: none;
+
+  padding: 1rem;
+
+  border: none;
+  border: 1px solid #000;
+  color: #333;
+
+  font-size: 1.25rem;
+
+  transition: 0.4s;
+
+  resize: none;
+  height: 10rem;
+  width: 100%;
+
+  &::placeholder {
+    transition: 0.4s;
+  }
+
+  &:focus {
+    border: 1px solid #356eca;
     color: #356eca;
 
     &::placeholder {
@@ -189,4 +261,20 @@ export const FormButton = styled.button`
     color: #fff;
     background-color: #356eca;
   }
+`;
+
+export const Blur = styled.div`
+  height: 100vh;
+  width: 100%;
+
+  overflow: hidden;
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  z-index: 99998;
+
+  background-color: rgba(0, 0, 0, 0.8);
 `;

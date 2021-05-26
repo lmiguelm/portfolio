@@ -166,14 +166,14 @@ export const CardContainer = styled(motion.section)`
 
   .card {
     flex: 2;
+    height: 100%;
+    width: 100%;
 
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 1rem;
-
-    @media (max-width: 720px) {
-      grid-template-columns: repeat(5, 1fr);
-    }
+    grid-template-columns: repeat(auto-fit, 5.5rem);
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
   }
 
   &:last-child {
@@ -196,52 +196,7 @@ export const CardContainer = styled(motion.section)`
       flex-direction: column-reverse;
     }
 
-    span {
-      max-width: 100%;
-    }
-  }
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-
-    .info {
-      margin-bottom: 3rem;
-      flex-direction: column;
-    }
-
-    &:last-child {
-      flex-direction: column-reverse;
-    }
-
-    span {
-      max-width: 100%;
-    }
-
-    h1 {
-      span {
-        font-size: 2rem;
-      }
-    }
-  }
-
-  @media (max-width: 720px) {
-    flex-direction: column;
-    padding: 2rem;
-
-    .info {
-      margin-bottom: 3rem;
-      flex-direction: column;
-      align-items: flex-start;
-
-      h1 {
-        max-width: 100%;
-      }
-    }
-
-    &:last-child {
-      flex-direction: column-reverse;
-    }
-
+    h1,
     span {
       max-width: 100%;
     }

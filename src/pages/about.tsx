@@ -107,7 +107,6 @@ export default function About({ tools, skills }: IAboutProps) {
   }, []);
 
   function goToTop() {
-    console.log('entro');
     containeRef.current.scroll({
       top: 0,
       left: 0,
@@ -116,7 +115,6 @@ export default function About({ tools, skills }: IAboutProps) {
   }
 
   function goToBottom() {
-    console.log('entro2 ');
     containeRef.current.scroll({
       top: window.innerHeight - 80,
       left: 0,

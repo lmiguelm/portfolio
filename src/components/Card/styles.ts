@@ -10,7 +10,7 @@ export const Container = styled(motion.div)`
   width: 5.5rem;
   border-radius: 1rem;
 
-  border: 4px solid rgba(100, 100, 100, 0.4);
+  background-color: rgba(100, 100, 100, 0.4);
 
   cursor: pointer;
 
@@ -23,7 +23,7 @@ export const Container = styled(motion.div)`
 
   &:hover {
     filter: brightness(0.9);
-    background-color: rgba(100, 100, 100, 0.4);
+    border: 2px solid #356eca;
   }
 `;
 

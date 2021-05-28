@@ -171,7 +171,7 @@ export const CardContainer = styled(motion.section)`
 
     display: grid;
     grid-template-columns: repeat(auto-fit, 5.5rem);
-    gap: 0.5rem;
+    gap: 1.5rem;
     justify-content: center;
     align-items: center;
   }

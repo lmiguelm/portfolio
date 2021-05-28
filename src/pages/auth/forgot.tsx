@@ -23,7 +23,11 @@ export default function Forgot() {
   const [showInputError, setShowInputError] = useState(false);
   const [step, setStep] = useState(0);
 
-  const { checkEmail, checkCode, resetPassword } = useAuth();
+  const { checkEmail, checkCode, resetPassword, handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('none');
+  }, []);
 
   useEffect(() => {
     if (isAValidEmail(email)) {

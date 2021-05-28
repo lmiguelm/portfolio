@@ -27,7 +27,12 @@ export function StylesProvider({ children }: StylesProviderProps) {
 
   return (
     <StylesContext.Provider
-      value={{ currentPage, handleCurrentPage, scrollProgress, handleScroll }}
+      value={{
+        currentPage,
+        handleCurrentPage,
+        scrollProgress,
+        handleScroll,
+      }}
     >
       {children}
     </StylesContext.Provider>

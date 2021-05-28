@@ -15,8 +15,9 @@ import { useElementScroll } from 'framer-motion';
 import { useStylesContext } from '../../contexts/StylesContext';
 import { ScrollButtonBack } from '../../styles/global';
 import { FiChevronLeft } from 'react-icons/fi';
-import { Header } from '../../components/ExternalHeader';
+
 import Router from 'next/router';
+import { useAuth } from '../../contexts/AuthContext';
 
 type IProject = {
   id: string;
@@ -47,6 +48,12 @@ export default function Project({ project }: IProjectProps) {
   const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const { scrollYProgress } = useElementScroll(containeRef);
   scrollYProgress.onChange(setScroll);
+
+  const { handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('public');
+  }, []);
 
   useEffect(() => {
     handleCurrentPage('projects');
@@ -86,8 +93,6 @@ export default function Project({ project }: IProjectProps) {
       <Head>
         <title>&lt; {project.title} /&gt;</title>
       </Head>
-
-      <Header />
 
       <Container ref={containeRef}>
         <Page>

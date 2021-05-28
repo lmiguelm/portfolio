@@ -18,10 +18,10 @@ import {
 import { Card } from '../components/Card';
 import { api } from '../services/api';
 import { Button, ScrollButton } from '../styles/global';
-import { FiChevronUp, FiChevronDown } from 'react-icons/fi';
+import { FiChevronDown } from 'react-icons/fi';
 
 import Typewriter from 'typewriter-effect/dist/core';
-import { Header } from '../components/ExternalHeader';
+import { useAuth } from '../contexts/AuthContext';
 
 type ISkill = {
   id: string;
@@ -53,6 +53,12 @@ export default function About({ tools, skills }: IAboutProps) {
   const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const { scrollYProgress } = useElementScroll(containeRef);
   scrollYProgress.onChange(setScroll);
+
+  const { handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('public');
+  }, []);
 
   useEffect(() => {
     handleCurrentPage('about');
@@ -124,7 +130,6 @@ export default function About({ tools, skills }: IAboutProps) {
 
   return (
     <>
-      <Header />
       <Container ref={containeRef}>
         <Head>
           <title>&lt; Sobre /&gt;</title>

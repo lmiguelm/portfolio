@@ -1,13 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
 
 import { api } from '../../services/api';
 
-import { Header } from '../../components/AuthHeader';
-
 import { Container, Card } from '../../styles/pages/auth/projects';
+import { useAuth } from '../../contexts/AuthContext';
 
 type IProject = {
   id: string;
@@ -24,6 +23,12 @@ type IProjectsProps = {
 
 export default function Tools({ initialProjects }: IProjectsProps) {
   const [projects, setTools] = useState(initialProjects);
+
+  const { handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('private');
+  }, []);
 
   async function handleRemoveProject(id: string) {
     try {
@@ -44,7 +49,6 @@ export default function Tools({ initialProjects }: IProjectsProps) {
       <Head>
         <title>&lt; Dashboard /&gt;</title>
       </Head>
-      <Header currentPage="projects" showRegisterButton />
       <Container>
         {projects.map((project) => (
           <Card key={project.id}>

@@ -4,13 +4,12 @@ import Link from 'next/link';
 
 import { Container } from '../../styles/pages/auth/dashboard';
 
-import { Header } from '../../components/AuthHeader/index';
-
 import { FiGithub, FiTool, FiAward } from 'react-icons/fi';
 import { useEffect } from 'react';
 
 import Typewriter from 'typewriter-effect/dist/core';
 import { api } from '../../services/api';
+import { useAuth } from '../../contexts/AuthContext';
 
 type IUser = {
   id: string;
@@ -23,6 +22,12 @@ type IDashboardProps = {
 };
 
 export default function Dashboard({ user }: IDashboardProps) {
+  const { handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('private');
+  }, []);
+
   useEffect(() => {
     const projects = document.getElementById('projects');
     const tools = document.getElementById('tools');
@@ -66,7 +71,6 @@ export default function Dashboard({ user }: IDashboardProps) {
       <Head>
         <title>&lt; Dashboard /&gt;</title>
       </Head>
-      <Header currentPage="dashboard" />
       <Container>
         <Link href="/auth/projects">
           <div>

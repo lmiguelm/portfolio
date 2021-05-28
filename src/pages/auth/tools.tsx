@@ -1,13 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
 
 import { api } from '../../services/api';
 
-import { Header } from '../../components/AuthHeader';
-
 import { Container, Card } from '../../styles/pages/auth/tools';
+import { useAuth } from '../../contexts/AuthContext';
 
 type ITool = {
   id: string;
@@ -23,6 +22,12 @@ type IToolProps = {
 
 export default function Tools({ initialTools }: IToolProps) {
   const [tools, setTools] = useState(initialTools);
+
+  const { handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('private');
+  }, []);
 
   async function hanleRemoveTool(id: string) {
     try {
@@ -43,7 +48,6 @@ export default function Tools({ initialTools }: IToolProps) {
       <Head>
         <title>&lt; Dashboard /&gt;</title>
       </Head>
-      <Header currentPage="tools" showRegisterButton />
       <Container>
         {tools.map((tool) => (
           <Card key={tool.id}>

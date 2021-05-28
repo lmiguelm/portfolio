@@ -25,6 +25,8 @@ type AuthContextData = {
   checkEmail(email: string): Promise<void>;
   checkCode(email: string, code: number): Promise<IUser>;
   resetPassword(id: string, password: string, code: number, email: string): Promise<void>;
+  header: 'private' | 'public' | 'none';
+  handleSetHeader: (value: 'private' | 'public' | 'none') => void;
 };
 
 const AuthContext = createContext({} as AuthContextData);
@@ -33,6 +35,7 @@ export function AuthProvider({ children }: AuthProps) {
   const [isLogged, setIsLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState<IUser>({} as IUser);
   const [token, setToken] = useState('');
+  const [header, setHeader] = useState<'private' | 'public' | 'none'>('public');
 
   useEffect(() => {
     let user = Cookie.get('current_user');
@@ -46,6 +49,10 @@ export function AuthProvider({ children }: AuthProps) {
       setIsLogged(true);
     }
   }, []);
+
+  function handleSetHeader(value: 'private' | 'public' | 'none') {
+    setHeader(value);
+  }
 
   async function login(email: string, password: string): Promise<void> {
     return new Promise(async (resolve, reject) => {
@@ -134,7 +141,18 @@ export function AuthProvider({ children }: AuthProps) {
 
   return (
     <AuthContext.Provider
-      value={{ isLogged, login, logout, checkEmail, checkCode, resetPassword, currentUser, token }}
+      value={{
+        isLogged,
+        login,
+        logout,
+        checkEmail,
+        checkCode,
+        resetPassword,
+        currentUser,
+        token,
+        header,
+        handleSetHeader,
+      }}
     >
       {children}
     </AuthContext.Provider>

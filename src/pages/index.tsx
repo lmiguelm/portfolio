@@ -19,8 +19,6 @@ import linkedin from 'react-useanimations/lib/linkedin';
 import { Button } from '../styles/global';
 import { useStylesContext } from '../contexts/StylesContext';
 
-import { Header } from '../components/ExternalHeader';
-
 import Typewriter from 'typewriter-effect/dist/core';
 
 import {
@@ -32,6 +30,7 @@ import {
 } from '../styles/pages/home';
 import { useFetch } from '../lib/fecther';
 import { motion } from 'framer-motion';
+import { useAuth } from '../contexts/AuthContext';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -59,6 +58,12 @@ export default function Home() {
   const { handleCurrentPage, handleScroll } = useStylesContext();
 
   const currentDate = format(new Date(), 'EEEEEE, d MMMM', { locale: ptBR });
+
+  const { handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('public');
+  }, []);
 
   useEffect(() => {
     handleCurrentPage('home');
@@ -98,7 +103,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
       <Container initial="hidden" animate="visible">
         <Head>
           <title>&lt; Home /&gt;</title>

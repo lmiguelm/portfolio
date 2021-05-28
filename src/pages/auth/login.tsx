@@ -19,7 +19,11 @@ export default function Login() {
   const [enableButton, setEnableButton] = useState(false);
   const [showInputError, setShowInputError] = useState(false);
 
-  const { login } = useAuth();
+  const { login, handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('none');
+  }, []);
 
   useEffect(() => {
     if (isAValidEmail(email) && password.length >= 5) {

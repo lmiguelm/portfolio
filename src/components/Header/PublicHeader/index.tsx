@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import { useState } from 'react';
-import { useStylesContext } from '../../contexts/StylesContext';
+import { useStylesContext } from '../../../contexts/StylesContext';
 
 import { Container, Link } from './styles';
 
@@ -23,7 +23,7 @@ const item = {
   },
 };
 
-export const Header = () => {
+export const PublicHeader = () => {
   const { currentPage: active, handleCurrentPage, scrollProgress } = useStylesContext();
   const [lastActive, setLastActive] = useState('');
 

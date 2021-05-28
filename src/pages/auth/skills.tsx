@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
 
 import { api } from '../../services/api';
 
-import { Header } from '../../components/AuthHeader';
+import { Modal } from '../../components/Modal';
 
 import { Container, Card } from '../../styles/pages/auth/skills';
+import { Input, Textarea } from '../../styles/global';
+import { useAuth } from '../../contexts/AuthContext';
 
 type ISkill = {
   id: string;
@@ -23,6 +25,12 @@ type ISkillProps = {
 
 export default function Tools({ initialSkills }: ISkillProps) {
   const [skills, setTools] = useState(initialSkills);
+
+  const { handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('private');
+  }, []);
 
   async function handleRemoveSkill(id: string) {
     try {
@@ -43,7 +51,6 @@ export default function Tools({ initialSkills }: ISkillProps) {
       <Head>
         <title>&lt; Dashboard /&gt;</title>
       </Head>
-      <Header currentPage="skills" showRegisterButton />
       <Container>
         {skills.map((skill) => (
           <Card key={skill.id}>
@@ -55,7 +62,7 @@ export default function Tools({ initialSkills }: ISkillProps) {
             </div>
 
             <footer>
-              <Link href={`/auth/skills/edit?id=${skill.id}`}>
+              <Link href={`/auth/edit/skills?id=${skill.id}`}>
                 <button type="button">Editar</button>
               </Link>
               <button onClick={() => handleRemoveSkill(skill.id)} type="button">
@@ -65,6 +72,12 @@ export default function Tools({ initialSkills }: ISkillProps) {
           </Card>
         ))}
       </Container>
+
+      <Modal handleSubmit={() => {}}>
+        <Input type="text" placeholder="Nome" />
+        <Input type="text" placeholder="Url" />
+        <Textarea placeholder="Descrição" />
+      </Modal>
     </>
   );
 }

@@ -10,8 +10,6 @@ import facebook from 'react-useanimations/lib/facebook';
 import instagram from 'react-useanimations/lib/instagram';
 import linkedin from 'react-useanimations/lib/linkedin';
 
-import { Header } from '../components/ExternalHeader';
-
 import {
   Container,
   Section,
@@ -22,6 +20,7 @@ import {
 
 import Lottie from 'react-lottie';
 import animation from '../../public/lottie/37147-contact-us.json';
+import { useAuth } from '../contexts/AuthContext';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -46,6 +45,12 @@ const item = {
 export default function Contact() {
   const { handleCurrentPage, handleScroll } = useStylesContext();
 
+  const { handleSetHeader } = useAuth();
+
+  useEffect(() => {
+    handleSetHeader('public');
+  }, []);
+
   useEffect(() => {
     handleCurrentPage('contact');
     handleScroll(0);
@@ -57,7 +62,6 @@ export default function Contact() {
 
   return (
     <>
-      <Header />
       <Container>
         <Head>
           <title>&lt; Contato /&gt;</title>

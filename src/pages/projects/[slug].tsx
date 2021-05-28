@@ -96,17 +96,27 @@ export default function Project({ project }: IProjectProps) {
 
       <Container ref={containeRef}>
         <Page>
-          <Slide>
-            {project.images.map((image) => (
-              <Image
-                src={image.url}
-                alt={`${project.title} - ${image.id}`}
-                key={image.id}
-                width={1920}
-                height={1080}
-              />
-            ))}
-          </Slide>
+          {project.images.length == 1 ? (
+            <Image
+              src={project.images[0].url}
+              alt={`${project.title} - ${project.images[0].id}`}
+              key={project.images[0].id}
+              width={1920}
+              height={1080}
+            />
+          ) : (
+            <Slide>
+              {project.images.map((image) => (
+                <Image
+                  src={image.url}
+                  alt={`${project.title} - ${image.id}`}
+                  key={image.id}
+                  width={1920}
+                  height={1080}
+                />
+              ))}
+            </Slide>
+          )}
 
           <Content>
             <header>

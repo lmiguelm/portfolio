@@ -26,6 +26,7 @@ export const Container = styled(motion.div)`
   }
 
   div {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,9 +80,10 @@ export const Container = styled(motion.div)`
     }
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     &:first-child {
       margin-top: -6rem;
@@ -89,9 +91,8 @@ export const Container = styled(motion.div)`
 
     img {
       align-self: center;
-      height: 8rem;
-      width: 15rem;
-      border-radius: 1rem;
+      height: 15rem;
+      width: 30rem;
     }
 
     div {
@@ -113,6 +114,14 @@ export const Container = styled(motion.div)`
           }
         }
       }
+    }
+  }
+
+  @media (max-width: 720px) {
+    img {
+      align-self: center;
+      height: 8rem;
+      width: 15rem;
     }
   }
 `;

@@ -101,7 +101,7 @@ export default function Projects({ projects }: IProjectsProps) {
 
         <SecondSection className={active ? 'active' : ''} id="project-section">
           {projects.map((project) => (
-            <ProjectCard project={project} />
+            <ProjectCard project={project} key={project.id} />
           ))}
         </SecondSection>
       </Container>

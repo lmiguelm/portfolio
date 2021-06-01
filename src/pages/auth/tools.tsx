@@ -38,7 +38,6 @@ export default function Tools({ initialTools }: IToolProps) {
         setTools(newTools);
       }
     } catch (error) {
-      console.log('erro', error);
       alert('Erro interno do servidor!');
     }
   }

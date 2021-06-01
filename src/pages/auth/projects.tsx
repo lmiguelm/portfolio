@@ -39,7 +39,6 @@ export default function Tools({ initialProjects }: IProjectsProps) {
         setTools(newProjetcs);
       }
     } catch (error) {
-      console.log('erro', error);
       alert('Erro interno do servidor!');
     }
   }

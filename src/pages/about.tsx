@@ -58,9 +58,6 @@ export default function About({ tools, skills }: IAboutProps) {
 
   useEffect(() => {
     handleSetHeader('public');
-  }, []);
-
-  useEffect(() => {
     handleCurrentPage('about');
 
     containeRef.current.addEventListener('scroll', () => {

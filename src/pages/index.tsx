@@ -63,9 +63,6 @@ export default function Home() {
 
   useEffect(() => {
     handleSetHeader('public');
-  }, []);
-
-  useEffect(() => {
     handleCurrentPage('home');
     handleScroll(0);
 

@@ -52,11 +52,8 @@ export default function Project({ project }: IProjectProps) {
   const { handleSetHeader } = useAuth();
 
   useEffect(() => {
-    handleSetHeader('public');
-  }, []);
-
-  useEffect(() => {
     handleCurrentPage('projects');
+    handleSetHeader('public');
 
     containeRef.current.addEventListener('scroll', () => {
       const section = document.getElementById('project');
@@ -106,7 +103,7 @@ export default function Project({ project }: IProjectProps) {
             />
           ) : (
             <Slide>
-              {project.images.map((image) => (
+              {project.images.sort().map((image) => (
                 <Image
                   src={image.url}
                   alt={`${project.title} - ${image.id}`}
@@ -156,14 +153,14 @@ export default function Project({ project }: IProjectProps) {
               )}
             </main>
 
-            {project.video && project.video != 'null' && (
-              <footer id="project">
+            <footer id="project">
+              {project.video && project.video != 'null' && (
                 <video controls>
                   <source type="video/webm" src={project.video} />
                   <strong>Seu navegador não possui suporte para videos. </strong>
                 </video>
-              </footer>
-            )}
+              )}
+            </footer>
           </Content>
           <br />
           <br />

@@ -41,7 +41,6 @@ export default function Tools({ initialSkills }: ISkillProps) {
         setTools(newSkill);
       }
     } catch (error) {
-      console.log('erro', error);
       alert('Erro interno do servidor!');
     }
   }

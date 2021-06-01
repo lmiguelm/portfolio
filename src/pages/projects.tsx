@@ -41,9 +41,6 @@ export default function Projects({ projects }: IProjectsProps) {
 
   useEffect(() => {
     handleSetHeader('public');
-  }, []);
-
-  useEffect(() => {
     handleCurrentPage('projects');
 
     containeRef.current.addEventListener('scroll', () => {
@@ -73,7 +70,6 @@ export default function Projects({ projects }: IProjectsProps) {
   }
 
   function goToBottom() {
-    console.log('entro2 ');
     containeRef.current.scroll({
       top: window.innerHeight - 80,
       left: 0,

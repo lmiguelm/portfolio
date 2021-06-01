@@ -67,7 +67,11 @@ export const Container = styled(motion.div)`
         }
       }
 
-      svg {
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         cursor: pointer;
         transition: 0.2s;
         border-radius: 0.5rem;
@@ -97,21 +101,26 @@ export const Container = styled(motion.div)`
 
     div {
       padding: 0;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
 
       h1 {
         text-align: center;
       }
 
-      article {
-        svg {
-          cursor: pointer;
-          transition: 0.2s;
-          border-radius: 0.5rem;
-          background: #356eca;
+      .icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-          &:hover {
-            filter: brightness(0.8);
-          }
+        cursor: pointer;
+        transition: 0.2s;
+        border-radius: 0.5rem;
+        background: #356eca;
+
+        &:hover {
+          filter: brightness(0.8);
         }
       }
     }

@@ -5,7 +5,7 @@ module.exports = withPWA({
     dest: 'public',
     register: true,
     sw: '/sw.js',
-    disable: true,
+    disable: process.env.NODE_ENV == 'development',
   },
   images: {
     domains: [

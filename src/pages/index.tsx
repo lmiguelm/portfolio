@@ -157,10 +157,6 @@ export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps
               <UseAnimations animation={linkedin} size={40} strokeColor={colors.textPrimary} />
             </Icon>
           </IconsContainer>
-
-          <Link href="/about">
-            <Button type="button">Saiba mais</Button>
-          </Link>
         </InfoContainer>
 
         <AnimationContainer>
@@ -169,6 +165,9 @@ export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps
               animationData: animation,
               autoplay: true,
               loop: true,
+            }}
+            style={{
+              userSelect: 'none',
             }}
           />
         </AnimationContainer>
@@ -192,7 +191,15 @@ export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps
 
         {loadedTheme && (
           <div
-            style={{ cursor: 'pointer', position: 'absolute', bottom: 0, margin: '2rem' }}
+            style={{
+              cursor: 'pointer',
+              position: 'absolute',
+              bottom: 0,
+              margin: '1rem',
+              width: '5rem',
+              height: '5rem',
+              userSelect: 'none',
+            }}
             onClick={handleToggleTheme}
           >
             <Lottie
@@ -203,6 +210,10 @@ export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps
               }}
               speed={1}
               direction={direction}
+              style={{
+                pointerEvents: 'none',
+                userSelect: 'none',
+              }}
             />
           </div>
         )}

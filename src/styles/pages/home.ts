@@ -66,21 +66,16 @@ export const InfoContainer = styled(motion.div)`
     span {
       color: ${(props) => props.theme.colors.colorSecondary};
     }
+
+    @media (max-width: 900px) {
+      font-size: 2rem;
+    }
   }
   h2 {
     font-weight: 400;
-    font-size: 2rem;
-  }
-
-  button {
-    margin-left: 20%;
-    margin-top: 3rem;
 
     @media (max-width: 900px) {
-      button {
-        align-self: center;
-        margin-top: 3rem;
-      }
+      font-size: 1.25rem;
     }
   }
 `;

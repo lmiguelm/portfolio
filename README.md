@@ -1,6 +1,6 @@
 # 🏅 Portfólio
 
-![podcastr](.github/thumb.webm)
+![podcastr](.github/thumb.gif)
 
 <br>
 

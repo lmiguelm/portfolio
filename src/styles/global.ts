@@ -59,8 +59,7 @@ export const Button = styled.button`
 
   border: 3px solid ${(props) => props.theme.colors.colorPrimary};
   border-radius: 0.5rem;
-  background: ${(props) =>
-    props.theme.title === 'dark' ? 'trasnparent' : props.theme.colors.backgroundPrimary};
+  background: ${(props) => props.theme.colors.backgroundPrimary};
 
   color: ${(props) => props.theme.colors.textSecondary};
 

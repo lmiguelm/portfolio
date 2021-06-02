@@ -5,8 +5,8 @@ export const Container = styled(motion.ul)`
   height: 5rem;
   width: 100%;
 
-  background: #000;
-  color: #ddd;
+  background: ${(props) => props.theme.colors.backgroundPrimary};
+  color: ${(props) => props.theme.colors.textPrimary};
 
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@ export const Container = styled(motion.ul)`
   user-select: none; /* Possível implementação no futuro */
 
   &.scrolling {
-    background: #222;
+    background: ${(props) => props.theme.colors.backgroundSecondary};
   }
 `;
 
@@ -42,9 +42,9 @@ export const Link = styled(motion.li)`
 
   &:hover,
   &.active {
-    color: #fff;
+    color: ${(props) => props.theme.colors.textSecondary};
     font-size: 1.5rem;
-    border-bottom: 2px solid #356eca;
+    border-bottom: 2px solid ${(props) => props.theme.colors.colorPrimary};
     padding: 0.5rem;
 
     @media (max-width: 720px) {

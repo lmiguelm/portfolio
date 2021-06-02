@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const Container = styled(motion.div)`
-  background: #000;
+  background: ${(props) => props.theme.colors.backgroundPrimary};
   height: calc(100vh - 5rem);
   overflow-y: scroll;
 `;
@@ -14,7 +14,7 @@ export const FirstSection = styled.section`
 
   min-height: calc(100vh - 5rem);
 
-  background: #000;
+  background: ${(props) => props.theme.colors.backgroundPrimary};
   background-image: url('./wallpapers/wallpaper-about.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -66,10 +66,10 @@ export const InfoContainer = styled.div`
     max-width: 100%;
     line-height: 4rem;
     margin-bottom: 1.5rem;
-    color: #fff;
+    color: ${(props) => (props.theme.title === 'dark' ? props.theme.colors.textSecondary : '#fff')};
 
     span {
-      color: #9290c9;
+      color: ${(props) => props.theme.colors.colorSecondary};
     }
   }
 
@@ -78,6 +78,7 @@ export const InfoContainer = styled.div`
     line-height: 2rem;
     text-align: justify;
     text-indent: 1.5em;
+    color: ${(props) => (props.theme.title === 'dark' ? props.theme.colors.textSecondary : '#ddd')};
   }
 
   a {
@@ -105,9 +106,11 @@ export const InfoContainer = styled.div`
   @media (max-width: 720px) {
     h1 {
       max-width: 100%;
+      color: ${(props) => props.theme.colors.textPrimary};
     }
     p {
       max-width: 100%;
+      color: ${(props) => props.theme.colors.textSecondary};
     }
     button {
       margin-top: 2rem;
@@ -118,8 +121,8 @@ export const InfoContainer = styled.div`
 `;
 
 export const CardContainer = styled(motion.section)`
-  border: 1px solid #356eca;
-  background: #111;
+  border: 1px solid ${(props) => props.theme.colors.colorPrimary};
+  background: ${(props) => props.theme.colors.backgroundPrimary};
   border-radius: 0.5rem;
 
   margin: 1rem 2rem;
@@ -144,7 +147,7 @@ export const CardContainer = styled(motion.section)`
       text-align: center;
 
       &:last-child {
-        color: #9290c9;
+        color: ${(props) => props.theme.colors.colorSecondary};
       }
     }
   }

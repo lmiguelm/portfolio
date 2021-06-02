@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const Container = styled(motion.div)`
-  background: #111;
+  background: ${(props) => props.theme.colors.backgroundPrimary};
   height: calc(100vh - 5rem);
   overflow-y: scroll;
 `;
@@ -10,7 +10,7 @@ export const Container = styled(motion.div)`
 export const FirstSection = styled(motion.section)`
   height: 100%;
 
-  background: #000;
+  background: ${(props) => props.theme.colors.backgroundPrimary};
   background-image: url('./wallpapers/wallpaper-projects.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -27,17 +27,18 @@ export const FirstSection = styled(motion.section)`
   h1 {
     line-height: 3.5rem;
     font-size: 3.5rem;
-    color: #fff;
+    color: ${(props) => (props.theme.title === 'dark' ? props.theme.colors.textPrimary : '#fff')};
     margin-bottom: 1rem;
 
     span {
-      color: #9290c9;
+      color: ${(props) => props.theme.colors.colorSecondary};
     }
   }
   p {
     max-width: 50%;
     text-align: justify;
     text-indent: 1.5em;
+    color: ${(props) => (props.theme.title === 'dark' ? props.theme.colors.textPrimary : '#ddd')};
   }
 
   @media (max-width: 720px) {
@@ -51,7 +52,7 @@ export const FirstSection = styled(motion.section)`
 `;
 
 export const SecondSection = styled(motion.section)`
-  background: #000;
+  background: ${(props) => props.theme.colors.backgroundPrimary};
 
   opacity: 0;
   padding: 2rem;

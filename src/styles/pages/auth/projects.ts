@@ -4,7 +4,7 @@ export const Container = styled.div`
   height: calc(100vh - 5rem);
   overflow-y: scroll;
 
-  background-color: #000;
+  background-color: ${(props) => props.theme.colors.backgroundPrimary};
 
   display: grid;
   gap: 1rem;
@@ -40,7 +40,7 @@ export const Card = styled.div`
   gap: 4rem;
   padding: 2rem;
 
-  background-color: #222;
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
   border-radius: 1rem;
 
   user-select: none;
@@ -48,7 +48,7 @@ export const Card = styled.div`
   transition: 0.2s;
 
   &:hover {
-    border: 1px solid #356eca;
+    border: 1px solid ${(props) => props.theme.colors.colorPrimary};
     transform: scale(1.1);
   }
 

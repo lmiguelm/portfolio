@@ -15,7 +15,7 @@ export const CardContainer = styled.div`
   height: 90vh;
   width: 35vw;
 
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.textSecondary};
   border-radius: 0.5rem;
 
   display: flex;
@@ -30,7 +30,7 @@ export const CardContainer = styled.div`
   }
 
   h1 {
-    color: #222;
+    color: ${(props) => props.theme.colors.backgroundSecondary};
     align-self: center;
     user-select: none;
   }
@@ -42,7 +42,7 @@ export const CardContainer = styled.div`
 
     label {
       margin-top: 1rem;
-      color: #000;
+      color: ${(props) => props.theme.colors.backgroundPrimary};
       cursor: pointer;
 
       user-select: none;
@@ -84,7 +84,7 @@ export const CardContainer = styled.div`
       border: none;
       border-radius: 1rem;
 
-      background: #356eca;
+      background: ${(props) => props.theme.colors.colorPrimary};
 
       display: flex;
       align-items: center;
@@ -106,7 +106,7 @@ export const CardContainer = styled.div`
       font-size: 1rem;
       font-weight: bold;
 
-      color: #356eca;
+      color: ${(props) => props.theme.colors.colorPrimary};
 
       user-select: none;
     }

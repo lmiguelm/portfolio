@@ -4,8 +4,8 @@ export const Container = styled.ul`
   height: 5rem;
   width: 100%;
 
-  background: #222;
-  color: #ddd;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  color: ${(props) => props.theme.colors.textPrimary};
 
   display: flex;
   align-items: center;
@@ -40,10 +40,10 @@ export const Container = styled.ul`
 
       &#add {
         width: 15rem;
-        background: #356eca;
+        background: ${(props) => props.theme.colors.colorPrimary};
         font-weight: bold;
         text-transform: uppercase;
-        color: #fff;
+        color: ${(props) => props.theme.colors.textSecondary};
       }
     }
   }

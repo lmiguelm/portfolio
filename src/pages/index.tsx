@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import UseAnimations from 'react-useanimations';
 
 import Lottie from 'react-lottie';
 import animation from '../../public/lottie/59446-black-guy-animation.json';
+import toggleTheme from '../../public/lottie/toggleTheme.json';
 
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -31,6 +32,8 @@ import {
 import { useFetch } from '../lib/fecther';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
+import { loadTheme } from '../utils/theme';
+import { useTheme } from 'styled-components';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -52,14 +55,29 @@ const item = {
   },
 };
 
-export default function Home() {
+type IHomeProps = {
+  toggleThemeApplication: () => void;
+  isDarkTheme: boolean;
+};
+
+export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps) {
   const { data } = useFetch('/api/views-preview', false);
+  const { colors } = useTheme();
 
   const { handleCurrentPage, handleScroll } = useStylesContext();
 
   const currentDate = format(new Date(), 'EEEEEE, d MMMM', { locale: ptBR });
 
   const { handleSetHeader } = useAuth();
+
+  const [direction, setDirection] = useState<number>(1);
+  const [loadedTheme, setLoadedTheme] = useState(false);
+
+  useEffect(() => {
+    const theme = loadTheme();
+    setDirection(theme === 'dark' ? 1 : -1);
+    setLoadedTheme(true);
+  }, []);
 
   useEffect(() => {
     handleSetHeader('public');
@@ -98,6 +116,11 @@ export default function Home() {
     window.open(link);
   }
 
+  function handleToggleTheme() {
+    setDirection(direction > 0 ? -1 : 1);
+    toggleThemeApplication();
+  }
+
   return (
     <>
       <Container initial="hidden" animate="visible">
@@ -119,19 +142,19 @@ export default function Home() {
               variants={item}
               onClick={() => openLink('https://www.facebook.com/luismiguel.marcelo.1/')}
             >
-              <UseAnimations animation={facebook} size={40} strokeColor="#fff" />
+              <UseAnimations animation={facebook} size={40} strokeColor={colors.textPrimary} />
             </Icon>
 
             <Icon variants={item} onClick={() => openLink('https://www.github.com/lmiguelm')}>
-              <UseAnimations animation={github} size={40} strokeColor="#fff" />
+              <UseAnimations animation={github} size={40} strokeColor={colors.textPrimary} />
             </Icon>
 
             <Icon variants={item} onClick={() => openLink('https://www.instagram.com/lmiguel10/')}>
-              <UseAnimations animation={instagram} size={40} strokeColor="#fff" />
+              <UseAnimations animation={instagram} size={40} strokeColor={colors.textPrimary} />
             </Icon>
 
             <Icon variants={item} onClick={() => openLink('https://www.linkedin.com/in/lmiguelm/')}>
-              <UseAnimations animation={linkedin} size={40} strokeColor="#fff" />
+              <UseAnimations animation={linkedin} size={40} strokeColor={colors.textPrimary} />
             </Icon>
           </IconsContainer>
 
@@ -165,6 +188,23 @@ export default function Home() {
           >
             {currentDate} - <strong>{Number(data).toLocaleString('pt-br')}</strong> visitas
           </motion.span>
+        )}
+
+        {loadedTheme && (
+          <div
+            style={{ cursor: 'pointer', position: 'absolute', bottom: 0, margin: '2rem' }}
+            onClick={handleToggleTheme}
+          >
+            <Lottie
+              options={{
+                animationData: toggleTheme,
+                autoplay: false,
+                loop: false,
+              }}
+              speed={1}
+              direction={direction}
+            />
+          </div>
         )}
       </Container>
     </>

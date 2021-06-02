@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
   height: 5rem;
-  background-color: #222;
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
 
   display: flex;
   justify-content: center;
@@ -13,7 +13,7 @@ export const Container = styled.div`
   min-height: calc(100vh - 5rem);
   overflow: hidden;
 
-  background-color: #000;
+  background-color: ${(props) => props.theme.colors.backgroundPrimary};
 
   display: flex;
   justify-content: center;
@@ -30,7 +30,7 @@ export const Container = styled.div`
     height: 25rem;
     width: 25rem;
 
-    background-color: #222;
+    background-color: ${(props) => props.theme.colors.backgroundSecondary};
     border-radius: 1rem;
 
     display: flex;
@@ -51,12 +51,12 @@ export const Container = styled.div`
 
     &:hover {
       transform: scale(1.1);
-      border: 1px solid #356eca;
+      border: 1px solid ${(props) => props.theme.colors.colorPrimary};
     }
 
     h1 {
       span:last-child {
-        color: #356eca;
+        color: ${(props) => props.theme.colors.colorPrimary};
       }
     }
   }

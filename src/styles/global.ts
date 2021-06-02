@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   span, p, h2, h3, h4, h1 , a, strong {
-    color: #ddd;
+    color: ${(props) => props.theme.colors.textPrimary};
   }
 
   h1 {
@@ -37,15 +37,15 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar-track {
-    background: #333;
+    background: ${(props) => props.theme.colors.backgroundSecondary};
   }
 
   ::-webkit-scrollbar {
     width: 6px;
-    background: #333;
+    background: ${(props) => props.theme.colors.backgroundSecondary};
   }
   ::-webkit-scrollbar-thumb {
-    background: #356eca;
+    background: ${(props) => props.theme.colors.colorPrimary};;
   }
     
 `;
@@ -57,11 +57,12 @@ export const Button = styled.button`
   border: none;
   outline: none;
 
-  border: 3px solid #356eca;
+  border: 3px solid ${(props) => props.theme.colors.colorPrimary};
   border-radius: 0.5rem;
-  background: transparent;
+  background: ${(props) =>
+    props.theme.title === 'dark' ? 'trasnparent' : props.theme.colors.backgroundPrimary};
 
-  color: #fff;
+  color: ${(props) => props.theme.colors.textSecondary};
 
   font-size: 1.5rem;
 
@@ -78,15 +79,16 @@ export const Button = styled.button`
 
   @keyframes border {
     0% {
-      border: 1px solid #356eca;
+      border: 1px solid ${(props) => props.theme.colors.colorPrimary};
     }
     100% {
-      border: 1px solid #245eca;
+      border: 1px solid ${(props) => props.theme.colors.colorPrimary};
     }
   }
 
   &:hover {
-    background: #356eca;
+    background: ${(props) => props.theme.colors.colorPrimary};
+    color: ${(props) => (props.theme.title === 'dark' ? props.theme.colors.textSecondary : '#fff')};
     filter: brightness(0.9);
   }
 `;
@@ -96,7 +98,7 @@ export const ScrollButton = styled.div`
   width: 3rem;
   border-radius: 1rem;
 
-  background: #356eca;
+  background: ${(props) => props.theme.colors.colorPrimary};
   z-index: 9999;
 
   position: fixed;
@@ -131,7 +133,7 @@ export const ScrollButtonBack = styled.div`
   width: 3rem;
   border-radius: 1rem;
 
-  background: #356eca;
+  background: ${(props) => props.theme.colors.colorPrimary};
   z-index: 9999;
 
   position: fixed;
@@ -169,7 +171,7 @@ export const Input = styled.input`
 
   border: none;
   border-bottom: 1px solid #000;
-  color: #333;
+  color: ${(props) => props.theme.colors.backgroundSecondary};
 
   font-size: 1.25rem;
 
@@ -180,8 +182,8 @@ export const Input = styled.input`
   }
 
   &:focus {
-    border-bottom: 1px solid #356eca;
-    color: #356eca;
+    border-bottom: 1px solid ${(props) => props.theme.colors.colorPrimary};
+    color: ${(props) => props.theme.colors.colorPrimary};
 
     &::placeholder {
       transform: scale(0.9);
@@ -202,7 +204,7 @@ export const Textarea = styled.textarea`
 
   border: none;
   border: 1px solid #000;
-  color: #333;
+  color: ${(props) => props.theme.colors.backgroundSecondary};
 
   font-size: 1.25rem;
 
@@ -217,8 +219,8 @@ export const Textarea = styled.textarea`
   }
 
   &:focus {
-    border: 1px solid #356eca;
-    color: #356eca;
+    border: 1px solid ${(props) => props.theme.colors.colorPrimary};
+    color: ${(props) => props.theme.colors.colorPrimary};
 
     &::placeholder {
       transform: scale(0.9);
@@ -237,11 +239,11 @@ export const FormButton = styled.button`
   height: 5rem;
   outline: none;
 
-  border: 1px solid #ddd;
+  border: 1px solid ${(props) => props.theme.colors.textPrimary};
   border-radius: 1rem;
 
   color: #000;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.textSecondary};
 
   font-size: 1.25rem;
   text-transform: uppercase;
@@ -252,14 +254,14 @@ export const FormButton = styled.button`
   transition: 0.2s;
 
   &.active {
-    border: 1px solid #356eca;
-    color: #356eca;
+    border: 1px solid ${(props) => props.theme.colors.colorPrimary};
+    color: ${(props) => props.theme.colors.colorPrimary};
     cursor: pointer;
   }
 
   &.active:hover {
-    color: #fff;
-    background-color: #356eca;
+    color: ${(props) => props.theme.colors.textSecondary};
+    background-color: ${(props) => props.theme.colors.colorPrimary};
   }
 `;
 
@@ -276,5 +278,5 @@ export const Blur = styled.div`
 
   z-index: 99998;
 
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
 `;

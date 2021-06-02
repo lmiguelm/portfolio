@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const Container = styled(motion.div)`
-  background: #000;
+  background: ${(props) => props.theme.colors.backgroundPrimary};
   height: calc(100vh - 5rem);
 
   display: flex;
@@ -14,20 +14,21 @@ export const Container = styled(motion.div)`
   overflow: hidden;
 
   span.view {
-    -webkit-touch-callout: none; /* iPhone OS, Safari */
-    -webkit-user-select: none; /* Chrome, Safari 3 */
-    -khtml-user-select: none; /* Safari 2 */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+ */
-    user-select: none; /* Possível implementação no futuro */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     font-size: 0.8rem;
     position: fixed;
     bottom: 0;
     margin: 2rem;
+    margin-bottom: 6rem;
 
     strong {
-      color: #9290c9;
+      color: ${(props) => props.theme.colors.colorSecondary};
     }
   }
 
@@ -38,7 +39,6 @@ export const Container = styled(motion.div)`
 `;
 
 export const InfoContainer = styled(motion.div)`
-  /* flex: 1; */
   display: flex;
   flex-direction: column;
 
@@ -48,23 +48,23 @@ export const InfoContainer = styled(motion.div)`
     min-width: auto;
   }
 
-  -webkit-touch-callout: none; /* iPhone OS, Safari */
-  -webkit-user-select: none; /* Chrome, Safari 3 */
-  -webkit-touch-callout: none; /* iPhone OS, Safari */
-  -webkit-user-select: none; /* Chrome, Safari 3 */
-  -khtml-user-select: none; /* Safari 2 */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+ */
-  user-select: none; /* Possível implementação no futuro */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   h1 {
     line-height: 3.5rem;
     font-size: 3.5rem;
-    color: #fff;
+    color: ${(props) => props.theme.colors.textPrimary};
     min-width: 300px;
 
     span {
-      color: #9290c9;
+      color: ${(props) => props.theme.colors.colorSecondary};
     }
   }
   h2 {
@@ -86,7 +86,6 @@ export const InfoContainer = styled(motion.div)`
 `;
 
 export const AnimationContainer = styled(motion.div)`
-  /* flex: 1; */
   margin-top: -10rem;
   width: 50rem;
   height: 50rem;
@@ -107,7 +106,7 @@ export const IconsContainer = styled(motion.ul)`
 
 export const Icon = styled(motion.li)`
   cursor: pointer;
-  color: #fff;
+  color: ${(props) => props.theme.colors.textPrimary};
 
   transition: filter 0.2s;
 

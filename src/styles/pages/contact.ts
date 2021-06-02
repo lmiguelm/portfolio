@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const Container = styled(motion.div)`
   height: calc(100vh - 5rem);
-  background: #000;
+  background: ${(props) => props.theme.colors.backgroundPrimary};
 
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@ export const Section = styled(motion.section)`
     font-size: 4rem;
 
     span {
-      color: #9290c9;
+      color: ${(props) => props.theme.colors.colorSecondary};
     }
   }
 
@@ -68,7 +68,7 @@ export const IconsContainer = styled(motion.ul)`
 
 export const Icon = styled(motion.li)`
   cursor: pointer;
-  color: #fff;
+  color: ${(props) => props.theme.colors.textSecondary};
 
   transition: filter 0.2s;
 

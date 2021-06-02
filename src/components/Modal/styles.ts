@@ -14,7 +14,7 @@ export const Container = styled.form`
   height: 90vh;
   width: 50rem;
 
-  background: #fff;
+  background: ${(props) => props.theme.colors.textSecondary};
   border-radius: 1rem;
 
   display: flex;

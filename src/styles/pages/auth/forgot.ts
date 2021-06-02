@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
-  background-color: #000;
+  background-color: ${(props) => props.theme.colors.backgroundPrimary};
 
   display: flex;
   justify-content: center;
@@ -16,7 +16,7 @@ export const CardContainer = styled.div`
 
   width: 35vw;
 
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.textSecondary};
   border-radius: 0.5rem;
 
   display: flex;
@@ -31,7 +31,7 @@ export const CardContainer = styled.div`
   }
 
   h1 {
-    color: #222;
+    color: ${(props) => props.theme.colors.backgroundSecondary};
     align-self: center;
     user-select: none;
   }
@@ -63,7 +63,7 @@ export const CardContainer = styled.div`
     border: none;
     border-radius: 1rem;
 
-    background: #356eca;
+    background: ${(props) => props.theme.colors.colorPrimary};
 
     display: flex;
     align-items: center;

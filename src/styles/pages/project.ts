@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const Container = styled(motion.div)`
-  background: #111;
+  background: ${(props) => props.theme.colors.backgroundPrimary};
   height: calc(100vh - 5rem);
   overflow-y: scroll;
 
@@ -25,7 +25,7 @@ export const Container = styled(motion.div)`
 `;
 
 export const Page = styled(motion.div)`
-  background: #222;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   width: 793px;
 
   @media (max-width: 900px) {
@@ -36,7 +36,7 @@ export const Page = styled(motion.div)`
 export const Content = styled(motion.section)`
   padding: 2rem 4rem;
   margin: 1rem 0rem;
-  background: #222;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
 
   @media (max-width: 720px) {
     padding: 2rem 1rem;
@@ -59,7 +59,7 @@ export const Content = styled(motion.section)`
       margin-bottom: 1.25rem;
 
       span {
-        color: #9290c9;
+        color: ${(props) => props.theme.colors.colorSecondary};
       }
     }
 
@@ -89,7 +89,7 @@ export const Content = styled(motion.section)`
     h2 {
       margin-bottom: 1rem;
       text-transform: uppercase;
-      color: #9290c9;
+      color: ${(props) => props.theme.colors.colorSecondary};
     }
 
     p {

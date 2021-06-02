@@ -12,11 +12,11 @@ export const Container = styled(motion.div)`
 
   cursor: default;
 
-  background: #222;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   border-radius: 1rem;
 
   &:hover {
-    border: 1px solid #356eca;
+    border: 1px solid ${(props) => props.theme.colors.colorPrimary};
   }
 
   img {
@@ -37,7 +37,7 @@ export const Container = styled(motion.div)`
       margin-bottom: 1rem;
 
       span {
-        color: #9290c9;
+        color: ${(props) => props.theme.colors.colorSecondary};
       }
     }
 
@@ -75,7 +75,7 @@ export const Container = styled(motion.div)`
         cursor: pointer;
         transition: 0.2s;
         border-radius: 0.5rem;
-        background: #356eca;
+        background: ${(props) => props.theme.colors.colorPrimary};
 
         &:hover {
           filter: brightness(0.8);
@@ -117,7 +117,7 @@ export const Container = styled(motion.div)`
         cursor: pointer;
         transition: 0.2s;
         border-radius: 0.5rem;
-        background: #356eca;
+        background: ${(props) => props.theme.colors.colorPrimary};
 
         &:hover {
           filter: brightness(0.8);

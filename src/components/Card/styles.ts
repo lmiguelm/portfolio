@@ -10,7 +10,7 @@ export const Container = styled(motion.div)`
   width: 5.5rem;
   border-radius: 1rem;
 
-  background-color: rgba(100, 100, 100, 0.4);
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
 
   cursor: pointer;
 
@@ -23,7 +23,7 @@ export const Container = styled(motion.div)`
 
   &:hover {
     filter: brightness(0.9);
-    border: 2px solid #356eca;
+    border: 2px solid ${(props) => props.theme.colors.colorPrimary};
   }
 `;
 
@@ -42,7 +42,7 @@ export const Modal = styled(motion.div)`
   max-height: 43rem;
   width: 35rem;
 
-  background: #356eca;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   border-radius: 1rem;
   opacity: 1 !important;
 
@@ -80,7 +80,7 @@ export const Modal = styled(motion.div)`
       width: 13rem;
       border-radius: 1rem;
 
-      background: #fff;
+      background: ${(props) => props.theme.colors.backgroundPrimary};
 
       img {
         height: 10rem;
@@ -89,16 +89,16 @@ export const Modal = styled(motion.div)`
     }
 
     h2 {
-      color: #fff;
+      color: ${(props) => props.theme.colors.textSecondary};
     }
 
     p {
-      color: #fff;
+      color: ${(props) => props.theme.colors.textSecondary};
       max-width: 75%;
     }
 
     a {
-      color: #fff;
+      color: ${(props) => props.theme.colors.textSecondary};
       text-align: center;
       margin-top: 1rem;
     }

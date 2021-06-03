@@ -21,6 +21,7 @@ import {
 import Lottie from 'react-lottie';
 import animation from '../../public/lottie/37147-contact-us.json';
 import { useAuth } from '../contexts/AuthContext';
+import { useTheme } from 'styled-components';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -44,6 +45,7 @@ const item = {
 
 export default function Contact() {
   const { handleCurrentPage, handleScroll } = useStylesContext();
+  const { colors } = useTheme();
 
   const { handleSetHeader } = useAuth();
 
@@ -102,19 +104,19 @@ export default function Contact() {
               variants={item}
               onClick={() => openLink('https://www.facebook.com/luismiguel.marcelo.1/')}
             >
-              <UseAnimations animation={facebook} size={35} strokeColor="#fff" />
+              <UseAnimations animation={facebook} size={35} strokeColor={colors.textPrimary} />
             </Icon>
 
             <Icon variants={item} onClick={() => openLink('https://www.github.com/lmiguelm')}>
-              <UseAnimations animation={github} size={35} strokeColor="#fff" />
+              <UseAnimations animation={github} size={35} strokeColor={colors.textPrimary} />
             </Icon>
 
             <Icon variants={item} onClick={() => openLink('https://www.instagram.com/lmiguel10/')}>
-              <UseAnimations animation={instagram} size={35} strokeColor="#fff" />
+              <UseAnimations animation={instagram} size={35} strokeColor={colors.textPrimary} />
             </Icon>
 
             <Icon variants={item} onClick={() => openLink('https://www.linkedin.com/in/lmiguelm/')}>
-              <UseAnimations animation={linkedin} size={35} strokeColor="#fff" />
+              <UseAnimations animation={linkedin} size={35} strokeColor={colors.textPrimary} />
             </Icon>
           </IconsContainer>
         </Section>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { Container } from './styles';
 
@@ -25,7 +26,7 @@ export const ProjectCard = ({ project }: IProjectsProps) => {
       }}
       whileHover={{ scale: 1.02 }}
     >
-      <img src={project.thumbnail} alt={project.title} />
+      <Image src={project.thumbnail} alt={project.title} height={1080} width={3840} />
 
       <div>
         <h1>

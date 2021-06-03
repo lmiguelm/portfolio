@@ -19,11 +19,11 @@ export const Container = styled(motion.div)`
     border: 1px solid ${(props) => props.theme.colors.colorPrimary};
   }
 
-  img {
+  /* img {
     align-self: center;
     height: 20rem;
     width: 30rem;
-  }
+  } */
 
   div {
     flex: 1;
@@ -93,11 +93,11 @@ export const Container = styled(motion.div)`
       margin-top: -6rem;
     }
 
-    img {
+    /* img {
       align-self: center;
       height: 15rem;
       width: 30rem;
-    }
+    } */
 
     div {
       padding: 0;
@@ -127,10 +127,10 @@ export const Container = styled(motion.div)`
   }
 
   @media (max-width: 720px) {
-    img {
+    /* img {
       align-self: center;
       height: 8rem;
       width: 15rem;
-    }
+    } */
   }
 `;

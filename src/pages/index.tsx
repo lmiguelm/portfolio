@@ -190,14 +190,12 @@ export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps
         )}
 
         {loadedTheme && (
-          <div
+          <span
             style={{
               cursor: 'pointer',
               position: 'absolute',
               bottom: 0,
-              margin: '1rem',
-              width: '5rem',
-              height: '5rem',
+              margin: '2.5rem',
               userSelect: 'none',
             }}
             onClick={handleToggleTheme}
@@ -211,11 +209,11 @@ export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps
               speed={1}
               direction={direction}
               style={{
-                pointerEvents: 'none',
                 userSelect: 'none',
+                pointerEvents: 'none',
               }}
             />
-          </div>
+          </span>
         )}
       </Container>
     </>

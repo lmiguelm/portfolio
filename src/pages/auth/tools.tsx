@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -9,6 +9,9 @@ import { Container, Card } from '../../styles/pages/auth/tools';
 import { useAuth } from '../../contexts/AuthContext';
 
 import { ITool } from '../../../types/lmiguelm/ITools';
+import { FormEvent } from 'react';
+import { Button, Input, Textarea } from '../../styles/global';
+import { Modal } from '../../components/Modal';
 
 type IToolProps = {
   initialTools: ITool[];
@@ -16,6 +19,8 @@ type IToolProps = {
 
 export default function Tools({ initialTools }: IToolProps) {
   const [tools, setTools] = useState(initialTools);
+  const [tool, setTool] = useState<ITool>({} as ITool);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const { handleSetHeader } = useAuth();
 
@@ -36,6 +41,47 @@ export default function Tools({ initialTools }: IToolProps) {
     }
   }
 
+  function handleOpenModalEdit(tool: ITool) {
+    setTool(tool);
+    setShowModal(true);
+  }
+
+  function handleCloseModal() {
+    setShowModal(!showModal);
+  }
+
+  async function handleEdit(event: FormEvent) {
+    event.preventDefault();
+
+    const { name, description, url } = tool;
+
+    if (name.length == 0 || description.length == 0 || url.length == 0) {
+      alert('Campos não podem ser vazios!');
+      return;
+    }
+
+    try {
+      await api.put(`${process.env.NEXT_PUBLIC_APP_URL}/tools/update/${tool.id}`, tool);
+
+      const newtools = tools.map((element) => {
+        if (element.id == tool.id) {
+          return {
+            ...element,
+            ...tool,
+          };
+        }
+        return element;
+      });
+
+      setTools(newtools as []);
+      setShowModal(false);
+
+      alert('Habilidade editada com sucesso!');
+    } catch {
+      alert('Erro ao editar habilidade');
+    }
+  }
+
   return (
     <>
       <Head>
@@ -52,9 +98,10 @@ export default function Tools({ initialTools }: IToolProps) {
             </div>
 
             <footer>
-              <Link href={`/auth/tools/edit?id=${tool.id}`}>
-                <button type="button">Editar</button>
-              </Link>
+              <button onClick={() => handleOpenModalEdit(tool)} type="button">
+                Editar
+              </button>
+
               <button onClick={() => hanleRemoveTool(tool.id)} type="button">
                 Remover
               </button>
@@ -62,6 +109,34 @@ export default function Tools({ initialTools }: IToolProps) {
           </Card>
         ))}
       </Container>
+
+      {showModal && (
+        <Modal closeModal={handleCloseModal} handleSubmit={tool.id ? handleEdit : () => {}}>
+          <Input
+            type="text"
+            placeholder="Nome"
+            value={tool.name}
+            onChange={(event) => setTool({ ...tool, name: event.target.value })}
+          />
+
+          <Input
+            type="text"
+            placeholder="Url"
+            value={tool.description}
+            onChange={(event) => setTool({ ...tool, url: event.target.value })}
+          />
+
+          <Textarea
+            placeholder="Descrição"
+            value={tool.description}
+            onChange={(event) => setTool({ ...tool, description: event.target.value })}
+          />
+
+          <Button type="submit" style={{ alignSelf: 'center' }}>
+            Salvar
+          </Button>
+        </Modal>
+      )}
     </>
   );
 }

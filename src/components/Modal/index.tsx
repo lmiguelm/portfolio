@@ -8,13 +8,14 @@ import { FiX } from 'react-icons/fi';
 type IModalProps = {
   children: React.ReactNode;
   handleSubmit(e: FormEvent): void;
+  closeModal(): void;
 };
 
-export function Modal({ children, handleSubmit }: IModalProps) {
+export function Modal({ children, handleSubmit, closeModal }: IModalProps) {
   return (
     <>
       <Container onSubmit={handleSubmit}>
-        <FiX />
+        <FiX color="#fff" onClick={closeModal} />
 
         <div>{children}</div>
       </Container>

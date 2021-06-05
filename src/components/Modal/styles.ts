@@ -13,9 +13,9 @@ export const Container = styled.form`
 
   height: 90vh;
   width: 50rem;
+  overflow-y: scroll;
 
   background: ${(props) => props.theme.colors.textSecondary};
-  border-radius: 1rem;
 
   display: flex;
   flex-direction: column;

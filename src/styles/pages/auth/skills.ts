@@ -41,6 +41,7 @@ export const Card = styled.div`
   padding: 2rem;
 
   background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  border: 1px solid ${(props) => props.theme.colors.backgroundSecondary};
   border-radius: 1rem;
 
   user-select: none;
@@ -49,7 +50,6 @@ export const Card = styled.div`
 
   &:hover {
     border: 1px solid ${(props) => props.theme.colors.colorPrimary};
-    transform: scale(1.1);
   }
 
   img {
@@ -95,13 +95,6 @@ export const Card = styled.div`
       font-size: 1rem;
 
       transition: filter 0.4s;
-
-      &:first-child {
-        border: 2px solid yellow;
-      }
-      &:last-child {
-        border: 2px solid red;
-      }
 
       &:hover {
         filter: brightness(0.9);

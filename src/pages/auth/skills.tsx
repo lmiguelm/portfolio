@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
-import Link from 'next/link';
 import Head from 'next/head';
 
 import { api } from '../../services/api';
@@ -8,7 +7,7 @@ import { api } from '../../services/api';
 import { Modal } from '../../components/Modal';
 
 import { Container, Card } from '../../styles/pages/auth/skills';
-import { Input, Textarea } from '../../styles/global';
+import { Button, Input, Textarea } from '../../styles/global';
 import { useAuth } from '../../contexts/AuthContext';
 
 import { ISkill } from '../../../types/lmiguelm/ISkills';
@@ -17,8 +16,12 @@ type ISkillProps = {
   initialSkills: ISkill[];
 };
 
-export default function Tools({ initialSkills }: ISkillProps) {
-  const [skills, setTools] = useState(initialSkills);
+export default function Skills({ initialSkills }: ISkillProps) {
+  const [skills, setSkills] = useState(initialSkills);
+
+  const [skill, setSkill] = useState<ISkill>({} as ISkill);
+
+  const [showModal, setShowModal] = useState(false);
 
   const { handleSetHeader } = useAuth();
 
@@ -32,10 +35,51 @@ export default function Tools({ initialSkills }: ISkillProps) {
 
       if (confirm(`Tem certeza que deseja deletar está habilidade?`)) {
         const newSkill = skills.filter((skill) => skill.id !== id);
-        setTools(newSkill);
+        setSkills(newSkill);
       }
     } catch (error) {
       alert('Erro interno do servidor!');
+    }
+  }
+
+  function handleOpenModalEdit(skill: ISkill) {
+    setSkill(skill);
+    setShowModal(true);
+  }
+
+  function handleCloseModal() {
+    setShowModal(!showModal);
+  }
+
+  async function handleEdit(event: FormEvent) {
+    event.preventDefault();
+
+    const { name, description, url } = skill;
+
+    if (name.length == 0 || description.length == 0 || url.length == 0) {
+      alert('Campos não podem ser vazios!');
+      return;
+    }
+
+    try {
+      await api.put(`${process.env.NEXT_PUBLIC_APP_URL}/skills/update/${skill.id}`, skill);
+
+      const newSkills = skills.map((element) => {
+        if (element.id == skill.id) {
+          return {
+            ...element,
+            ...skill,
+          };
+        }
+        return element;
+      });
+
+      setSkills(newSkills as []);
+      setShowModal(false);
+
+      alert('Habilidade editada com sucesso!');
+    } catch {
+      alert('Erro ao editar habilidade');
     }
   }
 
@@ -55,9 +99,9 @@ export default function Tools({ initialSkills }: ISkillProps) {
             </div>
 
             <footer>
-              <Link href={`/auth/edit/skills?id=${skill.id}`}>
-                <button type="button">Editar</button>
-              </Link>
+              <button onClick={() => handleOpenModalEdit(skill)} type="button">
+                Editar
+              </button>
               <button onClick={() => handleRemoveSkill(skill.id)} type="button">
                 Remover
               </button>
@@ -66,11 +110,33 @@ export default function Tools({ initialSkills }: ISkillProps) {
         ))}
       </Container>
 
-      <Modal handleSubmit={() => {}}>
-        <Input type="text" placeholder="Nome" />
-        <Input type="text" placeholder="Url" />
-        <Textarea placeholder="Descrição" />
-      </Modal>
+      {showModal && (
+        <Modal closeModal={handleCloseModal} handleSubmit={skill.id ? handleEdit : () => {}}>
+          <Input
+            type="text"
+            placeholder="Nome"
+            value={skill.name}
+            onChange={(event) => setSkill({ ...skill, name: event.target.value })}
+          />
+
+          <Input
+            type="text"
+            placeholder="Url"
+            value={skill.description}
+            onChange={(event) => setSkill({ ...skill, url: event.target.value })}
+          />
+
+          <Textarea
+            placeholder="Descrição"
+            value={skill.description}
+            onChange={(event) => setSkill({ ...skill, description: event.target.value })}
+          />
+
+          <Button type="submit" style={{ alignSelf: 'center' }}>
+            Salvar
+          </Button>
+        </Modal>
+      )}
     </>
   );
 }

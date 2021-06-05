@@ -31,6 +31,7 @@ export const Container = styled.div`
     width: 25rem;
 
     background-color: ${(props) => props.theme.colors.backgroundSecondary};
+    border: 1px solid ${(props) => props.theme.colors.backgroundSecondary};
     border-radius: 1rem;
 
     display: flex;
@@ -50,7 +51,6 @@ export const Container = styled.div`
     }
 
     &:hover {
-      transform: scale(1.1);
       border: 1px solid ${(props) => props.theme.colors.colorPrimary};
     }
 

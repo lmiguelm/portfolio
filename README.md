@@ -22,7 +22,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Como usar
 
-- **_Clone o projeto:_**
+- **_Clone o projeto:_**<br>
   ` git clone https://github.com/lmiguelm/portfolio.git`
 
 <br>

@@ -13,29 +13,27 @@ import Cookies from 'js-cookie';
 import { loadTheme } from '../utils/theme';
 
 export default function App({ Component, pageProps }) {
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const [applicationTheme, setApplicationTheme] = useState<'dark' | 'light'>('dark');
 
   useEffect(() => {
     const theme = loadTheme();
-    setIsDarkTheme(theme === 'dark' ? true : false);
+    setApplicationTheme(theme);
   }, []);
 
   function toggleTheme() {
-    Cookies.set('@lmiguelm:theme', JSON.stringify(!isDarkTheme ? 'dark' : 'light'));
-    setIsDarkTheme(!isDarkTheme);
+    const newTheme = applicationTheme === 'dark' ? 'light' : 'dark';
+
+    Cookies.set('@lmiguelm:theme', JSON.stringify(newTheme));
+    setApplicationTheme(newTheme);
   }
 
   return (
     <AuthProvider>
       <StylesProvider>
-        <ThemeProvider theme={isDarkTheme ? Dark : Light}>
+        <ThemeProvider theme={applicationTheme === 'dark' ? Dark : Light}>
           <GlobalStyle />
           <Header />
-          <Component
-            isDarkTheme={isDarkTheme}
-            toggleThemeApplication={toggleTheme}
-            {...pageProps}
-          />
+          <Component toggleTheme={toggleTheme} {...pageProps} />
         </ThemeProvider>
       </StylesProvider>
     </AuthProvider>

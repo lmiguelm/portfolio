@@ -8,6 +8,9 @@ module.exports = withPWA({
     disable: process.env.NODE_ENV == 'development',
   },
   images: {
-    domains: ['lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com'],
+    domains: [
+      'lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com',
+      'lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com',
+    ],
   },
 });

@@ -3,7 +3,7 @@ import UseAnimations from 'react-useanimations';
 
 import Lottie from 'react-lottie';
 import animation from '../../public/lottie/59446-black-guy-animation.json';
-import toggleTheme from '../../public/lottie/toggleTheme.json';
+import toggleThemeAnimation from '../../public/lottie/toggleTheme.json';
 
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -27,11 +27,13 @@ import {
   IconsContainer,
   Icon,
 } from '../styles/pages/home';
-import { useFetch } from '../lib/fecther';
+
 import { motion } from 'framer-motion';
+
+import { useFetch } from '../lib/fecther';
 import { useAuth } from '../contexts/AuthContext';
-import { loadTheme } from '../utils/theme';
 import { useTheme } from 'styled-components';
+import { loadTheme } from '../utils/theme';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -54,11 +56,10 @@ const item = {
 };
 
 type IHomeProps = {
-  toggleThemeApplication: () => void;
-  isDarkTheme: boolean;
+  toggleTheme: () => void;
 };
 
-export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps) {
+export default function Home({ toggleTheme }: IHomeProps) {
   const { data } = useFetch('/api/views-preview', false);
   const { colors } = useTheme();
 
@@ -116,7 +117,7 @@ export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps
 
   function handleToggleTheme() {
     setDirection(direction > 0 ? -1 : 1);
-    toggleThemeApplication();
+    toggleTheme();
   }
 
   return (
@@ -195,12 +196,14 @@ export default function Home({ toggleThemeApplication, isDarkTheme }: IHomeProps
               bottom: 0,
               margin: '2.5rem',
               userSelect: 'none',
+              maxHeight: '5rem',
+              maxWidth: '5rem',
             }}
             onClick={handleToggleTheme}
           >
             <Lottie
               options={{
-                animationData: toggleTheme,
+                animationData: toggleThemeAnimation,
                 autoplay: false,
                 loop: false,
               }}

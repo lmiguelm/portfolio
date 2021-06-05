@@ -8,9 +8,15 @@ import { ProjectCard } from '../components/ProjectCard';
 import { useStylesContext } from '../contexts/StylesContext';
 import { api } from '../services/api';
 
-import { FiChevronDown } from 'react-icons/fi';
+import { FiChevronDown, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-import { Container, FirstSection, SecondSection } from '../styles/pages/projects';
+import {
+  Container,
+  FirstSection,
+  PaginationContainer,
+  SecondSection,
+} from '../styles/pages/projects';
+
 import { ScrollButton } from '../styles/global';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -24,12 +30,22 @@ type IProject = {
 };
 
 type IProjectsProps = {
-  projects: IProject[];
+  allProjects: IProject[];
 };
 
-export default function Projects({ projects }: IProjectsProps) {
+export default function Projects({ allProjects }: IProjectsProps) {
   const [scroll, setScroll] = useState(0);
   const [active, setActive] = useState(false);
+
+  const [projectsFiltered, setProjectsFiltered] = useState<IProject[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itensPerPage = 4;
+
+  // TODO: melhorar lógica.
+  let pages: number[] = [];
+  for (let i = 0; i < Math.round(allProjects.length / itensPerPage); i++) {
+    pages.push(i);
+  }
 
   const { handleCurrentPage, handleScroll } = useStylesContext();
 
@@ -61,6 +77,11 @@ export default function Projects({ projects }: IProjectsProps) {
     handleScroll(scroll);
   }, [scroll]);
 
+  useEffect(() => {
+    const filtered = allProjects.slice(0, 4);
+    setProjectsFiltered(filtered);
+  }, []);
+
   function goToTop() {
     containeRef.current.scroll({
       top: 0,
@@ -75,6 +96,48 @@ export default function Projects({ projects }: IProjectsProps) {
       left: 0,
       behavior: 'smooth',
     });
+  }
+
+  function nextPage() {
+    const newCurrentPage = currentPage + 1;
+
+    const min = itensPerPage * currentPage;
+    const max = itensPerPage * newCurrentPage;
+
+    const filtered = allProjects.slice(min, max);
+
+    setProjectsFiltered(filtered);
+    setCurrentPage(newCurrentPage);
+  }
+
+  function previuosPage() {
+    let newCurrentPage = currentPage - 1;
+
+    if (newCurrentPage <= 0) newCurrentPage = 1;
+
+    let min = itensPerPage * newCurrentPage - itensPerPage;
+    const max = itensPerPage * newCurrentPage;
+
+    if (newCurrentPage == 1) min = 0;
+
+    const filtered = allProjects.slice(min, max);
+
+    setProjectsFiltered(filtered);
+    setCurrentPage(newCurrentPage);
+  }
+
+  function handlePage(index: number) {
+    const newCurrentPage = index;
+
+    const max = itensPerPage * newCurrentPage;
+    let min = max - 4;
+
+    if (newCurrentPage == 1) min = 0;
+
+    const filtered = allProjects.slice(min, max);
+
+    setProjectsFiltered(filtered);
+    setCurrentPage(newCurrentPage);
   }
 
   return (
@@ -96,10 +159,41 @@ export default function Projects({ projects }: IProjectsProps) {
         </FirstSection>
 
         <SecondSection className={active ? 'active' : ''} id="project-section">
-          {projects.map((project) => (
+          {projectsFiltered.map((project) => (
             <ProjectCard project={project} key={project.id} />
           ))}
         </SecondSection>
+
+        <PaginationContainer>
+          <a
+            href="#project-section"
+            onClick={previuosPage}
+            className={currentPage === 1 ? 'pagination-item disabled' : 'pagination-item'}
+          >
+            <FiChevronLeft />
+          </a>
+
+          {pages.map((_, index) => (
+            <a
+              href="#project-section"
+              onClick={() => handlePage(index + 1)}
+              key={index + 1}
+              className={currentPage == index + 1 ? 'pagination-item active' : 'pagination-item'}
+            >
+              {index + 1}
+            </a>
+          ))}
+
+          <a
+            href="#project-section"
+            onClick={nextPage}
+            className={
+              pages.length === currentPage ? 'pagination-item disabled' : 'pagination-item'
+            }
+          >
+            <FiChevronRight />
+          </a>
+        </PaginationContainer>
       </Container>
 
       <ScrollButton onClick={active ? goToTop : goToBottom}>
@@ -119,7 +213,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      projects: data,
+      allProjects: data,
     },
     revalidate: 60 * 60 * 8,
   };

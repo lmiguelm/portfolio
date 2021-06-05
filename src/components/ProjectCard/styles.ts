@@ -19,12 +19,6 @@ export const Container = styled(motion.div)`
     border: 1px solid ${(props) => props.theme.colors.colorPrimary};
   }
 
-  /* img {
-    align-self: center;
-    height: 20rem;
-    width: 30rem;
-  } */
-
   div {
     flex: 1;
     display: flex;
@@ -92,12 +86,6 @@ export const Container = styled(motion.div)`
     &:first-child {
       margin-top: -6rem;
     }
-
-    /* img {
-      align-self: center;
-      height: 15rem;
-      width: 30rem;
-    } */
 
     div {
       padding: 0;

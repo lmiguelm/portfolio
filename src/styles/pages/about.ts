@@ -150,6 +150,13 @@ export const CardContainer = styled(motion.section)`
         color: ${(props) => props.theme.colors.colorSecondary};
       }
     }
+
+    @media (max-width: 720px) {
+      h1,
+      span {
+        font-size: 2.25rem;
+      }
+    }
   }
 
   span {

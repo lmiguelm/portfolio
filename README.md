@@ -27,22 +27,22 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 <br>
 
-- **_Entre na pasta do projeto:_**
+- **_Entre na pasta do projeto:_**<br>
   `cd portfolio`
 
 <br>
 
-- **_Baixe as dependências:_**
+- **_Baixe as dependências:_**<br>
   ` yarn || npm install`
 
 <br>
 
-- **_Rodar o site:_**
+- **_Rodar o site:_**<br>
   `yarn dev || npm run dev`
 
 <br>
 
-- **_Rodar servidor fake para testes:_**
+- **_Rodar servidor fake para testes:_**<br>
   `yarn server || npm run server`
 
 <br>

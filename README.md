@@ -47,8 +47,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 <br>
 
-- **_Adicionar arquivo .env com as seguintes configs:_**
+- **_Adicionar arquivo .env com as seguintes configs:_** <br>
   `APP_URL = http://localhost:3333`
+  <br>
   `NEXT_PUBLIC_APP_URL = http://localhost:3333`
 
 ## 📝 Licença

@@ -1,0 +1,83 @@
+{
+  "skills": [
+    {
+      "id": "0dfa487f-a2f8-4059-bc37-e0b00437edc0",
+      "name": "Styled Components",
+      "description": "Biblioteca para React e React Native que permite que você use estilos ao nível de componente na sua aplicação. Eles são escritos em uma mistura de JavaScript com CSS.",
+      "image": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/0dfa487f-a2f8-4059-bc37-e0b00437edc0-styled.svg",
+      "url": "https://styled-components.com/"
+    },
+    {
+      "id": "2256e60f-bcde-4d42-ba5e-12349a9dfff8",
+      "name": "Typescript",
+      "description": "Superconjunto de JavaScript desenvolvido pela Microsoft que adiciona tipagem a linguagem.",
+      "image": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/472f89776e3d1717d1e6dcac02bacf5f-typescript.svg",
+      "url": "https://www.typescriptlang.org/"
+    },
+    {
+      "id": "352a27b7-1143-4257-a44b-0d06fa11594f",
+      "name": "Java",
+      "description": "Linguagem de programação orientada a objetos.",
+      "image": "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/9f122e69048bf333607029fd2583ff00-java.svg",
+      "url": "https://www.java.com/pt-BR/"
+    }
+  ],
+  "tools": [
+    {
+      "id": "d4dc2d94-4ab1-4a63-8c2e-54dd6bfda2c4",
+      "name": "Heroku",
+      "description": "Plataforma em nuvem como um serviço que suporta várias linguagens de programação.",
+      "image": "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/b7ad8fc3516d294a4705c17acd2c4061-heroku.svg",
+      "url": "https://www.heroku.com/"
+    },
+    {
+      "id": "d9b3e2f1-2b6d-44a8-bc97-868bab8099d4",
+      "name": "Visual Studio Code",
+      "description": "Editor de código-fonte desenvolvido pela Microsoft.",
+      "image": "https://lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com/e9c1a4ef39377cf8b1a1a62a3b69b5db-vscode.svg",
+      "url": "https://code.visualstudio.com/"
+    },
+    {
+      "id": "e245a40b-dc6b-4028-aa56-8402d0eb4876",
+      "name": "GIT",
+      "description": "Sistema de controle de versões distribuído.",
+      "image": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/0b12fb69f3905b65ecb53403699e099d-git.svg",
+      "url": "https://git-scm.com/"
+    }
+  ],
+  "projects": [
+    {
+      "id": "move-it",
+      "title": "Move.it",
+      "resume": "Esse site tem objetivo de fazer pessoas quepassam horas e horas em frente ao computadorpraticarem exercícios em forma de desafios.",
+      "about": "Este projeto foi desenvolvido durante a NextLevelWeek#4 da Rocketseat, ministrada pelo Diego Fernandes, com o propósito de construir uma aplicação para pessoas que passam muito tempo na frente do computador possam fazer exercícios pontuais para braços, ol",
+      "knowledge": "Durante o desenvolvimento da aplicação, aprendi sobre autenticação social (github, google) no Next.js, utilizando a biblioteca NextAuth  e aprimorei meus conhecimentos em gerenciamento de estados globais com Context API no React.js.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/MacBook+Pro+-+1.svg",
+      "video": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencast-moveit-lmiguelm.vercel.app-2021.05.09-14_33_10.webm",
+      "github_url": "https://github.com/lmiguelm/move.it",
+      "url": "https://moveit-lmiguelm.vercel.app/"
+    },
+    {
+      "id": "plantmanager",
+      "title": "PlantManager",
+      "resume": "Aplicativo com o propósito de gerenciamento de plantas, aonde o usuário define um horário para rega-las.",
+      "about": "Projeto desenvolvido duurante a 5º edição da NextLevelWeek da Rocketseat, ministrada pelo Rodrigo, com o propósito de construir uma aplicação que seja possível o gerenciamento de suas plantas, agendando horários para que não se esqueça de rega-las.",
+      "knowledge": "Durante o desenvolvimento desta aplicação pratiquei meus conhecimentos em React-native, conheci a API de notificações do expo, além de várias dicas de UI/UX.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/plantmanager-capa.svg",
+      "video": "",
+      "github_url": "https://github.com/lmiguelm/PlantManager",
+      "url": "null"
+    },
+    {
+      "id": "podcastr",
+      "title": "Podcastr",
+      "resume": "Site de reprodução de podcasts desenvolvido durante a 5º Next Level Week da Rocketseat.",
+      "about": "Este projeto foi desenvolvido durante a NextLevelWeek#5 da Rocketseat, ministrada pelo Diego Fernandes, com o propósito de construir uma aplicação que seja capaz de reproduzir podcasts. Durante a semana foi abordado temas como o uso de useRefs no React, C",
+      "knowledge": "Durante o desenvolvimento aprimorei meus conhecimentos em Next.js na parte de SSG (static site generation), geração de rotas estáticas e dinâmicas com Next.js. Utilizei a tag áudio do HTML5 pela primeira vez.",
+      "thumbnail": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/podcastr.svg",
+      "video": "https://lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com/screencast-podcastr-lmiguelm.vercel.app-2021.05.09-13_36_32.webm",
+      "github_url": "https://github.com/lmiguelm/podcastr",
+      "url": "https://podcastr-lmiguelm.vercel.app/"
+    }
+  ]
+}

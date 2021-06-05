@@ -19,21 +19,7 @@ import { FiChevronLeft } from 'react-icons/fi';
 import Router from 'next/router';
 import { useAuth } from '../../contexts/AuthContext';
 
-type IProject = {
-  id: string;
-  title: string;
-  resume: string;
-  thumbnail: string;
-  github_url: string;
-  url: string;
-  video: string;
-  knowledge: string;
-  about: string;
-  images: Array<{
-    id: string;
-    url: string;
-  }>;
-};
+import { IProject } from '../../../types/lmiguelm/IProject';
 
 type IProjectProps = {
   project: IProject;
@@ -41,7 +27,6 @@ type IProjectProps = {
 
 export default function Project({ project }: IProjectProps) {
   const [scroll, setScroll] = useState(0);
-  const [active, setActive] = useState(false);
 
   const { handleCurrentPage, handleScroll } = useStylesContext();
 
@@ -54,23 +39,11 @@ export default function Project({ project }: IProjectProps) {
   useEffect(() => {
     handleCurrentPage('projects');
     handleSetHeader('public');
-
-    containeRef.current.addEventListener('scroll', () => {
-      const section = document.getElementById('project');
-      if (section.getBoundingClientRect().top < window.innerHeight) {
-        setTimeout(() => {
-          setActive(true);
-        }, 200);
-      } else {
-        setTimeout(() => {
-          setActive(false);
-        }, 200);
-      }
-    });
   }, []);
 
   useEffect(() => {
     handleScroll(scroll);
+    console.log(scroll);
   }, [scroll]);
 
   function goToTop() {
@@ -82,7 +55,7 @@ export default function Project({ project }: IProjectProps) {
   }
 
   function goBack() {
-    Router.back();
+    Router.push('/projects');
   }
 
   return (
@@ -153,7 +126,7 @@ export default function Project({ project }: IProjectProps) {
               )}
             </main>
 
-            <footer id="project">
+            <footer>
               {project.video && project.video != 'null' && (
                 <video controls>
                   <source type="video/webm" src={project.video} />
@@ -162,13 +135,14 @@ export default function Project({ project }: IProjectProps) {
               )}
             </footer>
           </Content>
+
           <br />
           <br />
         </Page>
       </Container>
 
-      <ScrollButtonBack onClick={active ? goToTop : goBack}>
-        <FiChevronLeft className={active ? 'rotate' : ''} color="#fff" size={40} />
+      <ScrollButtonBack onClick={scroll !== 0 ? goToTop : goBack}>
+        <FiChevronLeft className={scroll !== 0 ? 'rotate2' : ''} color="#fff" size={40} />
       </ScrollButtonBack>
     </>
   );

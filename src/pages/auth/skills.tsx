@@ -11,13 +11,7 @@ import { Container, Card } from '../../styles/pages/auth/skills';
 import { Input, Textarea } from '../../styles/global';
 import { useAuth } from '../../contexts/AuthContext';
 
-type ISkill = {
-  id: string;
-  name: string;
-  image: string;
-  url: string;
-  description: string;
-};
+import { ISkill } from '../../../types/lmiguelm/ISkills';
 
 type ISkillProps = {
   initialSkills: ISkill[];

@@ -1,6 +1,6 @@
 # 🏅 Portfólio
 
-![podcastr](.github/thumb.gif)
+![lmiguelm](.github/thumb.gif)
 
 <br>
 
@@ -41,6 +41,15 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
   `yarn dev || npm run dev`
 
 <br>
+
+- **_Rodar servidor fake para testes:_**
+  `yarn server || npm run server`
+
+<br>
+
+- **_Adicionar arquivo .env com as seguintes configs:_**
+  `APP_URL = http://localhost:3333`
+  `NEXT_PUBLIC_APP_URL = http://localhost:3333`
 
 ## 📝 Licença
 

@@ -159,6 +159,9 @@ export const ScrollButtonBack = styled.div`
     &.rotate {
       transform: rotate(-90deg);
     }
+    &.rotate2 {
+      transform: rotate(90deg);
+    }
   }
 `;
 

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useStylesContext } from '../contexts/StylesContext';
-
 import Head from 'next/head';
+
+import { useStylesContext } from '../contexts/StylesContext';
 
 import UseAnimations from 'react-useanimations';
 

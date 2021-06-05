@@ -8,14 +8,7 @@ import { api } from '../../services/api';
 import { Container, Card } from '../../styles/pages/auth/projects';
 import { useAuth } from '../../contexts/AuthContext';
 
-type IProject = {
-  id: string;
-  title: string;
-  resume: string;
-  thumbnail: string;
-  github_url: string;
-  url: string;
-};
+import { IProject } from '../../../types/lmiguelm/IProject';
 
 type IProjectsProps = {
   initialProjects: IProject[];

@@ -8,13 +8,7 @@ import { api } from '../../services/api';
 import { Container, Card } from '../../styles/pages/auth/tools';
 import { useAuth } from '../../contexts/AuthContext';
 
-type ITool = {
-  id: string;
-  name: string;
-  image: string;
-  url: string;
-  description: string;
-};
+import { ITool } from '../../../types/lmiguelm/ITools';
 
 type IToolProps = {
   initialTools: ITool[];

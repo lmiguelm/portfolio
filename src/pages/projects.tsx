@@ -1,8 +1,9 @@
+import React, { useEffect, useRef, useState } from 'react';
+
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 import { useElementScroll } from 'framer-motion';
-import React, { useEffect, useRef, useState } from 'react';
 import { ProjectCard } from '../components/ProjectCard';
 
 import { useStylesContext } from '../contexts/StylesContext';
@@ -20,23 +21,17 @@ import {
 import { ScrollButton } from '../styles/global';
 import { useAuth } from '../contexts/AuthContext';
 
-type IProject = {
-  id: string;
-  title: string;
-  resume: string;
-  thumbnail: string;
-  github_url: string;
-  url: string;
-};
+import { IProject } from '../../types/lmiguelm/IProject';
 
 type IProjectsProps = {
   allProjects: IProject[];
 };
 
 export default function Projects({ allProjects }: IProjectsProps) {
-  const [scroll, setScroll] = useState(0);
-  const [active, setActive] = useState(false);
+  const { handleSetHeader } = useAuth();
+  const { handleCurrentPage, handleScroll } = useStylesContext();
 
+  const [scroll, setScroll] = useState(0);
   const [projectsFiltered, setProjectsFiltered] = useState<IProject[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itensPerPage = 4;
@@ -47,40 +42,21 @@ export default function Projects({ allProjects }: IProjectsProps) {
     pages.push(i);
   }
 
-  const { handleCurrentPage, handleScroll } = useStylesContext();
-
   const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const { scrollYProgress } = useElementScroll(containeRef);
   scrollYProgress.onChange(setScroll);
-
-  const { handleSetHeader } = useAuth();
 
   useEffect(() => {
     handleSetHeader('public');
     handleCurrentPage('projects');
 
-    containeRef.current.addEventListener('scroll', () => {
-      const section = document.getElementById('project-section');
-      if (section.getBoundingClientRect().top < window.innerHeight) {
-        setTimeout(() => {
-          setActive(true);
-        }, 200);
-      } else {
-        setTimeout(() => {
-          setActive(false);
-        }, 200);
-      }
-    });
+    const filtered = allProjects.slice(0, 4);
+    setProjectsFiltered(filtered);
   }, []);
 
   useEffect(() => {
     handleScroll(scroll);
   }, [scroll]);
-
-  useEffect(() => {
-    const filtered = allProjects.slice(0, 4);
-    setProjectsFiltered(filtered);
-  }, []);
 
   function goToTop() {
     containeRef.current.scroll({
@@ -158,7 +134,7 @@ export default function Projects({ allProjects }: IProjectsProps) {
           </p>
         </FirstSection>
 
-        <SecondSection className={active ? 'active' : ''} id="project-section">
+        <SecondSection className={scroll !== 0 ? 'active' : ''} id="project-section">
           {projectsFiltered.map((project) => (
             <ProjectCard project={project} key={project.id} />
           ))}
@@ -196,8 +172,8 @@ export default function Projects({ allProjects }: IProjectsProps) {
         </PaginationContainer>
       </Container>
 
-      <ScrollButton onClick={active ? goToTop : goToBottom}>
-        <FiChevronDown color="#fff" className={active ? 'rotate' : ''} size={40} />
+      <ScrollButton onClick={scroll !== 0 ? goToTop : goToBottom}>
+        <FiChevronDown color="#fff" className={scroll !== 0 ? 'rotate' : ''} size={40} />
       </ScrollButton>
     </>
   );

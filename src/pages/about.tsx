@@ -5,8 +5,6 @@ import Head from 'next/head';
 
 import { useElementScroll } from 'framer-motion';
 
-import { useStylesContext } from '../contexts/StylesContext';
-
 import {
   Container,
   FirstSection,
@@ -15,29 +13,19 @@ import {
   CardContainer,
 } from '../styles/pages/about';
 
-import { Card } from '../components/Card';
-import { api } from '../services/api';
 import { Button, ScrollButton } from '../styles/global';
 import { FiChevronDown } from 'react-icons/fi';
 
 import Typewriter from 'typewriter-effect/dist/core';
+
+import { Card } from '../components/Card';
+
+import { api } from '../services/api';
+import { useStylesContext } from '../contexts/StylesContext';
 import { useAuth } from '../contexts/AuthContext';
 
-type ISkill = {
-  id: string;
-  name: string;
-  image: string;
-  url: string;
-  description: string;
-};
-
-type ITool = {
-  id: string;
-  name: string;
-  image: string;
-  url: string;
-  description: string;
-};
+import { ITool } from '../../types/lmiguelm/ITools';
+import { ISkill } from '../../types/lmiguelm/ISkills';
 
 type IAboutProps = {
   tools: ITool[];
@@ -45,7 +33,6 @@ type IAboutProps = {
 };
 
 export default function About({ tools, skills }: IAboutProps) {
-  const [active, setActive] = useState(false);
   const [scroll, setScroll] = useState(0);
 
   const { handleCurrentPage, handleScroll } = useStylesContext();
@@ -59,19 +46,6 @@ export default function About({ tools, skills }: IAboutProps) {
   useEffect(() => {
     handleSetHeader('public');
     handleCurrentPage('about');
-
-    containeRef.current.addEventListener('scroll', () => {
-      const section = document.getElementById('card-section');
-      if (section.getBoundingClientRect().top < window.innerHeight) {
-        setTimeout(() => {
-          setActive(true);
-        }, 200);
-      } else {
-        setTimeout(() => {
-          setActive(false);
-        }, 200);
-      }
-    });
   }, []);
 
   useEffect(() => {
@@ -157,7 +131,7 @@ export default function About({ tools, skills }: IAboutProps) {
           </InfoContainer>
         </FirstSection>
 
-        <SecondSection id="card-section" className={active ? 'active' : ''}>
+        <SecondSection id="card-section" className={scroll !== 0 ? 'active' : ''}>
           <CardContainer
             initial={{
               scale: 0,
@@ -202,8 +176,8 @@ export default function About({ tools, skills }: IAboutProps) {
         </SecondSection>
       </Container>
 
-      <ScrollButton onClick={active ? goToTop : goToBottom}>
-        <FiChevronDown color="#fff" className={active ? 'rotate' : ''} size={40} />
+      <ScrollButton onClick={scroll !== 0 ? goToTop : goToBottom}>
+        <FiChevronDown color="#fff" className={scroll !== 0 ? 'rotate' : ''} size={40} />
       </ScrollButton>
     </>
   );

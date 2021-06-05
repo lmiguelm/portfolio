@@ -9,7 +9,6 @@ import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { GetStaticProps } from 'next';
-import Link from 'next/link';
 import Head from 'next/head';
 
 import github from 'react-useanimations/lib/github';
@@ -17,7 +16,6 @@ import facebook from 'react-useanimations/lib/facebook';
 import instagram from 'react-useanimations/lib/instagram';
 import linkedin from 'react-useanimations/lib/linkedin';
 
-import { Button } from '../styles/global';
 import { useStylesContext } from '../contexts/StylesContext';
 
 import Typewriter from 'typewriter-effect/dist/core';

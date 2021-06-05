@@ -11,11 +11,7 @@ import Typewriter from 'typewriter-effect/dist/core';
 import { api } from '../../services/api';
 import { useAuth } from '../../contexts/AuthContext';
 
-type IUser = {
-  id: string;
-  name: string;
-  email: string;
-};
+import { IUser } from '../../../types/lmiguelm/IUser';
 
 type IDashboardProps = {
   user: IUser;

@@ -5,7 +5,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "server": "json-server server.json -p 3333"
+    "server": "json-server ./src/services/fake-server.json -p 3333"
   },
   "dependencies": {
     "axios": "^0.21.1",

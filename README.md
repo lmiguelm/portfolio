@@ -1,10 +1,16 @@
 # 🏅 Portfólio
 
-![lmiguelm](.github/thumb.gif)
+![lmiguelm](.github/thumb.jpg)
 
 <br>
 
-🔛 **Teste online agora: [lmiguelm](https://lmiguelm.vercel.app).**
+🔛 **Online agora: [lmiguelm](https://lmiguelm.vercel.app).**
+
+<br>
+
+# 🎥 Video de demosntração
+
+![lmiguelm](.github/thumb.gif)
 
 <br>
 
@@ -22,35 +28,36 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Como usar
 
-- **_Clone o projeto:_**<br>
+- **_Clone o projeto:_**
   ` git clone https://github.com/lmiguelm/portfolio.git`
 
 <br>
 
-- **_Entre na pasta do projeto:_**<br>
+- **_Entre na pasta do projeto:_**
   `cd portfolio`
 
 <br>
 
-- **_Baixe as dependências:_**<br>
+- **_Baixe as dependências:_**
   ` yarn || npm install`
 
 <br>
 
-- **_Rodar o site:_**<br>
+- **_Rodar o site:_**
   `yarn dev || npm run dev`
 
 <br>
 
-- **_Rodar servidor fake para testes:_**<br>
+- **_Rodar servidor fake para testes:_**
   `yarn server || npm run server`
 
 <br>
 
-- **_Adicionar arquivo .env com as seguintes configs:_** <br>
+- **_Adicionar arquivo .env com as seguintes configs:_**
   `APP_URL = http://localhost:3333`
-  <br>
   `NEXT_PUBLIC_APP_URL = http://localhost:3333`
+
+<br>
 
 ## 📝 Licença
 

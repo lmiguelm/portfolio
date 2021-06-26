@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 
-import { useStylesContext } from '../contexts/StylesContext';
-
 import UseAnimations from 'react-useanimations';
 
 import github from 'react-useanimations/lib/github';
@@ -10,18 +8,13 @@ import facebook from 'react-useanimations/lib/facebook';
 import instagram from 'react-useanimations/lib/instagram';
 import linkedin from 'react-useanimations/lib/linkedin';
 
-import {
-  Container,
-  Section,
-  AnimationContainer,
-  IconsContainer,
-  Icon,
-} from '../styles/pages/contact';
+import { Container, Section, AnimationContainer, IconsContainer, Icon } from './styles';
 
 import Lottie from 'react-lottie';
-import animation from '../../public/lottie/37147-contact-us.json';
-import { useAuth } from '../contexts/AuthContext';
+import animation from '../../../public/lottie/37147-contact-us.json';
 import { useTheme } from 'styled-components';
+import { useStylesContext } from '../../hooks/useStyles';
+import { useAuth } from '../../hooks/useAuth';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -46,7 +39,6 @@ const item = {
 export default function Contact() {
   const { handleCurrentPage, handleScroll } = useStylesContext();
   const { colors } = useTheme();
-
   const { handleSetHeader } = useAuth();
 
   useEffect(() => {

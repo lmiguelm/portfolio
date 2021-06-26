@@ -1,16 +1,20 @@
-import { FormEvent, useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
-import { api } from '../../services/api';
+import { api } from '../../../services/api';
 
-import { Modal } from '../../components/Modal';
+import { Modal } from '../../../components/Modal';
 
-import { Container, Card } from '../../styles/pages/auth/skills';
-import { Button, Input, Textarea } from '../../styles/global';
-import { useAuth } from '../../contexts/AuthContext';
+import { Container, Card } from './styles';
 
-import { ISkill } from '../../../types/lmiguelm/ISkills';
+import { ISkill } from '../../../../types/lmiguelm/ISkills';
+
+import { FiRefreshCcw } from 'react-icons/fi';
+import { useAuth } from '../../../hooks/useAuth';
+import { Input } from '../../../components/Input';
+import { Button } from '../../../components/Button';
+import { Textarea } from '../../../components/Textarea';
 
 type ISkillProps = {
   initialSkills: ISkill[];
@@ -22,6 +26,7 @@ export default function Skills({ initialSkills }: ISkillProps) {
   const [skill, setSkill] = useState<ISkill>({} as ISkill);
 
   const [showModal, setShowModal] = useState(false);
+  const [showModalImage, setShowModalImage] = useState(false);
 
   const { handleSetHeader } = useAuth();
 
@@ -45,6 +50,12 @@ export default function Skills({ initialSkills }: ISkillProps) {
   function handleOpenModalEdit(skill: ISkill) {
     setSkill(skill);
     setShowModal(true);
+  }
+
+  function handleOpenModalImage(id: string) {
+    setSkill({} as ISkill);
+    setSkill({ ...skill, id });
+    setShowModalImage(true);
   }
 
   function handleCloseModal() {
@@ -88,26 +99,34 @@ export default function Skills({ initialSkills }: ISkillProps) {
       <Head>
         <title>&lt; Dashboard /&gt;</title>
       </Head>
+
       <Container>
-        {skills.map((skill) => (
-          <Card key={skill.id}>
-            <img src={skill.image} alt={skill.name} />
+        <main>
+          {skills.map((skill) => (
+            <Card key={skill.id}>
+              <header onClick={() => handleOpenModalImage(skill.id)}>
+                <div>
+                  <FiRefreshCcw color="#fff" size={40} />
+                </div>
+                <img src={skill.image} alt={skill.name} />
+              </header>
 
-            <div>
-              <h3>{skill.name}</h3>
-              <p>{skill.description}</p>
-            </div>
+              <main>
+                <h3>{skill.name}</h3>
+                <p>{skill.description}</p>
+              </main>
 
-            <footer>
-              <button onClick={() => handleOpenModalEdit(skill)} type="button">
-                Editar
-              </button>
-              <button onClick={() => handleRemoveSkill(skill.id)} type="button">
-                Remover
-              </button>
-            </footer>
-          </Card>
-        ))}
+              <footer>
+                <button onClick={() => handleOpenModalEdit(skill)} type="button">
+                  Editar
+                </button>
+                <button onClick={() => handleRemoveSkill(skill.id)} type="button">
+                  Remover
+                </button>
+              </footer>
+            </Card>
+          ))}
+        </main>
       </Container>
 
       {showModal && (
@@ -132,9 +151,20 @@ export default function Skills({ initialSkills }: ISkillProps) {
             onChange={(event) => setSkill({ ...skill, description: event.target.value })}
           />
 
-          <Button type="submit" style={{ alignSelf: 'center' }}>
-            Salvar
-          </Button>
+          <Button title="Salvar" type="submit" style={{ alignSelf: 'center' }} />
+        </Modal>
+      )}
+
+      {showModalImage && (
+        <Modal closeModal={handleCloseModal} handleSubmit={skill.id ? handleEdit : () => {}}>
+          <Input
+            type="image"
+            placeholder="Nova imagem"
+            value={skill.image}
+            onChange={(event) => setSkill({ ...skill, image: event.target.value })}
+          />
+
+          <Button title="Salvar" type="submit" style={{ alignSelf: 'center' }} />
         </Modal>
       )}
     </>

@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
-import Link from 'next/link';
 import Head from 'next/head';
 
-import { api } from '../../services/api';
+import { api } from '../../../services/api';
 
-import { Container, Card } from '../../styles/pages/auth/projects';
-import { useAuth } from '../../contexts/AuthContext';
+import { Container, Card } from './styles';
 
-import { IProject } from '../../../types/lmiguelm/IProject';
-import { FormEvent } from 'react';
-import { Button, Input, Textarea } from '../../styles/global';
-import { Modal } from '../../components/Modal';
+import { IProject } from '../../../../types/lmiguelm/IProject';
+import { Modal } from '../../../components/Modal';
+import { useAuth } from '../../../hooks/useAuth';
+import { Input } from '../../../components/Input';
+import { Button } from '../../../components/Button';
+import { Textarea } from '../../../components/Textarea';
 
 type IProjectsProps = {
   initialProjects: IProject[];
@@ -157,9 +157,7 @@ export default function projects({ initialProjects }: IProjectsProps) {
             onChange={(event) => setProject({ ...project, knowledge: event.target.value })}
           />
 
-          <Button type="submit" style={{ alignSelf: 'center' }}>
-            Salvar
-          </Button>
+          <Button title="Salvar" type="submit" style={{ alignSelf: 'center' }} />
         </Modal>
       )}
     </>

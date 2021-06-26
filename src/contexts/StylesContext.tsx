@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 
 type StyleContextData = {
   currentPage: string;
@@ -9,7 +9,7 @@ type StyleContextData = {
   changeTheme: () => void;
 };
 
-const StylesContext = createContext({} as StyleContextData);
+export const StylesContext = createContext({} as StyleContextData);
 
 type StylesProviderProps = {
   children: ReactNode;
@@ -20,17 +20,17 @@ export function StylesProvider({ children }: StylesProviderProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
-  function handleCurrentPage(page: string) {
+  const handleCurrentPage = useCallback((page: string) => {
     setCurrentPage(page);
-  }
+  }, []);
 
-  function handleScroll(value: number) {
+  const handleScroll = useCallback((value: number) => {
     setScrollProgress(value);
-  }
+  }, []);
 
-  function changeTheme() {
-    setIsDarkTheme(!isDarkTheme);
-  }
+  const changeTheme = useCallback(() => {
+    setIsDarkTheme((oldstate) => !oldstate);
+  }, []);
 
   return (
     <StylesContext.Provider
@@ -46,9 +46,4 @@ export function StylesProvider({ children }: StylesProviderProps) {
       {children}
     </StylesContext.Provider>
   );
-}
-
-export function useStylesContext() {
-  const useStylesContext = useContext(StylesContext);
-  return useStylesContext;
 }

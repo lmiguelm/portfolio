@@ -2,16 +2,17 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { Container } from '../../styles/pages/auth/dashboard';
+import { Container } from './styles';
 
 import { FiGithub, FiTool, FiAward } from 'react-icons/fi';
 import { useEffect } from 'react';
 
 import Typewriter from 'typewriter-effect/dist/core';
-import { api } from '../../services/api';
-import { useAuth } from '../../contexts/AuthContext';
+import { api } from '../../../services/api';
 
-import { IUser } from '../../../types/lmiguelm/IUser';
+import { IUser } from '../../../../types/lmiguelm/IUser';
+
+import { useAuth } from '../../../hooks/useAuth';
 
 type IDashboardProps = {
   user: IUser;

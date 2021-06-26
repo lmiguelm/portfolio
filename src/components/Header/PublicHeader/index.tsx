@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import { useState } from 'react';
-import { useStylesContext } from '../../../contexts/StylesContext';
+import { useStylesContext } from '../../../hooks/useStyles';
 
 import { Container, Link } from './styles';
 

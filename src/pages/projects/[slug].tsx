@@ -8,18 +8,16 @@ import { Slide } from 'react-slideshow-image';
 
 import 'react-slideshow-image/dist/styles.css';
 
-import { api } from '../../services/api';
-
-import { Container, Content, Page } from '../../styles/pages/project';
+import { Container, Content, Page } from './project';
 import { useElementScroll } from 'framer-motion';
-import { useStylesContext } from '../../contexts/StylesContext';
-import { ScrollButtonBack } from '../../styles/global';
 import { FiChevronLeft } from 'react-icons/fi';
 
 import Router from 'next/router';
-import { useAuth } from '../../contexts/AuthContext';
-
+import { useAuth } from '../../hooks/useAuth';
+import { useStylesContext } from '../../hooks/useStyles';
 import { IProject } from '../../../types/lmiguelm/IProject';
+import { api } from '../../services/api';
+import { ScrollButtonBack } from '../../styles/global';
 
 type IProjectProps = {
   project: IProject;

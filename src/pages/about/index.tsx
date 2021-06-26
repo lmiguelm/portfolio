@@ -5,27 +5,23 @@ import Head from 'next/head';
 
 import { useElementScroll } from 'framer-motion';
 
-import {
-  Container,
-  FirstSection,
-  InfoContainer,
-  SecondSection,
-  CardContainer,
-} from '../styles/pages/about';
+import { Container, FirstSection, InfoContainer, SecondSection, CardContainer } from './styles';
 
-import { Button, ScrollButton } from '../styles/global';
 import { FiChevronDown } from 'react-icons/fi';
 
 import Typewriter from 'typewriter-effect/dist/core';
 
-import { Card } from '../components/Card';
+import { Card } from '../../components/Card';
 
-import { api } from '../services/api';
-import { useStylesContext } from '../contexts/StylesContext';
-import { useAuth } from '../contexts/AuthContext';
+import { api } from '../../services/api';
 
-import { ITool } from '../../types/lmiguelm/ITools';
-import { ISkill } from '../../types/lmiguelm/ISkills';
+import { ITool } from '../../../types/lmiguelm/ITools';
+import { ISkill } from '../../../types/lmiguelm/ISkills';
+
+import { useStylesContext } from '../../hooks/useStyles';
+import { useAuth } from '../../hooks/useAuth';
+import { Button } from '../../components/Button';
+import { ScrollButton } from '../../components/ScrollButton';
 
 type IAboutProps = {
   tools: ITool[];
@@ -126,7 +122,7 @@ export default function About({ tools, skills }: IAboutProps) {
             </p>
 
             <a target="_blank" href="/docs/LuisMiguel.pdf">
-              <Button>Ver currículo</Button>
+              <Button title="Ver currículo" />
             </a>
           </InfoContainer>
         </FirstSection>

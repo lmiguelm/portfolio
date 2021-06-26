@@ -3,29 +3,24 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: calc(100vh - 5rem);
   overflow-y: scroll;
+  margin: 0 auto;
 
   background-color: ${(props) => props.theme.colors.backgroundPrimary};
 
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
-
+  display: flex;
   align-items: center;
   justify-items: center;
-  padding: 2rem;
 
-  @media (max-width: 1600px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 1220px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 800px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
+  main {
+    flex: 1;
+    height: inherit;
 
-  @media (max-width: 500px) {
-    padding: 2rem 0rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, 25rem);
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
   }
 `;
 
@@ -35,7 +30,7 @@ export const Card = styled.div`
   justify-content: space-between;
   align-content: center;
 
-  width: 45vh;
+  width: 25rem;
 
   gap: 4rem;
   padding: 2rem;
@@ -52,13 +47,45 @@ export const Card = styled.div`
     border: 1px solid ${(props) => props.theme.colors.colorPrimary};
   }
 
-  img {
-    height: 10rem;
-    width: 10rem;
-    align-self: center;
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    img {
+      height: 10rem;
+      width: 10rem;
+      align-self: center;
+    }
+
+    div {
+      position: absolute;
+      bottom: 0;
+
+      margin-left: 160px;
+      margin-bottom: -10px;
+
+      background-color: ${(props) => props.theme.colors.colorPrimary};
+
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: 1rem;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      cursor: pointer;
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
   }
 
-  div {
+  main {
     h3 {
       text-align: center;
       margin-bottom: 1rem;

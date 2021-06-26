@@ -16,24 +16,17 @@ import facebook from 'react-useanimations/lib/facebook';
 import instagram from 'react-useanimations/lib/instagram';
 import linkedin from 'react-useanimations/lib/linkedin';
 
-import { useStylesContext } from '../contexts/StylesContext';
-
 import Typewriter from 'typewriter-effect/dist/core';
 
-import {
-  Container,
-  InfoContainer,
-  AnimationContainer,
-  IconsContainer,
-  Icon,
-} from '../styles/pages/home';
+import { Container, InfoContainer, AnimationContainer, IconsContainer, Icon } from './styles';
 
 import { motion } from 'framer-motion';
 
 import { useFetch } from '../lib/fecther';
-import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from 'styled-components';
 import { loadTheme } from '../utils/theme';
+import { useStylesContext } from '../hooks/useStyles';
+import { useAuth } from '../hooks/useAuth';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },

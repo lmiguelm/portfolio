@@ -1,10 +1,10 @@
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
-import { useAuth } from '../../../contexts/AuthContext';
 
 import { Container } from './styles';
 
 import { FiLogOut } from 'react-icons/fi';
+import { useAuth } from '../../../hooks/useAuth';
 
 export function AuthHeader() {
   const currentDate = format(new Date(), 'EEEE, d MMMM uuuu', { locale: ptBR });

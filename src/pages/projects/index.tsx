@@ -4,24 +4,19 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 
 import { useElementScroll } from 'framer-motion';
-import { ProjectCard } from '../components/ProjectCard';
+import { ProjectCard } from '../../components/ProjectCard';
 
-import { useStylesContext } from '../contexts/StylesContext';
-import { api } from '../services/api';
+import { api } from '../../services/api';
 
 import { FiChevronDown, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-import {
-  Container,
-  FirstSection,
-  PaginationContainer,
-  SecondSection,
-} from '../styles/pages/projects';
+import { Container, FirstSection, PaginationContainer, SecondSection } from './styles';
 
-import { ScrollButton } from '../styles/global';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
+import { useStylesContext } from '../../hooks/useStyles';
 
-import { IProject } from '../../types/lmiguelm/IProject';
+import { IProject } from '../../../types/lmiguelm/IProject';
+import { ScrollButton } from '../../components/ScrollButton';
 
 type IProjectsProps = {
   allProjects: IProject[];

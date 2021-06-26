@@ -5,13 +5,14 @@ import Head from 'next/head';
 
 import React, { FormEvent, useEffect, useState } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
-import { useAuth } from '../../contexts/AuthContext';
-import { api } from '../../services/api';
-import { FormButton, Input } from '../../styles/global';
+import { api } from '../../../services/api';
+import { FormButton } from '../../../styles/global';
 
-import { Container, CardContainer } from '../../styles/pages/auth/login';
+import { Container, CardContainer } from './styles';
 
-import { isAValidEmail } from '../../utils/checkEmail';
+import { isAValidEmail } from '../../../utils/checkEmail';
+import { useAuth } from '../../../hooks/useAuth';
+import { Input } from '../../../components/Input';
 
 export default function Login() {
   const [email, setEmail] = useState('');

@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+import { createContext, useState, useContext, ReactNode, useEffect, useCallback } from 'react';
 import { api } from '../services/api';
 import Cookie from 'js-cookie';
 
@@ -29,7 +29,7 @@ type AuthContextData = {
   handleSetHeader: (value: 'private' | 'public' | 'none') => void;
 };
 
-const AuthContext = createContext({} as AuthContextData);
+export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProps) {
   const [isLogged, setIsLogged] = useState(false);
@@ -54,7 +54,7 @@ export function AuthProvider({ children }: AuthProps) {
     setHeader(value);
   }
 
-  async function login(email: string, password: string): Promise<void> {
+  const login = useCallback(async (email: string, password: string): Promise<void> => {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await api.post(`${process.env.NEXT_PUBLIC_APP_URL}/users/login`, {
@@ -78,16 +78,16 @@ export function AuthProvider({ children }: AuthProps) {
         reject();
       }
     });
-  }
+  }, []);
 
-  async function logout() {
+  const logout = useCallback(async () => {
     setIsLogged(false);
     Cookie.remove('access_token');
     Cookie.remove('current_user');
     Router.push('/auth/login');
-  }
+  }, []);
 
-  async function checkEmail(email: string): Promise<void> {
+  const checkEmail = useCallback(async (email: string): Promise<void> => {
     return new Promise(async (resolve, reject) => {
       try {
         await api.get(`${process.env.NEXT_PUBLIC_APP_URL}/users/check-user`, {
@@ -101,9 +101,9 @@ export function AuthProvider({ children }: AuthProps) {
         reject();
       }
     });
-  }
+  }, []);
 
-  async function checkCode(email: string, code: number): Promise<IUser> {
+  const checkCode = useCallback(async (email: string, code: number): Promise<IUser> => {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await api.post(`${process.env.NEXT_PUBLIC_APP_URL}/users/check-code`, {
@@ -116,28 +116,26 @@ export function AuthProvider({ children }: AuthProps) {
         reject();
       }
     });
-  }
+  }, []);
 
-  async function resetPassword(
-    id: string,
-    password: string,
-    code: number,
-    email: string
-  ): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-      try {
-        await api.put(`${process.env.NEXT_PUBLIC_APP_URL}/users/reset-password`, {
-          password,
-          id,
-          email,
-          code,
-        });
-        resolve();
-      } catch (error) {
-        reject();
-      }
-    });
-  }
+  const resetPassword = useCallback(
+    async (id: string, password: string, code: number, email: string): Promise<void> => {
+      return new Promise(async (resolve, reject) => {
+        try {
+          await api.put(`${process.env.NEXT_PUBLIC_APP_URL}/users/reset-password`, {
+            password,
+            id,
+            email,
+            code,
+          });
+          resolve();
+        } catch (error) {
+          reject();
+        }
+      });
+    },
+    []
+  );
 
   return (
     <AuthContext.Provider
@@ -157,8 +155,4 @@ export function AuthProvider({ children }: AuthProps) {
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  return useContext(AuthContext);
 }

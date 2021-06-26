@@ -1,7 +1,6 @@
+import { useAuth } from '../../hooks/useAuth';
 import { AuthHeader } from '../Header/AuthHeader';
 import { PublicHeader } from './PublicHeader';
-
-import { useAuth } from '../../contexts/AuthContext';
 
 export function Header() {
   const { header } = useAuth();

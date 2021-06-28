@@ -15,7 +15,6 @@ import { FiChevronLeft } from 'react-icons/fi';
 import Router from 'next/router';
 import { useAuth } from '../../hooks/useAuth';
 import { useStylesContext } from '../../hooks/useStyles';
-import { api } from '../../services/api';
 import { ScrollButtonBack } from '../../styles/global';
 import { database } from '../../services/firebase';
 import { IProject, TypeFirebaseProjects } from '../../../types/lmiguelm/project';
@@ -178,8 +177,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     id: project.key,
     ...project.val(),
   };
-
-  console.log('ASASAS', project.val());
 
   if (!project.val()) {
     return {

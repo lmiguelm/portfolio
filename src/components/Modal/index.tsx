@@ -1,23 +1,22 @@
-import { FormEvent } from 'react';
+import { HTMLAttributes } from 'react';
 
 import { Container } from './styles';
 import { Blur } from '../../styles/global';
 
 import { FiX } from 'react-icons/fi';
 
-type IModalProps = {
+type IModalProps = HTMLAttributes<HTMLFormElement> & {
   children: React.ReactNode;
-  handleSubmit(e: FormEvent): void;
   closeModal(): void;
 };
 
-export function Modal({ children, handleSubmit, closeModal }: IModalProps) {
+export function Modal({ children, closeModal, ...rest }: IModalProps) {
   return (
     <>
-      <Container onSubmit={handleSubmit}>
-        <FiX color="#fff" onClick={closeModal} />
+      <Container {...rest}>
+        <FiX color="red" className="close" onClick={closeModal} />
 
-        <div>{children}</div>
+        <main>{children}</main>
       </Container>
       <Blur />
     </>

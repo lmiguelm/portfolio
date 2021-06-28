@@ -5,7 +5,7 @@ import { Container } from './styles';
 
 import { FiChevronRight } from 'react-icons/fi';
 
-import { IProject } from '../../../types/lmiguelm/IProject';
+import { IProject } from '../../../types/lmiguelm/project';
 
 type IProjectsProps = {
   project: IProject;
@@ -19,7 +19,7 @@ export const ProjectCard = ({ project }: IProjectsProps) => {
       }}
       whileHover={{ scale: 1.02 }}
     >
-      <Image src={project.thumbnail} alt={project.title} height={1080} width={3840} />
+      <Image src={project.thumbnail.url} alt={project.thumbnail.name} height={1080} width={3840} />
 
       <div>
         <h1>
@@ -36,7 +36,7 @@ export const ProjectCard = ({ project }: IProjectsProps) => {
                 Acessar
               </a>
             )}
-            <a href={project.github_url} target="_blank">
+            <a href={project.githubUrl} target="_blank">
               Ver no github
             </a>
           </article>

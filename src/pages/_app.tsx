@@ -12,8 +12,14 @@ import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { loadTheme } from '../utils/theme';
 
+import { firebase } from '../services/firebase';
+
 export default function App({ Component, pageProps }) {
   const [applicationTheme, setApplicationTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    firebase.analytics();
+  }, []);
 
   useEffect(() => {
     const theme = loadTheme();

@@ -1,156 +1,104 @@
-import { createContext, useState, useContext, ReactNode, useEffect, useCallback } from 'react';
-import { api } from '../services/api';
-import Cookie from 'js-cookie';
+import { useEffect } from 'react';
+import { createContext, ReactNode, useCallback, useState } from 'react';
 
-import Router from 'next/router';
-
-type AuthProps = {
-  children: ReactNode;
-};
+import { auth, firebase } from '../services/firebase';
 
 type IUser = {
+  avatar: string;
   id: string;
   name: string;
   email: string;
-  password: string;
-  code: string;
 };
 
-type AuthContextData = {
-  isLogged: boolean;
-  currentUser: IUser;
-  token: string;
-  login(email: string, password: string): Promise<void>;
-  logout(): void;
-  checkEmail(email: string): Promise<void>;
-  checkCode(email: string, code: number): Promise<IUser>;
-  resetPassword(id: string, password: string, code: number, email: string): Promise<void>;
-  header: 'private' | 'public' | 'none';
-  handleSetHeader: (value: 'private' | 'public' | 'none') => void;
+type IHeader = 'private' | 'public' | 'none';
+
+type IAuthContext = {
+  header: IHeader;
+  handleSetHeader: (value: IHeader) => void;
+  user: IUser | undefined;
+  signinWithGoogle: () => Promise<void>;
+  signout: () => Promise<void>;
+  loadedAuth: boolean;
 };
 
-export const AuthContext = createContext({} as AuthContextData);
+export const AuthContext = createContext({} as IAuthContext);
 
-export function AuthProvider({ children }: AuthProps) {
-  const [isLogged, setIsLogged] = useState(false);
-  const [currentUser, setCurrentUser] = useState<IUser>({} as IUser);
-  const [token, setToken] = useState('');
-  const [header, setHeader] = useState<'private' | 'public' | 'none'>('public');
+type IAuthProviderProps = {
+  children: ReactNode;
+};
+
+export function AuthProvider({ children }: IAuthProviderProps) {
+  const [user, setUser] = useState<IUser>();
+  const [header, setHeader] = useState<IHeader>('public');
+  const [loadedAuth, setLoadedAuth] = useState<boolean>(false);
 
   useEffect(() => {
-    let user = Cookie.get('current_user');
-    let token = Cookie.get('access_token');
+    setLoadedAuth(false);
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        const { displayName, photoURL, uid, email } = user;
 
-    if (user && token) {
-      token = JSON.parse(token);
-      api.defaults.headers.Authorization = token;
-      setToken(token);
-      setCurrentUser(JSON.parse(user));
-      setIsLogged(true);
+        try {
+          if (email !== 'luismiguelfernandes.marcelo@gmail.com') {
+            throw new Error('Acesso negado!');
+          }
+
+          setUser({ name: displayName, avatar: photoURL, id: uid, email });
+        } catch (error) {
+          throw new Error(error.message);
+        } finally {
+          setLoadedAuth(true);
+        }
+      } else {
+        setLoadedAuth(true);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  const signinWithGoogle = useCallback(async () => {
+    setLoadedAuth(false);
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    const { user } = await auth.signInWithPopup(provider);
+
+    if (user) {
+      const { displayName, photoURL, uid, email } = user;
+      try {
+        if (email !== 'luismiguelfernandes.marcelo@gmail.com') {
+          throw new Error('Acesso negado!');
+        }
+
+        setUser({ name: displayName, avatar: photoURL, id: uid, email });
+      } catch (error) {
+        throw new Error(error.message);
+      } finally {
+        setLoadedAuth(true);
+      }
+    } else {
+      setLoadedAuth(true);
     }
   }, []);
 
-  function handleSetHeader(value: 'private' | 'public' | 'none') {
+  const signout = useCallback(async () => {
+    try {
+      await auth.signOut();
+      setUser(undefined);
+    } catch {
+      throw new Error('Não foi possivel deslogar');
+    }
+  }, []);
+
+  const handleSetHeader = useCallback((value: IHeader) => {
     setHeader(value);
-  }
-
-  const login = useCallback(async (email: string, password: string): Promise<void> => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const response = await api.post(`${process.env.NEXT_PUBLIC_APP_URL}/users/login`, {
-          email,
-          password,
-        });
-
-        const token = response.headers.authorization;
-        const user = response.data;
-
-        api.defaults.headers.Authorization = token;
-        setIsLogged(true);
-        setToken(token);
-        setCurrentUser(user);
-
-        Cookie.set('access_token', JSON.stringify(token));
-        Cookie.set('current_user', JSON.stringify(user));
-
-        resolve();
-      } catch (error) {
-        reject();
-      }
-    });
   }, []);
-
-  const logout = useCallback(async () => {
-    setIsLogged(false);
-    Cookie.remove('access_token');
-    Cookie.remove('current_user');
-    Router.push('/auth/login');
-  }, []);
-
-  const checkEmail = useCallback(async (email: string): Promise<void> => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        await api.get(`${process.env.NEXT_PUBLIC_APP_URL}/users/check-user`, {
-          params: {
-            email,
-          },
-        });
-
-        resolve();
-      } catch (error) {
-        reject();
-      }
-    });
-  }, []);
-
-  const checkCode = useCallback(async (email: string, code: number): Promise<IUser> => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const response = await api.post(`${process.env.NEXT_PUBLIC_APP_URL}/users/check-code`, {
-          email,
-          code,
-        });
-
-        resolve(response.data);
-      } catch (error) {
-        reject();
-      }
-    });
-  }, []);
-
-  const resetPassword = useCallback(
-    async (id: string, password: string, code: number, email: string): Promise<void> => {
-      return new Promise(async (resolve, reject) => {
-        try {
-          await api.put(`${process.env.NEXT_PUBLIC_APP_URL}/users/reset-password`, {
-            password,
-            id,
-            email,
-            code,
-          });
-          resolve();
-        } catch (error) {
-          reject();
-        }
-      });
-    },
-    []
-  );
 
   return (
     <AuthContext.Provider
-      value={{
-        isLogged,
-        login,
-        logout,
-        checkEmail,
-        checkCode,
-        resetPassword,
-        currentUser,
-        token,
-        header,
-        handleSetHeader,
-      }}
+      value={{ user, signinWithGoogle, header, handleSetHeader, signout, loadedAuth }}
     >
       {children}
     </AuthContext.Provider>

@@ -2,7 +2,12 @@ import styled from 'styled-components';
 
 export const Container = styled.button`
   height: 4rem;
-  width: 14rem;
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 
   border: none;
   outline: none;

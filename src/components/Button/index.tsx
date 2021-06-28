@@ -1,11 +1,16 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { HTMLAttributes, ReactNode } from 'react';
 
 import { Container } from './styles';
 
-interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  title: string;
-}
+type IButton = HTMLAttributes<HTMLButtonElement> & {
+  children: ReactNode;
+  type?: 'button' | 'submit';
+};
 
-export function Button({ title, ...rest }: IButton) {
-  return <Container {...rest}>{title}</Container>;
+export function Button({ type = 'button', children, ...rest }: IButton) {
+  return (
+    <Container type={type} {...rest}>
+      {children}
+    </Container>
+  );
 }

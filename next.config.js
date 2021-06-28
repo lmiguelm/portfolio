@@ -10,7 +10,7 @@ module.exports = withPWA({
   images: {
     domains: [
       'lmguelm-portfolio-images.s3-sa-east-1.amazonaws.com',
-      'lmguelm-portfolio-images.s3.sa-east-1.amazonaws.com',
+      'firebasestorage.googleapis.com',
     ],
   },
 });

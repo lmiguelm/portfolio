@@ -4,7 +4,7 @@ export const Container = styled.input`
   height: 5rem;
   outline: none;
 
-  padding: 2rem 1rem;
+  padding: 2rem 2rem;
 
   border: none;
   border-bottom: 1px solid #000;
@@ -18,8 +18,8 @@ export const Container = styled.input`
     transform: scale(1.1);
   }
 
-  /* &:focus {
+  &:focus {
     border-bottom: 1px solid ${(props) => props.theme.colors.colorPrimary};
     color: ${(props) => props.theme.colors.colorPrimary};
-  } */
+  }
 `;

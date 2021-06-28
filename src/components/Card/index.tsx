@@ -8,7 +8,10 @@ import { FiX } from 'react-icons/fi';
 type IData = {
   id: string;
   name: string;
-  image: string;
+  image: {
+    url: string;
+    name: string;
+  };
   url: string;
   description: string;
 };
@@ -37,7 +40,7 @@ export const Card = ({ data }: ICardProps) => {
         whileHover={{ scale: 1.2 }}
         onClick={() => setOpen(true)}
       >
-        <img src={data.image} alt={data.name} />
+        <img src={data.image.url} alt={data.image.name} />
       </Container>
 
       {open && (
@@ -59,7 +62,7 @@ export const Card = ({ data }: ICardProps) => {
 
             <div>
               <div>
-                <img src={data.image} alt={data.name} />
+                <img src={data.image.url} alt={data.image.name} />
               </div>
 
               <h2>{data.name}</h2>

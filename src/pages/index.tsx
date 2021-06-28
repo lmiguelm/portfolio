@@ -18,15 +18,21 @@ import linkedin from 'react-useanimations/lib/linkedin';
 
 import Typewriter from 'typewriter-effect/dist/core';
 
-import { Container, InfoContainer, AnimationContainer, IconsContainer, Icon } from './styles';
+import {
+  Container,
+  InfoContainer,
+  AnimationContainer,
+  IconsContainer,
+  Icon,
+} from '../styles/pages/home';
 
 import { motion } from 'framer-motion';
 
-import { useFetch } from '../lib/fecther';
 import { useTheme } from 'styled-components';
 import { loadTheme } from '../utils/theme';
 import { useStylesContext } from '../hooks/useStyles';
 import { useAuth } from '../hooks/useAuth';
+import { database } from '../services/firebase';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -53,7 +59,6 @@ type IHomeProps = {
 };
 
 export default function Home({ toggleTheme }: IHomeProps) {
-  const { data } = useFetch('/api/views-preview', false);
   const { colors } = useTheme();
 
   const { handleCurrentPage, handleScroll } = useStylesContext();
@@ -64,6 +69,17 @@ export default function Home({ toggleTheme }: IHomeProps) {
 
   const [direction, setDirection] = useState<number>(1);
   const [loadedTheme, setLoadedTheme] = useState(false);
+  const [views, setViews] = useState<number>(undefined);
+
+  useEffect(() => {
+    async function loadViews() {
+      const oldViews = await database.ref('views').get();
+      const newViews = oldViews.val().number + 1;
+      await database.ref('views').update({ number: newViews });
+      setViews(newViews);
+    }
+    loadViews();
+  }, []);
 
   useEffect(() => {
     const theme = loadTheme();
@@ -164,7 +180,7 @@ export default function Home({ toggleTheme }: IHomeProps) {
           />
         </AnimationContainer>
 
-        {data && (
+        {views && (
           <motion.span
             className="view"
             initial={{
@@ -177,7 +193,7 @@ export default function Home({ toggleTheme }: IHomeProps) {
               duration: 1,
             }}
           >
-            {currentDate} - <strong>{Number(data).toLocaleString('pt-br')}</strong> visitas
+            {currentDate} - <strong>{Number(views).toLocaleString('pt-br')}</strong> visitas
           </motion.span>
         )}
 

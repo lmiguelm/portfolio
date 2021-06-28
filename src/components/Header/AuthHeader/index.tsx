@@ -1,3 +1,5 @@
+import Router from 'next/router';
+
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 
@@ -9,7 +11,16 @@ import { useAuth } from '../../../hooks/useAuth';
 export function AuthHeader() {
   const currentDate = format(new Date(), 'EEEE, d MMMM uuuu', { locale: ptBR });
 
-  const { logout } = useAuth();
+  const { signout } = useAuth();
+
+  async function handleSignout() {
+    try {
+      await signout();
+      Router.push('/auth/login');
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <Container>
@@ -18,7 +29,7 @@ export function AuthHeader() {
       </li>
 
       <li>
-        <button onClick={logout} type="button">
+        <button onClick={handleSignout} type="button">
           <FiLogOut size={24} />
         </button>
       </li>

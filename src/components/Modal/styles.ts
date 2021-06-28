@@ -22,20 +22,19 @@ export const Container = styled.form`
 
   padding: 3rem;
 
-  svg {
+  svg.close {
     position: absolute;
     right: 0;
     margin-right: 3rem;
     cursor: pointer;
     transition: filter 0.2s;
-    background: red;
 
     &:hover {
       filter: brightness(0.9);
     }
   }
 
-  div {
+  main {
     flex: 1;
     display: flex;
     flex-direction: column;

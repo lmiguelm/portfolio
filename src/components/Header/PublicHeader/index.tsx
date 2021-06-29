@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useStylesContext } from '../../../hooks/useStyles';
 
 import { Container, Link } from './styles';
 
@@ -23,33 +23,26 @@ const item = {
   },
 };
 
+type ILink = 'home' | 'about' | 'projects' | 'contact';
+
 export const PublicHeader = () => {
-  const { currentPage: active, handleCurrentPage, scrollProgress } = useStylesContext();
-  const [lastActive, setLastActive] = useState('');
+  const router = useRouter();
 
-  function handleMouseEnter() {
-    setLastActive(active != '' ? active : lastActive);
-    handleCurrentPage('');
-  }
+  const initialActive = router.asPath === '/' ? 'home' : (router.asPath.replace('/', '') as ILink);
 
-  function handleMouseLeave() {
-    handleCurrentPage(active != '' ? active : lastActive);
+  const [active, setActive] = useState<ILink>(initialActive);
+
+  function handleActiveLink(link: 'home' | 'about' | 'projects' | 'contact') {
+    setActive(link);
   }
 
   return (
-    <Container
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      onMouseLeave={handleMouseLeave}
-      className={scrollProgress > 0 ? 'scrolling' : ''}
-    >
+    <Container variants={container} initial="hidden" animate="visible">
       <NextLink href="/">
         <Link
-          className={active == 'home' ? 'active' : ''}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          className={active === 'home' ? 'active' : ''}
           variants={item}
+          onClick={() => handleActiveLink('home')}
         >
           Home
         </Link>
@@ -57,9 +50,9 @@ export const PublicHeader = () => {
 
       <NextLink href="/about">
         <Link
-          className={active == 'about' ? 'active' : ''}
-          onMouseEnter={handleMouseEnter}
+          className={active === 'about' ? 'active' : ''}
           variants={item}
+          onClick={() => handleActiveLink('about')}
         >
           Sobre
         </Link>
@@ -67,9 +60,9 @@ export const PublicHeader = () => {
 
       <NextLink href="/projects">
         <Link
-          className={active == 'projects' ? 'active' : ''}
-          onMouseEnter={handleMouseEnter}
+          className={active === 'projects' ? 'active' : ''}
           variants={item}
+          onClick={() => handleActiveLink('projects')}
         >
           Projetos
         </Link>
@@ -77,9 +70,9 @@ export const PublicHeader = () => {
 
       <NextLink href="/contact">
         <Link
-          className={active == 'contact' ? 'active' : ''}
-          onMouseEnter={handleMouseEnter}
+          className={active === 'contact' ? 'active' : ''}
           variants={item}
+          onClick={() => handleActiveLink('contact')}
         >
           Contato
         </Link>

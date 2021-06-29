@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
+
 import UseAnimations from 'react-useanimations';
 
 import Lottie from 'react-lottie';
@@ -7,9 +9,6 @@ import toggleThemeAnimation from '../../public/lottie/toggleTheme.json';
 
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
-
-import { GetStaticProps } from 'next';
-import Head from 'next/head';
 
 import github from 'react-useanimations/lib/github';
 import facebook from 'react-useanimations/lib/facebook';
@@ -30,7 +29,6 @@ import { motion } from 'framer-motion';
 
 import { useTheme } from 'styled-components';
 import { loadTheme } from '../utils/theme';
-import { useStylesContext } from '../hooks/useStyles';
 import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 
@@ -61,8 +59,6 @@ type IHomeProps = {
 export default function Home({ toggleTheme }: IHomeProps) {
   const { colors } = useTheme();
 
-  const { handleCurrentPage, handleScroll } = useStylesContext();
-
   const currentDate = format(new Date(), 'EEEEEE, d MMMM', { locale: ptBR });
 
   const { handleSetHeader } = useAuth();
@@ -89,8 +85,6 @@ export default function Home({ toggleTheme }: IHomeProps) {
 
   useEffect(() => {
     handleSetHeader('public');
-    handleCurrentPage('home');
-    handleScroll(0);
 
     const typing = document.getElementById('typing');
 
@@ -229,9 +223,3 @@ export default function Home({ toggleTheme }: IHomeProps) {
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {},
-  };
-};

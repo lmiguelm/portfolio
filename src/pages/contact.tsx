@@ -19,7 +19,6 @@ import {
 import Lottie from 'react-lottie';
 import animation from '../../public/lottie/37147-contact-us.json';
 import { useTheme } from 'styled-components';
-import { useStylesContext } from '../hooks/useStyles';
 import { useAuth } from '../hooks/useAuth';
 
 const container = {
@@ -43,17 +42,11 @@ const item = {
 };
 
 export default function Contact() {
-  const { handleCurrentPage, handleScroll } = useStylesContext();
   const { colors } = useTheme();
   const { handleSetHeader } = useAuth();
 
   useEffect(() => {
     handleSetHeader('public');
-  }, []);
-
-  useEffect(() => {
-    handleCurrentPage('contact');
-    handleScroll(0);
   }, []);
 
   function openLink(link: string) {

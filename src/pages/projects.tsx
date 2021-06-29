@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-
-import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import { GetStaticProps } from 'next';
 
 import { useElementScroll } from 'framer-motion';
 import { ProjectCard } from '../components/ProjectCard';
@@ -11,7 +10,6 @@ import { FiChevronDown } from 'react-icons/fi';
 import { Container, FirstSection, SecondSection } from '../styles/pages/projects';
 
 import { useAuth } from '../hooks/useAuth';
-import { useStylesContext } from '../hooks/useStyles';
 
 import { ScrollButton } from '../components/ScrollButton';
 import { IProject, TypeFirebaseProjects } from '../../types/lmiguelm/project';
@@ -23,22 +21,18 @@ type IProjectsProps = {
 
 export default function Projects({ projects }: IProjectsProps) {
   const { handleSetHeader } = useAuth();
-  const { handleCurrentPage, handleScroll } = useStylesContext();
 
   const [scroll, setScroll] = useState(0);
 
   const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const { scrollYProgress } = useElementScroll(containeRef);
-  scrollYProgress.onChange(setScroll);
 
   useEffect(() => {
     handleSetHeader('public');
-    handleCurrentPage('projects');
-  }, []);
+    scrollYProgress.onChange(setScroll);
 
-  useEffect(() => {
-    handleScroll(scroll);
-  }, [scroll]);
+    return () => scrollYProgress.clearListeners();
+  }, []);
 
   function goToTop() {
     containeRef.current.scroll({

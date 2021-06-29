@@ -22,10 +22,10 @@ import { Card } from '../components/Card';
 import { ITool, TypeFirebaseTools } from '../../types/lmiguelm/tools';
 import { ISkill, TypeFirebaseSkills } from '../../types/lmiguelm/skills';
 
-import { useStylesContext } from '../hooks/useStyles';
 import { useAuth } from '../hooks/useAuth';
 import { Button } from '../components/Button';
 import { ScrollButton } from '../components/ScrollButton';
+
 import { database } from '../services/firebase';
 
 type IAboutProps = {
@@ -36,22 +36,17 @@ type IAboutProps = {
 export default function About({ tools, skills }: IAboutProps) {
   const [scroll, setScroll] = useState(0);
 
-  const { handleCurrentPage, handleScroll } = useStylesContext();
-
   const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const { scrollYProgress } = useElementScroll(containeRef);
-  scrollYProgress.onChange(setScroll);
 
   const { handleSetHeader } = useAuth();
 
   useEffect(() => {
     handleSetHeader('public');
-    handleCurrentPage('about');
-  }, []);
+    scrollYProgress.onChange(setScroll);
 
-  useEffect(() => {
-    handleScroll(scroll);
-  }, [scroll]);
+    return () => scrollYProgress.clearListeners();
+  }, []);
 
   useEffect(() => {
     const skill = document.getElementById('skill');

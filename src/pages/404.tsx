@@ -14,7 +14,7 @@ export default function Custom404() {
   const { handleSetHeader } = useAuth();
 
   useEffect(() => {
-    handleSetHeader('public');
+    handleSetHeader('none');
   }, []);
 
   return (

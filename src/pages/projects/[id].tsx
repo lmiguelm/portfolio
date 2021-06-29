@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import { GetStaticPaths, GetStaticProps } from 'next';
+import Router from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
-import { GetStaticPaths, GetStaticProps } from 'next';
 
 import { Slide } from 'react-slideshow-image';
 
@@ -12,9 +13,7 @@ import { Container, Content, Page } from '../../styles/pages/projects/project';
 import { useElementScroll } from 'framer-motion';
 import { FiChevronLeft } from 'react-icons/fi';
 
-import Router from 'next/router';
 import { useAuth } from '../../hooks/useAuth';
-import { useStylesContext } from '../../hooks/useStyles';
 import { ScrollButtonBack } from '../../styles/global';
 import { database } from '../../services/firebase';
 import { IProject, TypeFirebaseProjects } from '../../../types/lmiguelm/project';
@@ -26,23 +25,17 @@ type IProjectProps = {
 export default function Project({ project }: IProjectProps) {
   const [scroll, setScroll] = useState(0);
 
-  const { handleCurrentPage, handleScroll } = useStylesContext();
-
   const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const { scrollYProgress } = useElementScroll(containeRef);
-  scrollYProgress.onChange(setScroll);
 
   const { handleSetHeader } = useAuth();
 
   useEffect(() => {
-    handleCurrentPage('projects');
     handleSetHeader('public');
-  }, []);
+    scrollYProgress.onChange(setScroll);
 
-  useEffect(() => {
-    handleScroll(scroll);
-    console.log(scroll);
-  }, [scroll]);
+    return () => scrollYProgress.clearListeners();
+  }, []);
 
   function goToTop() {
     containeRef.current.scroll({

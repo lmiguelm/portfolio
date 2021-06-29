@@ -13,6 +13,7 @@ export const Container = styled(motion.div)`
   cursor: default;
 
   background: ${(props) => props.theme.colors.backgroundSecondary};
+  border: 1px solid ${(props) => props.theme.colors.backgroundPrimary};
   border-radius: 1rem;
 
   &:hover {

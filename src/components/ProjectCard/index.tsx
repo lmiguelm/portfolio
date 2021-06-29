@@ -17,7 +17,7 @@ export const ProjectCard = ({ project }: IProjectsProps) => {
       transition={{
         duration: 0.2,
       }}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 1.01 }}
     >
       <Image src={project.thumbnail.url} alt={project.thumbnail.name} height={1080} width={3840} />
 

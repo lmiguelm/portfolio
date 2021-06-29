@@ -67,7 +67,7 @@ export default function Project({ project }: IProjectProps) {
           ) : (
             <Slide>
               {project.images.sort().map((image) => (
-                <Image src={image.url} alt={image.name} key={image.id} width={1920} height={1080} />
+                <Image key={image.id} src={image.url} alt={image.name} width={1920} height={1080} />
               ))}
             </Slide>
           )}
@@ -137,24 +137,12 @@ export default function Project({ project }: IProjectProps) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const projects: TypeFirebaseProjects = await (await database.ref('projects').get()).val();
-  const projectsParsed = Object.entries(projects ?? {}).map(([key, value]) => {
-    return {
-      id: key,
-      ...value,
-      images: Object.entries(value.images ?? {}).map(([key, value]) => {
-        return {
-          id: key,
-          name: value.name,
-          url: value.url,
-        };
-      }),
-    } as IProject;
-  });
+  const ids = Object.entries(projects ?? {}).map(([key]) => key);
 
-  const paths = projectsParsed.map((project) => {
+  const paths = ids.map((id) => {
     return {
       params: {
-        id: project.id,
+        id,
       },
     };
   });
@@ -172,6 +160,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const parsedProject = {
     id: project.key,
     ...project.val(),
+    images: Object.entries(project.val().images ?? {}).map(([key, value]: any) => {
+      return {
+        id: key,
+        name: value.name,
+        url: value.url,
+      };
+    }),
   };
 
   if (!project.val()) {

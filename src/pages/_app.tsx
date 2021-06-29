@@ -3,8 +3,6 @@ import Cookies from 'js-cookie';
 
 import { Header } from '../components/Header';
 
-import { firebase } from '../services/firebase';
-
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from 'styled-components';
 
@@ -15,10 +13,6 @@ import { loadTheme } from '../utils/theme';
 
 export default function App({ Component, pageProps }) {
   const [applicationTheme, setApplicationTheme] = useState<'dark' | 'light'>('dark');
-
-  useEffect(() => {
-    firebase.analytics();
-  }, []);
 
   useEffect(() => {
     const theme = loadTheme();

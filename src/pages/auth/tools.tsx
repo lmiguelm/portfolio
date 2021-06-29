@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Routes from 'next/router';
 import { FiX } from 'react-icons/fi';
@@ -19,13 +19,22 @@ import { useAuth } from '../../hooks/useAuth';
 import { IImage, ITool, TypeFirebaseTools } from '../../../types/lmiguelm/tools';
 import { Loading } from '../../components/Loading';
 import { InputFile } from '../../components/InputFile';
+import { useForm } from 'react-hook-form';
+
+type IToolData = {
+  name: string;
+  description: string;
+  url: string;
+};
 
 export default function Tools() {
   const { handleSetHeader, user, loadedAuth } = useAuth();
   const { colors } = useTheme();
+  const { register, handleSubmit } = useForm();
 
   const [tools, setTools] = useState<ITool[]>([]);
-  const [tool, setTool] = useState<ITool | undefined>({} as ITool);
+  const [selectedSkill, setSelectedSkill] = useState<ITool>({} as ITool);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [file, setFile] = useState<File>();
 
@@ -66,16 +75,15 @@ export default function Tools() {
   }, []);
 
   function handleOpenModalEdit(tool: ITool) {
-    setTool(tool);
+    setSelectedSkill(tool);
     setShowModal(true);
   }
 
   const handleCloseModal = useCallback(() => {
     setShowModal(false);
-    clearData();
   }, []);
 
-  async function handleRemoveTool(id: string) {
+  async function handleRemoveSkill(id: string) {
     setLoading(true);
     await database.ref(`tools/${id}`).remove();
     await storage.ref(`tools/${id}`).delete();
@@ -83,18 +91,9 @@ export default function Tools() {
     setLoading(false);
   }
 
-  async function handleEdit(event: FormEvent) {
-    setLoading(true);
+  async function handleEdit(data: IToolData) {
     setShowModal(false);
-    event.preventDefault();
-
-    const { name, description, url, id } = tool;
-
-    if (name.trim() === '' || description.trim() === '' || url.trim() === '') {
-      toast.error('Campos não podem ser vazios!');
-      setLoading(false);
-      return;
-    }
+    setLoading(true);
 
     try {
       if (file) {
@@ -105,38 +104,50 @@ export default function Tools() {
           name: file.name,
         };
 
-        await database.ref(`/tools/${id}`).update({ image: imageUrl });
+        await database.ref(`/tools/${selectedSkill.id}`).update({ image: imageUrl });
       }
 
-      await database.ref(`/tools/${id}`).update(tool);
+      if (!data.name) {
+        delete data.name;
+      }
+      if (!data.url) {
+        delete data.url;
+      }
+      if (!data.description) {
+        delete data.description;
+      }
 
-      clearData();
-      toast.success(`${name} editado com sucesso!`);
+      if (data.url || data.name || data.description) {
+        await database.ref(`/tools/${selectedSkill.id}`).update(data);
+      }
+
+      toast.success(`Skill editado com sucesso!`);
     } catch {
-      toast.error('Erro ao salvar!');
+      toast.error(`Errro ao editar`);
     } finally {
+      setSelectedSkill({} as ITool);
+      setFile(undefined);
       setLoading(false);
     }
   }
 
-  async function handleSaveNewtool(event: FormEvent) {
+  async function handleSaveNewtool(data: IToolData) {
     setShowModal(false);
     setLoading(true);
-    event.preventDefault();
-
-    if (!file) {
-      toast.error('Selecione uma imagem');
-      return;
-    }
-
-    const { name, description, url } = tool;
-
-    if (name.trim() === '' || description.trim() === '' || url.trim() === '') {
-      toast.error('Campos não podem ser vazios!');
-      return;
-    }
 
     try {
+      if (!file) {
+        toast.error('Selecione uma imagem');
+        return;
+      }
+
+      const { name, description, url } = data;
+
+      if (name.trim() === '' || description.trim() === '' || url.trim() === '') {
+        toast.error('Campos não podem ser vazios!');
+        return;
+      }
+
       const { key } = await database.ref('tools').push({
         name,
         description,
@@ -151,12 +162,11 @@ export default function Tools() {
       };
 
       await database.ref(`tools/${key}`).update({ image: imageUrl });
-
-      clearData();
       toast.success(`${name} salvo com sucesso!`);
     } catch {
       toast.error('Erro ao salvar!');
     } finally {
+      setFile(undefined);
       setLoading(false);
     }
   }
@@ -175,17 +185,12 @@ export default function Tools() {
       url: URL.createObjectURL(selectedVideo[0]),
     };
 
-    setTool({ ...tool, image: selectedVideoPreview });
+    setSelectedSkill({ ...selectedSkill, image: selectedVideoPreview });
   }
 
   function handleRemoveFile() {
     setFile(undefined);
-    setTool({ ...tool, image: undefined });
-  }
-
-  function clearData() {
-    setTool({} as ITool);
-    setFile(undefined);
+    setSelectedSkill({ ...selectedSkill, image: undefined });
   }
 
   if (loading || !loadedAuth) {
@@ -217,7 +222,7 @@ export default function Tools() {
                 <button onClick={() => handleOpenModalEdit(tool)} type="button">
                   Editar
                 </button>
-                <button onClick={() => handleRemoveTool(tool.id)} type="button">
+                <button onClick={() => handleRemoveSkill(tool.id)} type="button">
                   Remover
                 </button>
               </footer>
@@ -227,37 +232,26 @@ export default function Tools() {
       </Container>
 
       {showModal && (
-        <Modal closeModal={handleCloseModal} onSubmit={tool.id ? handleEdit : handleSaveNewtool}>
+        <Modal
+          closeModal={handleCloseModal}
+          onSubmit={selectedSkill.id ? handleSubmit(handleEdit) : handleSubmit(handleSaveNewtool)}
+        >
           <InputFile title="Selecione a imagem" onChange={handleSelectFile}>
-            {tool.image && (
+            {selectedSkill.image && (
               <div className="image-container">
                 <div className="icon-container">
                   <FiX color="#fff" onClick={handleRemoveFile} />
                 </div>
-                <img src={tool.image.url} alt={tool.image.name} />
+                <img src={selectedSkill.image.url} alt={selectedSkill.image.name} />
               </div>
             )}
           </InputFile>
 
-          <Input
-            type="text"
-            placeholder="Nome"
-            value={tool.name}
-            onChange={(event) => setTool({ ...tool, name: event.target.value })}
-          />
+          <Input type="text" placeholder="Nome" {...register('name')} />
 
-          <Input
-            type="text"
-            placeholder="Url"
-            value={tool.url}
-            onChange={(event) => setTool({ ...tool, url: event.target.value })}
-          />
+          <Input type="text" placeholder="Url" {...register('url')} />
 
-          <Textarea
-            placeholder="Descrição"
-            value={tool.description}
-            onChange={(event) => setTool({ ...tool, description: event.target.value })}
-          />
+          <Textarea placeholder="Descrição" {...register('description')} />
 
           <Button type="submit" style={{ alignSelf: 'center' }}>
             Salvar

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Routes from 'next/router';
 import { FiX } from 'react-icons/fi';
@@ -25,18 +25,23 @@ import {
 } from '../../../types/lmiguelm/project';
 import { Loading } from '../../components/Loading';
 import { InputFile } from '../../components/InputFile';
+import { useForm } from 'react-hook-form';
+
+type IProjectData = {
+  title: string;
+  resume: string;
+  about: string;
+  knowledge: string;
+  url: string;
+  githubUrl: string;
+};
 
 export default function Projects() {
   const { handleSetHeader, user, loadedAuth } = useAuth();
   const { colors } = useTheme();
+  const { register, handleSubmit } = useForm();
 
   const [id, setId] = useState<string | undefined>(undefined);
-  const [title, setTitle] = useState<string>('');
-  const [resume, setResume] = useState<string>('');
-  const [about, setAbout] = useState<string>('');
-  const [knowledge, setKnowledge] = useState<string>('');
-  const [url, setUrl] = useState<string>('');
-  const [githubUrl, setGithubUrl] = useState<string>('');
   const [thumbnail, setThumbnail] = useState<IThumbnail>();
   const [video, setVideo] = useState<IVideo>();
   const [images, setImages] = useState<ISlides[]>([]);
@@ -97,12 +102,6 @@ export default function Projects() {
 
   function handleOpenModalEdit(project: IProject) {
     setId(project.id);
-    setTitle(project.title);
-    setResume(project.resume);
-    setAbout(project.about);
-    setKnowledge(project.knowledge);
-    setUrl(project.url);
-    setGithubUrl(project.githubUrl);
     setImages(project.images);
     setVideo(project.video);
     setThumbnail(project.thumbnail);
@@ -180,12 +179,6 @@ export default function Projects() {
   }
 
   function clearData() {
-    setTitle('');
-    setResume('');
-    setAbout('');
-    setKnowledge('');
-    setUrl('');
-    setGithubUrl('');
     setThumbnail(undefined);
     setVideo(undefined);
     setImages([]);
@@ -194,10 +187,11 @@ export default function Projects() {
     setImagesFile([]);
   }
 
-  async function handleSaveNewProject(event: FormEvent) {
-    setLoading(true);
+  async function handleSaveNewProject(data: IProjectData) {
     setShowModal(false);
-    event.preventDefault();
+    setLoading(true);
+
+    const { title, resume, githubUrl, about, knowledge, url } = data;
 
     if (title.trim() === '' || resume.trim() === '' || githubUrl.trim() === '') {
       setLoading(false);
@@ -260,16 +254,9 @@ export default function Projects() {
     }
   }
 
-  async function handleEditProject(event: FormEvent) {
-    setLoading(true);
+  async function handleEditProject(data: IProjectData) {
     setShowModal(false);
-    event.preventDefault();
-
-    if (title.trim() === '' || resume.trim() === '' || githubUrl.trim() === '') {
-      setLoading(false);
-      toast.error('Campos obrigatórios não informados');
-      return;
-    }
+    setLoading(true);
 
     let thumbnailUrl: IThumbnail = undefined;
     let videoUrl: IVideo = undefined;
@@ -307,14 +294,26 @@ export default function Projects() {
         );
       }
 
-      await database.ref(`projects/${id}`).update({
-        title,
-        resume,
-        about,
-        githubUrl,
-        knowledge,
-        url,
-      } as IProject);
+      if (!data.title) {
+        delete data.title;
+      }
+      if (!data.resume) {
+        delete data.resume;
+      }
+      if (!data.about) {
+        delete data.about;
+      }
+      if (!data.githubUrl) {
+        delete data.githubUrl;
+      }
+      if (!data.knowledge) {
+        delete data.knowledge;
+      }
+      if (!data.url) {
+        delete data.url;
+      }
+
+      await database.ref(`projects/${id}`).update(data);
 
       if (thumbnailUrl) {
         await database.ref(`projects/${id}`).update({
@@ -334,11 +333,11 @@ export default function Projects() {
         } as IProject);
       }
 
-      toast.success(`${title} salvo com sucesso!`);
-      clearData();
+      toast.success(`Projeto editado com sucesso!`);
     } catch {
       toast.error('Erro ao salvar!');
     } finally {
+      clearData();
       setLoading(false);
     }
   }
@@ -392,46 +391,19 @@ export default function Projects() {
       {showModal && (
         <Modal
           closeModal={handleCloseModal}
-          onSubmit={id ? handleEditProject : handleSaveNewProject}
+          onSubmit={id ? handleSubmit(handleEditProject) : handleSubmit(handleSaveNewProject)}
         >
-          <Input
-            type="text"
-            placeholder="Título"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
+          <Input type="text" placeholder="Título" {...register('title')} />
 
-          <Textarea
-            placeholder="Resumo"
-            value={resume}
-            onChange={(event) => setResume(event.target.value)}
-          />
+          <Textarea placeholder="Resumo" {...register('resume')} />
 
-          <Textarea
-            placeholder="Sobre"
-            value={about}
-            onChange={(event) => setAbout(event.target.value)}
-          />
+          <Textarea placeholder="Sobre" {...register('about')} />
 
-          <Textarea
-            placeholder="Conhecimentos"
-            value={knowledge}
-            onChange={(event) => setKnowledge(event.target.value)}
-          />
+          <Textarea placeholder="Conhecimentos" {...register('knowledge')} />
 
-          <Input
-            type="text"
-            placeholder="Link"
-            value={url}
-            onChange={(event) => setUrl(event.target.value)}
-          />
+          <Input type="text" placeholder="Link" {...register('url')} />
 
-          <Input
-            type="text"
-            placeholder="Link no github"
-            value={githubUrl}
-            onChange={(event) => setGithubUrl(event.target.value)}
-          />
+          <Input type="text" placeholder="Link no github" {...register('githubUrl')} />
 
           <InputFile title="Selecione a thumbnail" onChange={handleSelectImageThumbnail}>
             {thumbnail && (

@@ -19,13 +19,22 @@ import { useAuth } from '../../hooks/useAuth';
 import { IImage, ISkill, TypeFirebaseSkills } from '../../../types/lmiguelm/skills';
 import { Loading } from '../../components/Loading';
 import { InputFile } from '../../components/InputFile';
+import { useForm } from 'react-hook-form';
+
+type ISkillData = {
+  name: string;
+  description: string;
+  url: string;
+};
 
 export default function Skills() {
   const { handleSetHeader, user, loadedAuth } = useAuth();
   const { colors } = useTheme();
+  const { register, handleSubmit } = useForm();
 
   const [skills, setSkills] = useState<ISkill[]>([]);
-  const [skill, setSkill] = useState<ISkill>({} as ISkill);
+  const [selectedSkill, setSelectedSkill] = useState<ISkill>({} as ISkill);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [file, setFile] = useState<File>();
 
@@ -66,13 +75,12 @@ export default function Skills() {
   }, []);
 
   function handleOpenModalEdit(skill: ISkill) {
-    setSkill(skill);
+    setSelectedSkill(skill);
     setShowModal(true);
   }
 
   const handleCloseModal = useCallback(() => {
     setShowModal(false);
-    clearData();
   }, []);
 
   async function handleRemoveSkill(id: string) {
@@ -83,18 +91,9 @@ export default function Skills() {
     setLoading(false);
   }
 
-  async function handleEdit(event: FormEvent) {
+  async function handleEdit(data: ISkillData) {
     setShowModal(false);
     setLoading(true);
-    event.preventDefault();
-
-    const { name, description, url, id } = skill;
-
-    if (name.trim() === '' || description.trim() === '' || url.trim() === '') {
-      toast.error('Campos não podem ser vazios!');
-      setLoading(false);
-      return;
-    }
 
     try {
       if (file) {
@@ -105,37 +104,50 @@ export default function Skills() {
           name: file.name,
         };
 
-        await database.ref(`/skills/${id}`).update({ image: imageUrl });
+        await database.ref(`/skills/${selectedSkill.id}`).update({ image: imageUrl });
       }
 
-      await database.ref(`/skills/${id}`).update(skill);
-      toast.success(`${name} editado com sucesso!`);
-      clearData();
+      if (!data.name) {
+        delete data.name;
+      }
+      if (!data.url) {
+        delete data.url;
+      }
+      if (!data.description) {
+        delete data.description;
+      }
+
+      if (data.url || data.name || data.description) {
+        await database.ref(`/skills/${selectedSkill.id}`).update(data);
+      }
+
+      toast.success(`Skill editado com sucesso!`);
     } catch {
-      toast.success(`Errro ao editar`);
+      toast.error(`Errro ao editar`);
     } finally {
+      setSelectedSkill({} as ISkill);
+      setFile(undefined);
       setLoading(false);
     }
   }
 
-  async function handleSaveNewskill(event: FormEvent) {
+  async function handleSaveNewskill(data: ISkillData) {
     setShowModal(false);
-    event.preventDefault();
     setLoading(true);
 
-    if (!file) {
-      toast.error('Selecione uma imagem');
-      return;
-    }
-
-    const { name, description, url } = skill;
-
-    if (name.trim() === '' || description.trim() === '' || url.trim() === '') {
-      toast.error('Campos não podem ser vazios!');
-      return;
-    }
-
     try {
+      if (!file) {
+        toast.error('Selecione uma imagem');
+        return;
+      }
+
+      const { name, description, url } = data;
+
+      if (name.trim() === '' || description.trim() === '' || url.trim() === '') {
+        toast.error('Campos não podem ser vazios!');
+        return;
+      }
+
       const { key } = await database.ref('skills').push({
         name,
         description,
@@ -151,10 +163,10 @@ export default function Skills() {
 
       await database.ref(`skills/${key}`).update({ image: imageUrl });
       toast.success(`${name} salvo com sucesso!`);
-      clearData();
     } catch {
       toast.error('Erro ao salvar!');
     } finally {
+      setFile(undefined);
       setLoading(false);
     }
   }
@@ -173,17 +185,12 @@ export default function Skills() {
       url: URL.createObjectURL(selectedVideo[0]),
     };
 
-    setSkill({ ...skill, image: selectedVideoPreview });
+    setSelectedSkill({ ...selectedSkill, image: selectedVideoPreview });
   }
 
   function handleRemoveFile() {
     setFile(undefined);
-    setSkill({ ...skill, image: undefined });
-  }
-
-  function clearData() {
-    setSkill({} as ISkill);
-    setFile(undefined);
+    setSelectedSkill({ ...selectedSkill, image: undefined });
   }
 
   if (loading || !loadedAuth) {
@@ -225,37 +232,26 @@ export default function Skills() {
       </Container>
 
       {showModal && (
-        <Modal closeModal={handleCloseModal} onSubmit={skill.id ? handleEdit : handleSaveNewskill}>
+        <Modal
+          closeModal={handleCloseModal}
+          onSubmit={selectedSkill.id ? handleSubmit(handleEdit) : handleSubmit(handleSaveNewskill)}
+        >
           <InputFile title="Selecione a imagem" onChange={handleSelectFile}>
-            {skill.image && (
+            {selectedSkill.image && (
               <div className="image-container">
                 <div className="icon-container">
                   <FiX color="#fff" onClick={handleRemoveFile} />
                 </div>
-                <img src={skill.image.url} alt={skill.image.name} />
+                <img src={selectedSkill.image.url} alt={selectedSkill.image.name} />
               </div>
             )}
           </InputFile>
 
-          <Input
-            type="text"
-            placeholder="Nome"
-            value={skill.name}
-            onChange={(event) => setSkill({ ...skill, name: event.target.value })}
-          />
+          <Input type="text" placeholder="Nome" {...register('name')} />
 
-          <Input
-            type="text"
-            placeholder="Url"
-            value={skill.url}
-            onChange={(event) => setSkill({ ...skill, url: event.target.value })}
-          />
+          <Input type="text" placeholder="Url" {...register('url')} />
 
-          <Textarea
-            placeholder="Descrição"
-            value={skill.description}
-            onChange={(event) => setSkill({ ...skill, description: event.target.value })}
-          />
+          <Textarea placeholder="Descrição" {...register('description')} />
 
           <Button type="submit" style={{ alignSelf: 'center' }}>
             Salvar

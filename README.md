@@ -23,6 +23,19 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Styled components](https://styled-components.com/)
 - [Framer motion](https://www.framer.com/motion/)
+- [Firebase](https://firebase.google.com/?hl=pt)
+
+<br>
+
+## ⚙ Configuração
+
+- Este projeto utiliza [Firebase](https://firebase.google.com/?hl=pt), então antes de usar configure coloque as configurações de seu projeto:
+  ![lmiguelm](.github/firebase.png)
+
+<br>
+
+- Configure seu email para conseguir logar na área restrita:
+  ![lmiguelm](.github/email.png)
 
 <br>
 
@@ -45,17 +58,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - **_Rodar o site:_**
   `yarn dev || npm run dev`
-
-<br>
-
-- **_Rodar servidor fake para testes:_**
-  `yarn server || npm run server`
-
-<br>
-
-- **_Adicionar arquivo .env com as seguintes configs:_**
-  `APP_URL = http://localhost:3333`
-  `NEXT_PUBLIC_APP_URL = http://localhost:3333`
 
 <br>
 

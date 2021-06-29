@@ -90,26 +90,29 @@ export default function Project({ project }: IProjectProps) {
               <p>{project.resume}</p>
 
               <div className="link-container">
-                {project.url && project.url != 'null' && (
+                {project.url && (
                   <a target="_blank" href={project.url}>
                     Acessar
                   </a>
                 )}
-                <a target="_blank" href={project.githubUrl}>
-                  Ver no GitHub
-                </a>
+
+                {project.githubUrl && (
+                  <a target="_blank" href={project.githubUrl}>
+                    Ver no GitHub
+                  </a>
+                )}
               </div>
             </header>
 
             <main>
-              {project.about && project.about != 'null' && (
+              {project.about && (
                 <div className="about">
                   <h2>Sobre</h2>
                   <p>{project.about}</p>
                 </div>
               )}
 
-              {project.knowledge && project.knowledge != 'null' && (
+              {project.knowledge && (
                 <div className="knowledge">
                   <h2>Conhecimentos</h2>
                   <p>{project.knowledge}</p>

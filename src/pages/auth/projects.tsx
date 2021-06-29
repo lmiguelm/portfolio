@@ -88,7 +88,7 @@ export default function Projects() {
         };
       });
 
-      setProjects(parsedProjects);
+      setProjects(parsedProjects.reverse());
       setLoading(false);
     });
 
@@ -195,21 +195,11 @@ export default function Projects() {
   }
 
   async function handleSaveNewProject(event: FormEvent) {
-    setShowModal(false);
     setLoading(true);
+    setShowModal(false);
     event.preventDefault();
 
-    if (
-      title.trim() === '' ||
-      about.trim() === '' ||
-      resume.trim() === '' ||
-      knowledge.trim() === '' ||
-      githubUrl.trim() === '' ||
-      url.trim() === '' ||
-      !thumbnailFile ||
-      !imagesFile ||
-      !videoFile
-    ) {
+    if (title.trim() === '' || resume.trim() === '' || githubUrl.trim() === '') {
       setLoading(false);
       toast.error('Campos obrigatórios não informados');
       return;
@@ -232,12 +222,18 @@ export default function Projects() {
         name: thumbnail.name,
       };
 
-      const videoRef = storage.ref(`/projects/${project.key}/video/${video.name}`);
-      await videoRef.put(videoFile);
-      const videoUrl = {
-        url: await videoRef.getDownloadURL(),
-        name: thumbnail.name,
-      };
+      if (videoFile) {
+        const videoRef = storage.ref(`/projects/${project.key}/video/${video.name}`);
+        await videoRef.put(videoFile);
+        const videoUrl = {
+          url: await videoRef.getDownloadURL(),
+          name: thumbnail.name,
+        };
+
+        await database.ref(`projects/${project.key}`).update({
+          video: videoUrl,
+        });
+      }
 
       const imagesUrl = await Promise.all(
         imagesFile.map(async (image) => {
@@ -252,7 +248,6 @@ export default function Projects() {
 
       await database.ref(`projects/${project.key}`).update({
         thumbnail: thumbnailUrl,
-        video: videoUrl,
         images: imagesUrl,
       });
 
@@ -266,18 +261,11 @@ export default function Projects() {
   }
 
   async function handleEditProject(event: FormEvent) {
-    setShowModal(false);
     setLoading(true);
+    setShowModal(false);
     event.preventDefault();
 
-    if (
-      title.trim() === '' ||
-      about.trim() === '' ||
-      resume.trim() === '' ||
-      knowledge.trim() === '' ||
-      githubUrl.trim() === '' ||
-      url.trim() === ''
-    ) {
+    if (title.trim() === '' || resume.trim() === '' || githubUrl.trim() === '') {
       setLoading(false);
       toast.error('Campos obrigatórios não informados');
       return;

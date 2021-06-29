@@ -39,7 +39,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
         const { displayName, photoURL, uid, email } = user;
 
         try {
-          if (email !== 'luismiguelfernandes.marcelo@gmail.com') {
+          if (email !== process.env.NEXT_PUBLIC_EMAIL) {
             throw new Error('Acesso negado!');
           }
 
@@ -68,7 +68,7 @@ export function AuthProvider({ children }: IAuthProviderProps) {
     if (user) {
       const { displayName, photoURL, uid, email } = user;
       try {
-        if (email !== 'luismiguelfernandes.marcelo@gmail.com') {
+        if (email !== process.env.NEXT_PUBLIC_EMAIL) {
           throw new Error('Acesso negado!');
         }
 

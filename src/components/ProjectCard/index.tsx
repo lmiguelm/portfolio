@@ -31,14 +31,17 @@ export const ProjectCard = ({ project }: IProjectsProps) => {
 
         <div>
           <article>
-            {project.url != 'null' && (
+            {project.url && (
               <a href={project.url} target="_blank" style={{ marginRight: '2rem' }}>
                 Acessar
               </a>
             )}
-            <a href={project.githubUrl} target="_blank">
-              Ver no github
-            </a>
+
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank">
+                Ver no github
+              </a>
+            )}
           </article>
 
           <Link href={`/projects/${project.id}`}>

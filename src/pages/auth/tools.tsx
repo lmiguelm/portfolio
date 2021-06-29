@@ -84,8 +84,8 @@ export default function Tools() {
   }
 
   async function handleEdit(event: FormEvent) {
-    setShowModal(false);
     setLoading(true);
+    setShowModal(false);
     event.preventDefault();
 
     const { name, description, url, id } = tool;
@@ -120,9 +120,9 @@ export default function Tools() {
   }
 
   async function handleSaveNewtool(event: FormEvent) {
-    event.preventDefault();
-    setLoading(true);
     setShowModal(false);
+    setLoading(true);
+    event.preventDefault();
 
     if (!file) {
       toast.error('Selecione uma imagem');
@@ -188,7 +188,7 @@ export default function Tools() {
     setFile(undefined);
   }
 
-  if (loading || loadedAuth) {
+  if (loading || !loadedAuth) {
     return <Loading />;
   }
 

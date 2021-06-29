@@ -84,9 +84,9 @@ export default function Skills() {
   }
 
   async function handleEdit(event: FormEvent) {
-    event.preventDefault();
-    setLoading(true);
     setShowModal(false);
+    setLoading(true);
+    event.preventDefault();
 
     const { name, description, url, id } = skill;
 
@@ -119,9 +119,9 @@ export default function Skills() {
   }
 
   async function handleSaveNewskill(event: FormEvent) {
+    setShowModal(false);
     event.preventDefault();
     setLoading(true);
-    setShowModal(false);
 
     if (!file) {
       toast.error('Selecione uma imagem');

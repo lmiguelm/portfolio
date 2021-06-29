@@ -1,11 +1,9 @@
-import { GetServerSideProps } from 'next';
 import Router from 'next/router';
 import Head from 'next/head';
 
 import React, { useEffect } from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
-import { api } from '../../services/api';
 
 import { Container, CardContainer } from '../../styles/pages/auth/login';
 
@@ -86,31 +84,3 @@ export default function Login() {
     </>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const token = ctx.req.cookies.access_token;
-  const currentUser = ctx.req.cookies.current_user;
-
-  try {
-    if (!token && !currentUser) {
-      throw new Error();
-    }
-
-    await api.get('/validating/token', {
-      headers: {
-        Authorization: JSON.parse(token),
-      },
-    });
-
-    return {
-      redirect: {
-        destination: '/auth/dashboard',
-        permanent: false,
-      },
-    };
-  } catch (e) {
-    return {
-      props: {},
-    };
-  }
-};

@@ -111,9 +111,20 @@ export default function About({ tools, skills }: IAboutProps) {
             </h1>
             <p>
               Tenho 19 anos, sou de Araraquara, interior do estado de São Paulo. Comecei a programar
-              em 2018, no curso técnico em informática no IFSP, que conclui em dezembro de 2019.
-              Autalmente estou cursando o 3º semestre em Análise e Desenvolvimento de Sistemas na
-              UNIP e sou Analista de Desenolvimento Júnior na Move Mais.
+              em 2018, no curso técnico em informática no{' '}
+              <a target="_blank" href="https://www.arq.ifsp.edu.br">
+                IFSP
+              </a>
+              , que conclui em dezembro de 2019. Autalmente estou cursando o 4º semestre em Análise
+              e Desenvolvimento de Sistemas na{' '}
+              <a target="_blank" href="https://www.unip.br">
+                UNIP
+              </a>{' '}
+              e sou Programador júnior na{' '}
+              <a target="_blank" href="http://www.shx.com.br/site/">
+                SHX
+              </a>
+              .
             </p>
             <p>
               Sou apaixonado por desenvolvimento web, principalmente em tecnologias que utilizam
@@ -121,7 +132,7 @@ export default function About({ tools, skills }: IAboutProps) {
               de novos desafios e conhecimentos, seja em cursos ou em treinamentos.
             </p>
 
-            <a target="_blank" href="/docs/LuisMiguel.pdf">
+            <a className="button-link" target="_blank" href="/docs/LuisMiguel.pdf">
               <Button>Ver currículo</Button>
             </a>
           </InfoContainer>

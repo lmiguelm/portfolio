@@ -81,7 +81,7 @@ export const InfoContainer = styled.div`
     color: ${(props) => (props.theme.title === 'dark' ? props.theme.colors.textSecondary : '#ddd')};
   }
 
-  a {
+  a.button-link {
     margin-top: 3rem;
     margin-right: 20%;
     align-self: center;

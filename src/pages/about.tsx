@@ -27,6 +27,7 @@ import { Button } from '../components/Button';
 import { ScrollButton } from '../components/ScrollButton';
 
 import { database } from '../services/firebase';
+import { getMyAge } from '../utils/birthDate';
 
 type IAboutProps = {
   tools: ITool[];
@@ -110,8 +111,8 @@ export default function About({ tools, skills }: IAboutProps) {
               <span>&lt;</span>Luis Miguel Fernandes Marcelo<span>&gt;</span>
             </h1>
             <p>
-              Tenho 19 anos, sou de Araraquara, interior do estado de São Paulo. Comecei a programar
-              em 2018, no curso técnico em informática no{' '}
+              Tenho {getMyAge()} anos, sou de Araraquara, interior do estado de São Paulo. Comecei a
+              programar em 2018, no curso técnico em informática no{' '}
               <a target="_blank" href="https://www.arq.ifsp.edu.br">
                 IFSP
               </a>

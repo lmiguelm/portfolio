@@ -13,10 +13,9 @@ import { Container, Content, Page } from '../../styles/pages/projects/project';
 import { useElementScroll } from 'framer-motion';
 import { FiChevronLeft } from 'react-icons/fi';
 
-import { useAuth } from '../../hooks/useAuth';
 import { ScrollButtonBack } from '../../styles/global';
 import { database } from '../../services/firebase';
-import { IProject, TypeFirebaseProjects } from '../../../types/lmiguelm/project';
+import { IProject, TypeFirebaseProjects } from '../../../@types/lmiguelm/project';
 
 type IProjectProps = {
   project: IProject;
@@ -28,10 +27,7 @@ export default function Project({ project }: IProjectProps) {
   const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const { scrollYProgress } = useElementScroll(containeRef);
 
-  const { handleSetHeader } = useAuth();
-
   useEffect(() => {
-    handleSetHeader('public');
     scrollYProgress.onChange(setScroll);
 
     return () => scrollYProgress.clearListeners();

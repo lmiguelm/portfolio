@@ -19,10 +19,9 @@ import Typewriter from 'typewriter-effect/dist/core';
 
 import { Card } from '../components/Card';
 
-import { ITool, TypeFirebaseTools } from '../../types/lmiguelm/tools';
-import { ISkill, TypeFirebaseSkills } from '../../types/lmiguelm/skills';
+import { ITool, TypeFirebaseTools } from '../../@types/lmiguelm/tools';
+import { ISkill, TypeFirebaseSkills } from '../../@types/lmiguelm/skills';
 
-import { useAuth } from '../hooks/useAuth';
 import { Button } from '../components/Button';
 import { ScrollButton } from '../components/ScrollButton';
 
@@ -40,12 +39,8 @@ export default function About({ tools, skills }: IAboutProps) {
   const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const { scrollYProgress } = useElementScroll(containeRef);
 
-  const { handleSetHeader } = useAuth();
-
   useEffect(() => {
-    handleSetHeader('public');
     scrollYProgress.onChange(setScroll);
-
     return () => scrollYProgress.clearListeners();
   }, []);
 

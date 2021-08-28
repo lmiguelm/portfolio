@@ -11,7 +11,7 @@ import { useAuth } from '../../../hooks/useAuth';
 export function AuthHeader() {
   const currentDate = format(new Date(), 'EEEE, d MMMM uuuu', { locale: ptBR });
 
-  const { signout } = useAuth();
+  const { signout } = useAuth({});
 
   async function handleSignout() {
     try {

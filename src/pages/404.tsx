@@ -11,7 +11,7 @@ import animation from '../../public/lottie/16294-404-space-error.json';
 import { useAuth } from '../hooks/useAuth';
 
 export default function Custom404() {
-  const { handleSetHeader } = useAuth();
+  const { handleSetHeader } = useAuth({});
 
   useEffect(() => {
     handleSetHeader('none');

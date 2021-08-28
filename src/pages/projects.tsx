@@ -9,10 +9,8 @@ import { FiChevronDown } from 'react-icons/fi';
 
 import { Container, FirstSection, SecondSection } from '../styles/pages/projects';
 
-import { useAuth } from '../hooks/useAuth';
-
 import { ScrollButton } from '../components/ScrollButton';
-import { IProject, TypeFirebaseProjects } from '../../types/lmiguelm/project';
+import { IProject, TypeFirebaseProjects } from '../../@types/lmiguelm/project';
 import { database } from '../services/firebase';
 
 type IProjectsProps = {
@@ -20,15 +18,12 @@ type IProjectsProps = {
 };
 
 export default function Projects({ projects }: IProjectsProps) {
-  const { handleSetHeader } = useAuth();
-
   const [scroll, setScroll] = useState(0);
 
   const containeRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const { scrollYProgress } = useElementScroll(containeRef);
 
   useEffect(() => {
-    handleSetHeader('public');
     scrollYProgress.onChange(setScroll);
 
     return () => scrollYProgress.clearListeners();

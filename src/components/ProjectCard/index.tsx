@@ -5,7 +5,7 @@ import { Container } from './styles';
 
 import { FiChevronRight } from 'react-icons/fi';
 
-import { IProject } from '../../../types/lmiguelm/project';
+import { IProject } from '../../../@types/lmiguelm/project';
 
 type IProjectsProps = {
   project: IProject;

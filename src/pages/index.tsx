@@ -29,7 +29,6 @@ import { motion } from 'framer-motion';
 
 import { useTheme } from 'styled-components';
 import { loadTheme } from '../utils/theme';
-import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 
 const container = {
@@ -61,8 +60,6 @@ export default function Home({ toggleTheme }: IHomeProps) {
 
   const currentDate = format(new Date(), 'EEEEEE, d MMMM', { locale: ptBR });
 
-  const { handleSetHeader } = useAuth();
-
   const [direction, setDirection] = useState<number>(1);
   const [loadedTheme, setLoadedTheme] = useState(false);
   const [views, setViews] = useState<number>(undefined);
@@ -84,8 +81,6 @@ export default function Home({ toggleTheme }: IHomeProps) {
   }, []);
 
   useEffect(() => {
-    handleSetHeader('public');
-
     const typing = document.getElementById('typing');
 
     const typewriter = new Typewriter(typing, {

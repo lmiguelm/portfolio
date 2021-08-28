@@ -14,12 +14,10 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useTheme } from 'styled-components';
 
 export default function Login() {
-  const { handleSetHeader, signinWithGoogle, user, loadedAuth } = useAuth();
+  const { signinWithGoogle, user, loadedAuth } = useAuth({ header: 'none' });
   const { colors } = useTheme();
 
   useEffect(() => {
-    handleSetHeader('none');
-
     if (user) {
       Router.push('/auth/dashboard');
     }

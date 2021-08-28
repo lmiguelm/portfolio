@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 
 import UseAnimations from 'react-useanimations';
@@ -19,7 +18,6 @@ import {
 import Lottie from 'react-lottie';
 import animation from '../../public/lottie/37147-contact-us.json';
 import { useTheme } from 'styled-components';
-import { useAuth } from '../hooks/useAuth';
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -43,11 +41,6 @@ const item = {
 
 export default function Contact() {
   const { colors } = useTheme();
-  const { handleSetHeader } = useAuth();
-
-  useEffect(() => {
-    handleSetHeader('public');
-  }, []);
 
   function openLink(link: string) {
     window.open(link);

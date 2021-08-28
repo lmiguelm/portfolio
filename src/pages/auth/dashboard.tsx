@@ -13,17 +13,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { Loading } from '../../components/Loading';
 
 export default function Dashboard() {
-  const { handleSetHeader, loadedAuth, user } = useAuth();
-
-  useEffect(() => {
-    handleSetHeader('private');
-  }, []);
-
-  useEffect(() => {
-    if (!user && loadedAuth) {
-      Routes.push('/auth/login');
-    }
-  }, [user, loadedAuth]);
+  const { loadedAuth } = useAuth({ header: 'private', route: 'private' });
 
   useEffect(() => {
     const projects = document.getElementById('projects');

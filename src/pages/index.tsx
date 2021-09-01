@@ -1,63 +1,30 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 
-import UseAnimations from 'react-useanimations';
-
-import Lottie from 'react-lottie';
-import animation from '../../public/lottie/59446-black-guy-animation.json';
-import toggleThemeAnimation from '../../public/lottie/toggleTheme.json';
-
 import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 
-import github from 'react-useanimations/lib/github';
-import facebook from 'react-useanimations/lib/facebook';
-import instagram from 'react-useanimations/lib/instagram';
-import linkedin from 'react-useanimations/lib/linkedin';
-
-import Typewriter from 'typewriter-effect/dist/core';
-
 import {
   Container,
-  InfoContainer,
-  AnimationContainer,
-  IconsContainer,
-  Icon,
+  Views,
+  ToggleTheme,
+  ToggleThemeContainer,
+  Animation,
+  Content,
+  AnimationWrapper,
+  Footer,
 } from '../styles/pages/home';
 
-import { motion } from 'framer-motion';
-
-import { useTheme } from 'styled-components';
 import { loadTheme } from '../utils/theme';
 import { database } from '../services/firebase';
 
-const container = {
-  hidden: { opacity: 1, scale: 0 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const item = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-  },
-};
+import { Greeting } from '../components/Greeting';
 
 type IHomeProps = {
   toggleTheme: () => void;
 };
 
 export default function Home({ toggleTheme }: IHomeProps) {
-  const { colors } = useTheme();
-
   const currentDate = format(new Date(), 'EEEEEE, d MMMM', { locale: ptBR });
 
   const [direction, setDirection] = useState<number>(1);
@@ -80,141 +47,38 @@ export default function Home({ toggleTheme }: IHomeProps) {
     setLoadedTheme(true);
   }, []);
 
-  useEffect(() => {
-    const typing = document.getElementById('typing');
-
-    const typewriter = new Typewriter(typing, {
-      loop: true,
-    });
-
-    typewriter
-      .typeString('Web.')
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString('Next JS.')
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString('React JS.')
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString('React Native.')
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString('Vue JS.')
-      .pauseFor(1000)
-      .deleteAll()
-      .typeString('Node JS.')
-      .pauseFor(1000)
-      .deleteAll()
-      .start();
-  }, []);
-
-  function openLink(link: string) {
-    window.open(link);
-  }
-
   function handleToggleTheme() {
     setDirection(direction > 0 ? -1 : 1);
     toggleTheme();
   }
 
   return (
-    <>
-      <Container initial="hidden" animate="visible">
-        <Head>
-          <title>&lt; Home /&gt;</title>
-        </Head>
+    <Container initial="hidden" animate="visible">
+      <Head>
+        <title>&lt; Home /&gt;</title>
+      </Head>
 
-        <InfoContainer>
-          <h2>Olá,</h2>
-          <h1>
-            Eu sou <span>&lt;Luis Miguel&gt;</span>
-          </h1>
-          <h2>
-            Desenvolvedor <span id="typing"></span>
-          </h2>
+      <Content>
+        <Greeting />
 
-          <IconsContainer variants={container}>
-            <Icon
-              variants={item}
-              onClick={() => openLink('https://www.facebook.com/luismiguel.marcelo.1/')}
-            >
-              <UseAnimations animation={facebook} size={40} strokeColor={colors.textPrimary} />
-            </Icon>
+        <AnimationWrapper>
+          <Animation />
+        </AnimationWrapper>
+      </Content>
 
-            <Icon variants={item} onClick={() => openLink('https://www.github.com/lmiguelm')}>
-              <UseAnimations animation={github} size={40} strokeColor={colors.textPrimary} />
-            </Icon>
-
-            <Icon variants={item} onClick={() => openLink('https://www.instagram.com/lmiguel10/')}>
-              <UseAnimations animation={instagram} size={40} strokeColor={colors.textPrimary} />
-            </Icon>
-
-            <Icon variants={item} onClick={() => openLink('https://www.linkedin.com/in/lmiguelm/')}>
-              <UseAnimations animation={linkedin} size={40} strokeColor={colors.textPrimary} />
-            </Icon>
-          </IconsContainer>
-        </InfoContainer>
-
-        <AnimationContainer>
-          <Lottie
-            options={{
-              animationData: animation,
-              autoplay: true,
-              loop: true,
-            }}
-            style={{
-              userSelect: 'none',
-            }}
-          />
-        </AnimationContainer>
-
+      <Footer>
         {views && (
-          <motion.span
-            className="view"
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            transition={{
-              duration: 1,
-            }}
-          >
+          <Views>
             {currentDate} - <strong>{Number(views).toLocaleString('pt-br')}</strong> visitas
-          </motion.span>
+          </Views>
         )}
 
         {loadedTheme && (
-          <span
-            style={{
-              cursor: 'pointer',
-              position: 'absolute',
-              bottom: 0,
-              margin: '2.5rem',
-              userSelect: 'none',
-              maxHeight: '5rem',
-              maxWidth: '5rem',
-            }}
-            onClick={handleToggleTheme}
-          >
-            <Lottie
-              options={{
-                animationData: toggleThemeAnimation,
-                autoplay: false,
-                loop: false,
-              }}
-              speed={1}
-              direction={direction}
-              style={{
-                userSelect: 'none',
-                pointerEvents: 'none',
-              }}
-            />
-          </span>
+          <ToggleThemeContainer onClick={handleToggleTheme}>
+            <ToggleTheme direction={direction} />
+          </ToggleThemeContainer>
         )}
-      </Container>
-    </>
+      </Footer>
+    </Container>
   );
 }

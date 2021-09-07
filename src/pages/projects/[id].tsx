@@ -42,7 +42,7 @@ export default function Project({ project }: IProjectProps) {
   }
 
   function goBack() {
-    Router.push('/projects');
+    Router.push('/#projects');
   }
 
   return (
@@ -51,7 +51,18 @@ export default function Project({ project }: IProjectProps) {
         <title>&lt; {project.title} /&gt;</title>
       </Head>
 
-      <Container ref={containeRef}>
+      <Container
+        ref={containeRef}
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        exit={{
+          opacity: 0,
+        }}
+      >
         <Page>
           {project.images.length == 1 ? (
             <Image
@@ -59,11 +70,19 @@ export default function Project({ project }: IProjectProps) {
               alt={project.images[0].name}
               width={1920}
               height={1080}
+              draggable={false}
             />
           ) : (
             <Slide>
               {project.images.sort().map((image) => (
-                <Image key={image.id} src={image.url} alt={image.name} width={1920} height={1080} />
+                <Image
+                  draggable={false}
+                  key={image.id}
+                  src={image.url}
+                  alt={image.name}
+                  width={1920}
+                  height={1080}
+                />
               ))}
             </Slide>
           )}

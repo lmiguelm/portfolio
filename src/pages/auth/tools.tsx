@@ -15,6 +15,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { ITool } from '../../../@types/lmiguelm/tools';
 import { Loading } from '../../components/Loading';
 import { useTools } from '../../hooks/useTools';
+import { AuthHeader } from '../../components/AuthHeader';
 
 export type IToolData = {
   id?: string;
@@ -121,6 +122,8 @@ export default function Tools() {
       <Head>
         <title>&lt; Dashboard /&gt;</title>
       </Head>
+
+      <AuthHeader />
 
       <Container>
         <Button onClick={() => handleOpenModal({} as ITool)}>Adicionar</Button>

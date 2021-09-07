@@ -7,7 +7,7 @@ import animation from '../../../public/lottie/59446-black-guy-animation.json';
 
 export const Container = styled(motion.div)`
   background: ${(props) => props.theme.colors.backgroundPrimary};
-  height: calc(100vh - 5rem);
+  height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -17,6 +17,15 @@ export const Container = styled(motion.div)`
   overflow: hidden;
 
   padding: 0 5rem;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    content: '';
+    width: 100%;
+    height: 0.7px;
+    background-color: ${(props) => props.theme.colors.border};
+  }
 `;
 
 export const Content = styled.main`

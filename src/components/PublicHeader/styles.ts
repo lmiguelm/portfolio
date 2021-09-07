@@ -5,7 +5,13 @@ export const Container = styled(motion.nav)`
   height: 5rem;
   width: 100%;
 
-  background: ${(props) => props.theme.colors.backgroundPrimary};
+  z-index: 999999;
+
+  position: fixed;
+
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  border-bottom: 0.75px solid ${(props) => props.theme.colors.border};
+
   color: ${(props) => props.theme.colors.textPrimary};
 
   display: flex;
@@ -30,17 +36,18 @@ export const Container = styled(motion.nav)`
   user-select: none;
 `;
 
-export const Link = styled(motion.label)`
+export const Link = styled(motion.a)`
+  color: ${(props) => props.theme.colors.textPrimary};
+
   cursor: pointer;
   font-size: 1.25rem;
 
-  transition: 0.4s;
+  transition: filter 0.4s;
 
-  &.active,
+  text-decoration: none;
+
   &:hover {
-    color: ${(props) => props.theme.colors.textSecondary};
-    font-size: 1.5rem;
-    border-bottom: 2px solid ${(props) => props.theme.colors.colorPrimary};
-    padding: 0.5rem;
+    filter: brightness(0.8);
+    color: ${(props) => props.theme.colors.colorSecondary};
   }
 `;

@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: Poppins, sans-serif;
+    scroll-behavior: smooth;
   }
 
   span, p, h2, h3, h4, h1 , a, strong {

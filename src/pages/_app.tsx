@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 
-import { Header } from '../components/Header';
-
 import { AuthProvider } from '../contexts/AuthContext';
 import { ThemeProvider } from 'styled-components';
 
@@ -30,7 +28,6 @@ export default function App({ Component, pageProps }) {
     <AuthProvider>
       <ThemeProvider theme={applicationTheme === 'dark' ? Dark : Light}>
         <GlobalStyle />
-        <Header />
         <Component toggleTheme={toggleTheme} {...pageProps} />
       </ThemeProvider>
     </AuthProvider>

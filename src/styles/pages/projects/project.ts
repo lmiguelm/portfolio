@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const Container = styled(motion.div)`
   background: ${(props) => props.theme.colors.backgroundPrimary};
-  height: calc(100vh - 5rem);
+  height: 100vh;
   overflow-y: scroll;
 
   display: flex;

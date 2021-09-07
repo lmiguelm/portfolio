@@ -6,7 +6,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { Container } from './styles';
 
 import { FiLogOut } from 'react-icons/fi';
-import { useAuth } from '../../../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 export function AuthHeader() {
   const currentDate = format(new Date(), 'EEEE, d MMMM uuuu', { locale: ptBR });

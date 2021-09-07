@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const Container = styled(motion.div)`
-  height: calc(100vh - 5rem);
-  background: ${(props) => props.theme.colors.backgroundPrimary};
+  height: 100vh;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
 
   display: flex;
   align-items: center;
@@ -17,6 +17,16 @@ export const AnimationContainer = styled(motion.div)`
   width: 35rem;
   height: 35rem;
 
+  opacity: 0;
+  transform: translateY(50%);
+
+  transition: transform 0.6s;
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   @media (max-width: 720px) {
     display: none;
   }
@@ -26,6 +36,16 @@ export const Section = styled(motion.section)`
   flex: 1;
   display: flex;
   flex-direction: column;
+
+  opacity: 0;
+  transform: translateY(50%);
+
+  transition: transform 0.6s;
+
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   h1 {
     font-size: 4rem;

@@ -11,6 +11,7 @@ import Typewriter from 'typewriter-effect/dist/core';
 
 import { useAuth } from '../../hooks/useAuth';
 import { Loading } from '../../components/Loading';
+import { AuthHeader } from '../../components/AuthHeader';
 
 export default function Dashboard() {
   const { loadedAuth } = useAuth({ header: 'private', route: 'private' });
@@ -62,6 +63,9 @@ export default function Dashboard() {
       <Head>
         <title>&lt; Dashboard /&gt;</title>
       </Head>
+
+      <AuthHeader />
+
       <Container>
         <Link href="/auth/projects">
           <div>

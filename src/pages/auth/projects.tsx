@@ -14,6 +14,7 @@ import { IProject, ISlides, IThumbnail, IVideo } from '../../../@types/lmiguelm/
 import { Loading } from '../../components/Loading';
 import { useProjects } from '../../hooks/useProjects';
 import { IProjectFile, ProjectsModal } from '../../components/ProjectsModal';
+import { AuthHeader } from '../../components/AuthHeader';
 
 export type IProjectData = {
   id?: string;
@@ -193,6 +194,8 @@ export default function Projects() {
       <Head>
         <title>&lt; Dashboard /&gt;</title>
       </Head>
+
+      <AuthHeader />
 
       <Container>
         <Button onClick={() => handleOpenModal({} as IProject)}>Adicionar</Button>

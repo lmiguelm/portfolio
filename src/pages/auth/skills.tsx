@@ -15,6 +15,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { ISkill } from '../../../@types/lmiguelm/skills';
 import { Loading } from '../../components/Loading';
 import { useSkills } from '../../hooks/useSkills';
+import { AuthHeader } from '../../components/AuthHeader';
 
 export type ISkillData = {
   id?: string;
@@ -121,6 +122,8 @@ export default function Skills() {
       <Head>
         <title>&lt; Dashboard /&gt;</title>
       </Head>
+
+      <AuthHeader />
 
       <Container>
         <Button onClick={() => handleOpenModal({} as ISkill)}>Adicionar</Button>

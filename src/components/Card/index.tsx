@@ -1,9 +1,4 @@
-import { useState } from 'react';
-
-import { Container, Modal } from './styles';
-import { Blur } from '../../styles/global';
-
-import { FiX } from 'react-icons/fi';
+import { Container } from './styles';
 
 type IData = {
   id: string;
@@ -21,63 +16,13 @@ type ICardProps = {
 };
 
 export const Card = ({ data }: ICardProps) => {
-  const [open, setOpen] = useState(false);
+  function handleOpenUrl() {
+    window.open(data.url);
+  }
 
   return (
-    <>
-      <Container
-        initial={{
-          opacity: 0,
-          scale: 0,
-        }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-        }}
-        transition={{
-          duration: 0.2,
-        }}
-        whileHover={{ scale: 1.2 }}
-        onClick={() => setOpen(true)}
-      >
-        <img src={data.image.url} alt={data.image.name} />
-      </Container>
-
-      {open && (
-        <>
-          <Modal
-            initial={{
-              opacity: 0,
-              scale: 0,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              duration: 0.4,
-            }}
-          >
-            <FiX size={30} color="#fff" onClick={() => setOpen(false)} />
-
-            <div>
-              <div>
-                <img src={data.image.url} alt={data.image.name} />
-              </div>
-
-              <h2>{data.name}</h2>
-
-              <p>{data.description}</p>
-
-              <a target="_blank" href={data.url}>
-                saiba mais
-              </a>
-            </div>
-          </Modal>
-
-          <Blur />
-        </>
-      )}
-    </>
+    <Container data-tip="hello world" onClick={handleOpenUrl} aria-label={data.name}>
+      <img src={data.image.url} alt={data.image.name} draggable="false" />
+    </Container>
   );
 };

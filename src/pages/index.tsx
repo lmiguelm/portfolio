@@ -1,84 +1,112 @@
-import { useEffect, useState } from 'react';
-import Head from 'next/head';
+import React, { useEffect } from 'react';
+import { GetStaticProps } from 'next';
+import { useTransform, useViewportScroll } from 'framer-motion';
 
-import format from 'date-fns/format';
-import ptBR from 'date-fns/locale/pt-BR';
-
-import {
-  Container,
-  Views,
-  ToggleTheme,
-  ToggleThemeContainer,
-  Animation,
-  Content,
-  AnimationWrapper,
-  Footer,
-} from '../styles/pages/home';
-
-import { loadTheme } from '../utils/theme';
 import { database } from '../services/firebase';
 
-import { Greeting } from '../components/Greeting';
+import { IProject, TypeFirebaseProjects } from '../../@types/lmiguelm/project';
+import { ISkill, TypeFirebaseSkills } from '../../@types/lmiguelm/skills';
+import { ITool, TypeFirebaseTools } from '../../@types/lmiguelm/tools';
 
-type IHomeProps = {
+import { PublicHeader } from '../components/PublicHeader';
+
+import { About } from '../screens/About';
+import { Contact } from '../screens/Contact';
+import { Landing } from '../screens/Landing';
+import { Projects } from '../screens/Projects';
+
+import { Container, Section, ScrollButton } from '../styles/pages/landing';
+import { FiChevronUp } from 'react-icons/fi';
+import Head from 'next/head';
+
+type Props = {
+  skills: ISkill[];
+  tools: ITool[];
+  projects: IProject[];
   toggleTheme: () => void;
 };
 
-export default function Home({ toggleTheme }: IHomeProps) {
-  const currentDate = format(new Date(), 'EEEEEE, d MMMM', { locale: ptBR });
+export default function Home({ projects, skills, tools, toggleTheme }: Props) {
+  const { scrollYProgress } = useViewportScroll();
 
-  const [direction, setDirection] = useState<number>(1);
-  const [loadedTheme, setLoadedTheme] = useState(false);
-  const [views, setViews] = useState<number>(undefined);
+  const opacityHeader = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const opacityButton = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
-  useEffect(() => {
-    async function loadViews() {
-      const oldViews = await database.ref('views').get();
-      const newViews = oldViews.val().number + 1;
-      await database.ref('views').update({ number: newViews });
-      setViews(newViews);
-    }
-    loadViews();
-  }, []);
-
-  useEffect(() => {
-    const theme = loadTheme();
-    setDirection(theme === 'dark' ? 1 : -1);
-    setLoadedTheme(true);
-  }, []);
-
-  function handleToggleTheme() {
-    setDirection(direction > 0 ? -1 : 1);
-    toggleTheme();
+  function handleGoToTop() {
+    window.scrollTo({
+      top: 0,
+    });
   }
 
   return (
-    <Container initial="hidden" animate="visible">
+    <Container>
       <Head>
-        <title>&lt; Home /&gt;</title>
+        <title>&lt; lmiguelm /&gt;</title>
       </Head>
 
-      <Content>
-        <Greeting />
+      <PublicHeader style={{ opacity: opacityHeader }} />
 
-        <AnimationWrapper>
-          <Animation />
-        </AnimationWrapper>
-      </Content>
+      <Section id="landing">
+        <Landing toggleTheme={toggleTheme} />
+      </Section>
 
-      <Footer>
-        {views && (
-          <Views>
-            {currentDate} - <strong>{Number(views).toLocaleString('pt-br')}</strong> visitas
-          </Views>
-        )}
+      <Section id="about">
+        <About skills={skills} tools={tools} />
+      </Section>
 
-        {loadedTheme && (
-          <ToggleThemeContainer onClick={handleToggleTheme}>
-            <ToggleTheme direction={direction} />
-          </ToggleThemeContainer>
-        )}
-      </Footer>
+      <Section id="projects">
+        <Projects projects={projects} />
+      </Section>
+
+      <Section id="contact">
+        <Contact />
+      </Section>
+
+      <ScrollButton style={{ opacity: opacityButton }} onClick={handleGoToTop}>
+        <FiChevronUp color="#fff" size={40} />
+      </ScrollButton>
     </Container>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const skills: TypeFirebaseSkills = await (await database.ref('skills').get()).val();
+  const skillsParsed = Object.entries(skills ?? {}).map(([key, value]) => {
+    return {
+      id: key,
+      ...value,
+    } as ISkill;
+  });
+
+  const tools: TypeFirebaseTools = await (await database.ref('tools').get()).val();
+  const toolsParsed = Object.entries(tools ?? {}).map(([key, value]) => {
+    return {
+      id: key,
+      ...value,
+    } as ITool;
+  });
+
+  const projects: TypeFirebaseProjects = await (await database.ref('projects').get()).val();
+  const projectsParsed = Object.entries(projects ?? {}).map(([key, value]) => {
+    return {
+      id: key,
+      ...value,
+      images: Object.entries(value.images ?? {}).map(([key, value]) => {
+        return {
+          id: key,
+          name: value.name,
+          url: value.url,
+        };
+      }),
+    } as IProject;
+  });
+
+  return {
+    props: {
+      skills: skillsParsed ?? [],
+      tools: toolsParsed ?? [],
+      projects: projectsParsed.reverse() ?? [],
+    },
+    revalidate: 300, // 10 min
+  };
+};

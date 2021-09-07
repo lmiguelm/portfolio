@@ -7,5 +7,6 @@ export const Light = {
     colorSecondary: '#9290c9',
     textPrimary: '#000',
     textSecondary: '#222',
+    border: '#ccc',
   },
 };

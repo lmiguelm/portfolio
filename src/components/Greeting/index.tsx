@@ -61,7 +61,7 @@ export function Greeting() {
       <IconsContainer variants={variants}>
         <AnimatedIcon animation={github} link="https://github.com/lmiguelm" />
         <AnimatedIcon animation={facebook} link="https://www.facebook.com/luismiguel.marcelo.1/" />
-        <AnimatedIcon animation={instagram} link="https://www.instagram.com/lmiguel10/" />
+        <AnimatedIcon animation={instagram} link="https://www.instagram.com/lmiguelm_/" />
         <AnimatedIcon animation={linkedin} link="https://www.linkedin.com/in/lmiguelm/" />
       </IconsContainer>
     </Container>

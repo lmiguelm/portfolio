@@ -2,23 +2,21 @@ import React, { useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Typewriter from 'typewriter-effect/dist/core';
-
 import { ISkill } from '../../../@types/lmiguelm/skills';
 import { ITool } from '../../../@types/lmiguelm/tools';
 import { Button } from '../../components/Button';
 import { Card } from '../../components/Card';
 import { getMyAge } from '../../utils/birthDate';
-
 import {
-  Container,
   ApresentationContainer,
-  Name,
+  Container,
+  Content,
   History,
-  Wrapper,
+  Name,
   SkillsContainer,
   Title,
-  Content,
   ToolsContainer,
+  Wrapper,
 } from './styles';
 
 type Props = {
@@ -106,14 +104,14 @@ export function About({ skills, tools }: Props) {
             <a target="_blank" href="https://www.arq.ifsp.edu.br">
               IFSP
             </a>
-            , que conclui em dezembro de 2019. Autalmente estou cursando o 4º semestre em Análise e
-            Desenvolvimento de Sistemas na{' '}
+            , que conclui em dezembro de 2019. Sou formado em Análise e Desenvolvimento de Sistemas
+            na{' '}
             <a target="_blank" href="https://www.unip.br">
               UNIP
             </a>{' '}
-            e sou Programador júnior na{' '}
-            <a target="_blank" href="http://www.shx.com.br/site/">
-              SHX
+            , e atualmente atuo como Desenvolvedor Pleno na{' '}
+            <a target="_blank" href="https://cpj.e1c.myftpupload.com/">
+              5by5 Soluções em Sistemas
             </a>
             .
           </History>

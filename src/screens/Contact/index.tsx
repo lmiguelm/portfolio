@@ -13,6 +13,7 @@ import { Container, Section, AnimationContainer, IconsContainer, Icon } from './
 import Lottie from 'react-lottie';
 import animation from '../../../public/lottie/37147-contact-us.json';
 import { useTheme } from 'styled-components';
+import { AnimatedIcon } from '../../components/AnimatedIcon';
 
 export function Contact() {
   const { colors } = useTheme();
@@ -77,21 +78,26 @@ export function Contact() {
         <strong>Redes sociais</strong>
 
         <IconsContainer>
-          <Icon onClick={() => openLink('https://www.facebook.com/luismiguel.marcelo.1/')}>
-            <UseAnimations animation={facebook} size={35} strokeColor={colors.textPrimary} />
-          </Icon>
-
-          <Icon onClick={() => openLink('https://www.github.com/lmiguelm')}>
-            <UseAnimations animation={github} size={35} strokeColor={colors.textPrimary} />
-          </Icon>
-
-          <Icon onClick={() => openLink('https://www.instagram.com/lmiguel10/')}>
-            <UseAnimations animation={instagram} size={35} strokeColor={colors.textPrimary} />
-          </Icon>
-
-          <Icon onClick={() => openLink('https://www.linkedin.com/in/lmiguelm/')}>
-            <UseAnimations animation={linkedin} size={35} strokeColor={colors.textPrimary} />
-          </Icon>
+          <AnimatedIcon
+            link="https://www.facebook.com/luismiguel.marcelo.1/"
+            animation={facebook}
+            color={colors.textPrimary}
+          />
+          <AnimatedIcon
+            link="https://www.github.com/lmiguelm"
+            animation={github}
+            color={colors.textPrimary}
+          />
+          <AnimatedIcon
+            link="https://www.instagram.com/lmiguelm_/"
+            animation={instagram}
+            color={colors.textPrimary}
+          />
+          <AnimatedIcon
+            link="https://www.linkedin.com/in/lmiguelm/"
+            animation={linkedin}
+            color={colors.textPrimary}
+          />
         </IconsContainer>
       </Section>
     </Container>

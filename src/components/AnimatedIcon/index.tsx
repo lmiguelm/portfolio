@@ -7,6 +7,7 @@ import { Container } from './styles';
 type Props = {
   link: string;
   animation: any;
+  color?: string;
 };
 
 const item = {
@@ -17,7 +18,7 @@ const item = {
   },
 };
 
-export function AnimatedIcon({ link, animation }: Props) {
+export function AnimatedIcon({ link, animation, color }: Props) {
   const { colors } = useTheme();
 
   function handleOpenLink(link: string) {
@@ -26,7 +27,11 @@ export function AnimatedIcon({ link, animation }: Props) {
 
   return (
     <Container variants={item} onClick={() => handleOpenLink(link)}>
-      <UseAnimations animation={animation} size={40} strokeColor={colors.colorSecondary} />
+      <UseAnimations
+        animation={animation}
+        size={40}
+        strokeColor={color ? color : colors.colorSecondary}
+      />
     </Container>
   );
 }

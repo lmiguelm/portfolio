@@ -10,7 +10,7 @@
 
 # 🎥 Video de demosntração
 
-![lmiguelm](.github/thumb.gif)
+![lmiguelm]([.github/thumb.gif](https://github.com/lmiguelm/portfolio/assets/47677312/49dfc991-500e-4d2f-97e2-29ebb96bc6c2))
 
 <br>
 
